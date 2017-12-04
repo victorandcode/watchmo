@@ -1,6 +1,6 @@
 *WORK IN PROGRESS
 
-[DEMO](https://watchmo.herokuapp.com/)
+[DEMO][https://watchmo.herokuapp.com/]
 
 # Description
 The objective of this project is to show a clone Netflix's Search Page functionality with my own React+Redux design

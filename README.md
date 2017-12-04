@@ -5,7 +5,7 @@
 # Description
 The objective of this project is to show a clone Netflix's Search Page functionality with my own React+Redux design
 
-![Demo of using terminal-gif](./blob/master/video.gif)
+![Demo of using terminal-gif](./video.gif)
 
 
 ## Scope (for the moment)

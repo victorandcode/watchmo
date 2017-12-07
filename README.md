@@ -24,6 +24,9 @@ The objective of this project is to show a clone Netflix's Search Page functiona
 - SASS
 - MovieDB API
 
+## Requirements
+- npm
+
 ## How to use
 ```bash
 npm install

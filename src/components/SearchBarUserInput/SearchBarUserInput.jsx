@@ -22,7 +22,6 @@ class SearchBarUserInput extends React.Component {
   }
 
   eraseTextAndHide() {
-    debugger;
     this.searchInput.value = "";
     this.props.hideSearchBar();
   }

@@ -1,13 +1,25 @@
 import { combineReducers } from 'redux';
 import { 
   RECEIVE_CATEGORIES,
-  RECEIVE_DISCOVER_MOVIES
+  RECEIVE_DISCOVER_MOVIES,
+  RECEIVE_MOVIE_DETAILS
 } from './actions';
 
 function movies(state = [], action) {
   switch(action.type) {
     case RECEIVE_DISCOVER_MOVIES:
       return action.movies;
+    default:
+      return state;
+  }
+}
+
+function movieDetails(state = {}, action) {
+  switch(action.type) {
+    case RECEIVE_MOVIE_DETAILS:
+      let result = Object.assign({}, state)
+      result[action.movieDetails.id] = action.movieDetails
+      return result;
     default:
       return state;
   }
@@ -118,6 +130,7 @@ const rootReducer = combineReducers({
   featuredMovie,
   latestMovies,
   movies,
+  movieDetails,
   users,
   userLinks,
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import MovieCard from '../MovieCard/MovieCard';
+import MovieCardContainer from '../../containers/MovieCardContainer/MovieCardContainer';
 import styles from './MovieSlider.scss';
 
 class MovieSlider extends React.Component {  
@@ -10,7 +10,7 @@ class MovieSlider extends React.Component {
           {this.props.movies.map((movieItem, movieItemIndex) => {
               return (
                 <div className={styles.movieCardWrapper} key={movieItemIndex}>
-                  <MovieCard movie={movieItem}/>
+                  <MovieCardContainer movie={movieItem}/>
                 </div>
               );
             })

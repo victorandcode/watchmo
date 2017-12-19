@@ -1,6 +1,9 @@
 import MovieCard from '../../components/MovieCard/MovieCard';
 import { connect } from 'react-redux';
-import { fetchMovieDetails } from '../../actions';
+import { 
+  fetchMovieDetails,
+  openModalVideo
+} from '../../actions';
 
 const baseImageUrl = "http://image.tmdb.org/t/p/w500/";
 
@@ -33,12 +36,21 @@ function getDuration(runtime) {
   return hours + minutes;
 }
 
+function getVideoUrl(videos) {
+  if(videos.length) {
+    return videos[0].key;
+  } else {
+    return "";
+  }
+}
+
 function parseMovieDetails(movieDetails) {
   return {
     year: getYear(movieDetails.release_date),
     voteAverage: getVoteAverage(movieDetails.vote_average),
     adultFilm: movieDetails.adult,
-    duration: getDuration(movieDetails.runtime)
+    duration: getDuration(movieDetails.runtime),
+    videoUrl: getVideoUrl(movieDetails.videos.results)
   };
 }
 
@@ -68,6 +80,9 @@ const mapDispatchToLinkProps = dispatch => {
   return {
     fetchMovieDetails: (movieId) => {
       fetchMovieDetails(dispatch, movieId);
+    },
+    openModalVideo: (videoId) => {
+      dispatch(openModalVideo(videoId));
     }
   }
 };

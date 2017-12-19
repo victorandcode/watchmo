@@ -11,6 +11,7 @@ class MovieCard extends React.Component {
       showingDetails: false
     }
     this.handleOnMouseEnter = this.handleOnMouseEnter.bind(this);
+    this.handleOnClick = this.handleOnClick.bind(this);
   }
 
   handleOnMouseEnter() {
@@ -18,11 +19,16 @@ class MovieCard extends React.Component {
     this.props.fetchMovieDetails(this.props.movie.id);
   }
 
+  handleOnClick() {
+    this.props.openModalVideo(this.props.movie.videoUrl);
+  }
+
   render() {
     return (
       <div 
         className={styles.MovieCard}
         style={{"backgroundImage": `url(${this.props.movie.backdropUrl})`}}
+        onClick={this.handleOnClick}
         onMouseEnter={() => this.handleOnMouseEnter()}
         onMouseLeave={() => this.setState({ showingDetails: false})}>
         {this.state.showingDetails ? <div className={styles.overlay}/> : null}

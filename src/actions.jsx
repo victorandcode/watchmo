@@ -3,12 +3,15 @@ export const REQUEST_QUERY = "REQUEST_QUERY";
 export const RECEIVE_QUERY = "RECEIVE_QUERY";
 export const RECEIVE_CATEGORIES = "RECEIVE_CATEGORIES";
 export const RECEIVE_MOVIE_DETAILS = "RECEIVE_MOVIE_DETAILS";
+export const OPEN_MODAL_VIDEO = "OPEN_MODAL_VIDEO";
+export const CLOSE_MODAL_VIDEO = "CLOSE_MODAL_VIDEO";
+
 
 const apiKey = "60bab434a5295afc1c82c16e3a8dcc83"
 const apiBaseUrl = "https://api.themoviedb.org/3"
 const discoverMoviesUrl = `${apiBaseUrl}/discover/movie?page=1&api_key=${apiKey}`;
 const categoriesUrl = `${apiBaseUrl}/genre/movie/list?page=1&api_key=${apiKey}&language=en-US`;
-const movieDetailsUrl = `${apiBaseUrl}/movie/{movieId}?api_key=${apiKey}`
+const movieDetailsUrl = `${apiBaseUrl}/movie/{movieId}?api_key=${apiKey}&append_to_response=videos`;
 
 
 export function receiveDiscoverMovies(json) {
@@ -41,6 +44,19 @@ export function receiveMovieDetails(json) {
   return {
     type: RECEIVE_MOVIE_DETAILS,
     movieDetails: json
+  }
+}
+
+export function openModalVideo(videoId) {
+  return {
+    type: OPEN_MODAL_VIDEO,
+    videoId
+  }
+}
+
+export function closeModalVideo() {
+  return {
+    type: CLOSE_MODAL_VIDEO
   }
 }
 

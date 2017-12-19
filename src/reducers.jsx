@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 import { 
+  OPEN_MODAL_VIDEO,
+  CLOSE_MODAL_VIDEO,
   RECEIVE_CATEGORIES,
   RECEIVE_DISCOVER_MOVIES,
   RECEIVE_MOVIE_DETAILS
@@ -125,6 +127,26 @@ function users(state = [
   return state;
 }
 
+function showVideoModal(state = {
+  showing: false,
+  videoId: ''
+}, action) {
+  switch(action.type) {
+    case OPEN_MODAL_VIDEO:
+      return {
+        showing: true,
+        videoId: action.videoId
+      }
+    case CLOSE_MODAL_VIDEO:
+      return {
+        showing: false,
+        videoId: ''
+      }
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
   categories,
   featuredMovie,
@@ -133,6 +155,7 @@ const rootReducer = combineReducers({
   movieDetails,
   users,
   userLinks,
+  showVideoModal
 });
 
 export default rootReducer;

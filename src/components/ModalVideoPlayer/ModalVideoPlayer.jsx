@@ -1,6 +1,5 @@
 import React from 'react';
 import ModalVideo from 'react-modal-video';
-import connect from 'react-redux';
 import 'react-modal-video/css/modal-video.min.css';
 
 class ModalVideoPlayer extends React.Component {

@@ -49,7 +49,8 @@ function userLinks(state = [
 
 function featuredMovie(state = {
   "synopsis": "James Bond must get out of retirement to face an old enemy that emerged from the shadows by destroying MI6 from the inside out.",
-  "ageRestriction": "16+"
+  "ageRestriction": "16+",
+  "videoId": "6kw1UVovByw"
 }, action) {
   return state
 }

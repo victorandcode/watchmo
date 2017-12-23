@@ -1,7 +1,7 @@
 import React from 'react';
+import { CSSTransitionGroup } from 'react-transition-group';
 import downArrow from './down-arrow.png';
 import styles from './CategoryLinks.scss';
-import { CSSTransitionGroup } from 'react-transition-group';
 
 const itemsPerColumn = 6;
 

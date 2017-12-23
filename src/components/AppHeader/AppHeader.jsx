@@ -10,7 +10,7 @@ class AppHeader extends  React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      "headerStyle": styles.AppHeader
+      "innerHeaderStyle": styles.innerHeader
     };
     this.handleScroll = this.handleScroll.bind(this);
   }
@@ -18,11 +18,11 @@ class AppHeader extends  React.Component {
   handleScroll() {
     if(window.scrollY > 0) {
       this.setState({
-        "headerStyle": styles.AppHeaderScrolled
+        "innerHeaderStyle": styles.innerHeaderScrolled
       })
     } else {
       this.setState({
-        "headerStyle": styles.AppHeader
+        "innerHeaderStyle": styles.innerHeader
       })
     }
   }
@@ -33,14 +33,16 @@ class AppHeader extends  React.Component {
 
   render() {
     return(
-      <header className={this.state.headerStyle}>
-        <Logo />
-        <AppNav />
-        <ul className={styles.userActions}>
-          <li><SearchBarContainer/></li>
-          <li><NotificationsContainer /></li>
-          <li><ProfileContainer /></li>
-        </ul>
+      <header className={styles.AppHeader}>
+        <div className={this.state.innerHeaderStyle}>
+          <Logo />
+          <AppNav />
+          <ul className={styles.userActions}>
+            <li><SearchBarContainer/></li>
+            <li><NotificationsContainer /></li>
+            <li><ProfileContainer /></li>
+          </ul>
+        </div>
       </header>
     );
   }

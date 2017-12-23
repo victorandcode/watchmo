@@ -3,6 +3,7 @@ import styles from './MovieCard.scss';
 import thumbsUp from './thumbs-up.png';
 import thumbsDown from './thumbs-down.png';
 import plusSign from './plus-sign.png';
+import notFoundPlaceholder from './not-found-placeholder.png';
 
 class MovieCard extends React.Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class MovieCard extends React.Component {
     return (
       <div 
         className={styles.MovieCard}
-        style={{"backgroundImage": `url(${this.props.movie.backdropUrl})`}}
+        style={{"backgroundImage": `url(${this.props.movie.backdropUrl || notFoundPlaceholder})`}}
         onClick={this.handleOnClick}
         onMouseEnter={() => this.handleOnMouseEnter()}
         onMouseLeave={() => this.setState({ showingDetails: false})}>

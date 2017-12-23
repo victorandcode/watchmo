@@ -1,13 +1,19 @@
 .MovieCard {
+  color: white;
+  cursor: pointer;
+  height: 100%;
+  padding: 0 4px;
+  position: relative;
+  width: 100%;
+}
+
+.movieCardInner {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  color: white;
-  cursor: pointer;
-  height: 170px;
   padding: 20px 10px;
-  position: relative;
-  width: 300px;
+  height: 100%;
+  width: 100%;
 }
 
 .overlay {

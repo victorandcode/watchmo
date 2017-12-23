@@ -8,7 +8,11 @@ import {
 const baseImageUrl = "http://image.tmdb.org/t/p/w500/";
 
 function getBackdropUrl(backdropPath) {
-  return baseImageUrl + backdropPath;
+  if(backdropPath) {
+    return baseImageUrl + backdropPath;
+  } else {
+    return "";
+  }
 }
 
 function getYear(unformattedDate) {

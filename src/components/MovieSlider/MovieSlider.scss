@@ -20,10 +20,11 @@ $moveRight: ($cardWidth * ($growthFactor - 1));
 
 .movieCardWrapper {
   display: inline-block;
-  margin-right: 10px;
+  height: 10vw;
   transition: all 450ms ease-in-out;
   -webkit-transform-origin: center left;
   transform-origin: center left;
+  width: 16vw;
 
 
   &:hover {

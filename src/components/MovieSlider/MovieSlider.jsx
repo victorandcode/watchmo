@@ -2,7 +2,7 @@ import React from 'react';
 import MovieCardContainer from '../../containers/MovieCardContainer/MovieCardContainer';
 import styles from './MovieSlider.scss';
 
-class MovieSlider extends React.Component {  
+class MovieSlider extends React.Component {
   render() {
     return (
       <div className={styles.sliderWrapper}>

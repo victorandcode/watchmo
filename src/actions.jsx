@@ -1,35 +1,29 @@
-export const RECEIVE_DISCOVER_MOVIES = "RECEIVE_DISCOVER_MOVIES";
-export const REQUEST_QUERY = "REQUEST_QUERY";
-export const RECEIVE_QUERY = "RECEIVE_QUERY";
+export const RECEIVE_MOVIES = "RECEIVE_MOVIES";
+export const REQUEST_SEARCH_QUERY = "REQUEST_SEARCH_QUERY";
 export const RECEIVE_CATEGORIES = "RECEIVE_CATEGORIES";
 export const RECEIVE_MOVIE_DETAILS = "RECEIVE_MOVIE_DETAILS";
 export const OPEN_MODAL_VIDEO = "OPEN_MODAL_VIDEO";
 export const CLOSE_MODAL_VIDEO = "CLOSE_MODAL_VIDEO";
-
+export const UPDATE_SEARCH_QUERY = "UPDATE_SEARCH_QUERY";
 
 const apiKey = "60bab434a5295afc1c82c16e3a8dcc83"
 const apiBaseUrl = "https://api.themoviedb.org/3"
 const discoverMoviesUrl = `${apiBaseUrl}/discover/movie?page=1&api_key=${apiKey}`;
+const searchMoviesUrl = `${apiBaseUrl}/search/movie?api_key=${apiKey}&query={searchQuery}`;
 const categoriesUrl = `${apiBaseUrl}/genre/movie/list?page=1&api_key=${apiKey}&language=en-US`;
 const movieDetailsUrl = `${apiBaseUrl}/movie/{movieId}?api_key=${apiKey}&append_to_response=videos`;
 
-
-export function receiveDiscoverMovies(json) {
+export function receiveMovies(json) {
   return {
-    type: RECEIVE_DISCOVER_MOVIES,
+    type: RECEIVE_MOVIES,
     movies: json.results
   }
 }
 
-export function requestQuery(query) {
+export function requestSearchQuery(searchQuery) {
   return {
-    type: REQUEST_QUERY
-  }
-}
-
-export function receiveQuery() {
-  return {
-    tye: RECEIVE_QUERY
+    type: REQUEST_SEARCH_QUERY,
+    searchQuery
   }
 }
 
@@ -60,13 +54,20 @@ export function closeModalVideo() {
   }
 }
 
+function updateSearchQuery(searchQuery) {
+  return {
+    type: UPDATE_SEARCH_QUERY,
+    searchQuery
+  }
+}
+
 export function fetchDiscoverMovies(dispatch) {
   fetch(discoverMoviesUrl)
     .then(
       response => response.json(),
       error => console.log("An error ocurred.", error)
     )
-    .then(json => dispatch(receiveDiscoverMovies(json)))
+    .then(json => dispatch(receiveMovies(json)))
 }
 
 export function fetchCategories(dispatch) {
@@ -86,4 +87,17 @@ export function fetchMovieDetails(dispatch, movieId) {
       error => console.log("An error ocurred.", error)
     )
     .then(json => dispatch(receiveMovieDetails(json)))
+}
+
+export function updateAndFetchSearchQuery(dispatch, searchQuery) {
+  dispatch(updateSearchQuery(searchQuery));
+  if(searchQuery) {
+    const url = searchMoviesUrl.replace("{searchQuery}", searchQuery);
+    fetch(url)
+      .then(
+        response => response.json(),
+        error => console.log("An error ocurred.", error)
+      )
+      .then(json => dispatch(receiveMovies(json)))
+  }
 }

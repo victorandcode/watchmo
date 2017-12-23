@@ -1,15 +1,16 @@
 import { combineReducers } from 'redux';
 import { 
-  OPEN_MODAL_VIDEO,
   CLOSE_MODAL_VIDEO,
+  OPEN_MODAL_VIDEO,
   RECEIVE_CATEGORIES,
-  RECEIVE_DISCOVER_MOVIES,
-  RECEIVE_MOVIE_DETAILS
+  RECEIVE_MOVIES,
+  RECEIVE_MOVIE_DETAILS,
+  UPDATE_SEARCH_QUERY
 } from './actions';
 
 function movies(state = [], action) {
   switch(action.type) {
-    case RECEIVE_DISCOVER_MOVIES:
+    case RECEIVE_MOVIES:
       return action.movies;
     default:
       return state;
@@ -148,6 +149,15 @@ function showVideoModal(state = {
   }
 }
 
+function searchQuery(state = "", action) {
+  switch(action.type) {
+    case UPDATE_SEARCH_QUERY:
+      return action.searchQuery;
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
   categories,
   featuredMovie,
@@ -156,7 +166,8 @@ const rootReducer = combineReducers({
   movieDetails,
   users,
   userLinks,
-  showVideoModal
+  showVideoModal,
+  searchQuery
 });
 
 export default rootReducer;

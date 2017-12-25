@@ -1,4 +1,5 @@
 import React from 'react';
+import GithubCorner from 'react-github-corner';
 import AppNav from '../AppNav/AppNav';
 import Logo from '../Logo/Logo';
 import NotificationsContainer from '../../containers/NotificationsContainer/NotificationsContainer';
@@ -35,6 +36,11 @@ class AppHeader extends  React.Component {
     return(
       <header className={styles.AppHeader}>
         <div className={this.state.innerHeaderStyle}>
+          <GithubCorner 
+            direction="left"
+            href="https://github.com/victor-cordova/watchmo" 
+            octoColor="#fff"
+            bannerColor="#fd6c6c"/>
           <Logo />
           <AppNav />
           <ul className={styles.userActions}>

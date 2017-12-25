@@ -1,4 +1,5 @@
 export const RECEIVE_MOVIES = "RECEIVE_MOVIES";
+export const RECEIVE_QUERY_MOVIES = "RECEIVE_QUERY_MOVIES";
 export const REQUEST_SEARCH_QUERY = "REQUEST_SEARCH_QUERY";
 export const RECEIVE_CATEGORIES = "RECEIVE_CATEGORIES";
 export const RECEIVE_MOVIE_DETAILS = "RECEIVE_MOVIE_DETAILS";
@@ -16,6 +17,13 @@ const movieDetailsUrl = `${apiBaseUrl}/movie/{movieId}?api_key=${apiKey}&append_
 export function receiveMovies(json) {
   return {
     type: RECEIVE_MOVIES,
+    movies: json.results
+  }
+}
+
+export function receiveQueryMovies(json) {
+  return {
+    type: RECEIVE_QUERY_MOVIES,
     movies: json.results
   }
 }
@@ -89,7 +97,8 @@ export function fetchMovieDetails(dispatch, movieId) {
     .then(json => dispatch(receiveMovieDetails(json)))
 }
 
-export function updateAndFetchSearchQuery(dispatch, searchQuery) {
+export function updateAndFetchSearchQuery(dispatch, searchQueryRaw) {
+  let searchQuery = searchQueryRaw.trim();
   dispatch(updateSearchQuery(searchQuery));
   if(searchQuery) {
     const url = searchMoviesUrl.replace("{searchQuery}", searchQuery);
@@ -98,6 +107,6 @@ export function updateAndFetchSearchQuery(dispatch, searchQuery) {
         response => response.json(),
         error => console.log("An error ocurred.", error)
       )
-      .then(json => dispatch(receiveMovies(json)))
+      .then(json => dispatch(receiveQueryMovies(json)))
   }
 }

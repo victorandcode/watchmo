@@ -4,6 +4,7 @@ import {
   OPEN_MODAL_VIDEO,
   RECEIVE_CATEGORIES,
   RECEIVE_MOVIES,
+  RECEIVE_QUERY_MOVIES,
   RECEIVE_MOVIE_DETAILS,
   UPDATE_SEARCH_QUERY
 } from './actions';
@@ -11,6 +12,15 @@ import {
 function movies(state = [], action) {
   switch(action.type) {
     case RECEIVE_MOVIES:
+      return action.movies;
+    default:
+      return state;
+  }
+}
+
+function queryMovies(state = [], action) {
+  switch(action.type) {
+    case RECEIVE_QUERY_MOVIES:
       return action.movies;
     default:
       return state;
@@ -163,6 +173,7 @@ const rootReducer = combineReducers({
   featuredMovie,
   latestMovies,
   movies,
+  queryMovies,
   movieDetails,
   users,
   userLinks,

@@ -12,7 +12,7 @@ const apiBaseUrl = "https://api.themoviedb.org/3"
 const discoverMoviesUrl = `${apiBaseUrl}/discover/movie?page=1&api_key=${apiKey}`;
 const searchMoviesUrl = `${apiBaseUrl}/search/movie?api_key=${apiKey}&query={searchQuery}`;
 const categoriesUrl = `${apiBaseUrl}/genre/movie/list?page=1&api_key=${apiKey}&language=en-US`;
-const movieDetailsUrl = `${apiBaseUrl}/movie/{movieId}?api_key=${apiKey}&append_to_response=videos`;
+const movieDetailsUrl = `${apiBaseUrl}/movie/{movieId}?api_key=${apiKey}&append_to_response=videos,images`;
 
 export function receiveMovies(json) {
   return {

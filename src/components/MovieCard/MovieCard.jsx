@@ -1,8 +1,5 @@
 import React from 'react';
 import styles from './MovieCard.scss';
-import thumbsUp from './thumbs-up.png';
-import thumbsDown from './thumbs-down.png';
-import plusSign from './plus-sign.png';
 import notFoundPlaceholder from './not-found-placeholder.png';
 
 class MovieCard extends React.Component {
@@ -66,11 +63,6 @@ class MovieCard extends React.Component {
                     <span className={styles.duration}>{this.props.movie.duration}</span>
                   </div>
                   <div className={styles.overview}>{this.props.movie.overview}</div>
-                </div>
-                <div className={styles.actionsContainer}>
-                  <div className={styles.action}><img src={thumbsUp} alt="ThumbsUp"/></div>
-                  <div className={styles.action}><img src={thumbsDown} alt="ThumbsDown"/></div>
-                  <div className={styles.action}><img src={plusSign} alt="PlusSign"/></div>
                 </div>
               </div>
               : null

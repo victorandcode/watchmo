@@ -86,33 +86,3 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
-.actionsContainer {
-  bottom: 0;
-  position: absolute;
-  right: 0;
-  vertical-align: bottom;
-
-  .action {
-    background: rgba(0, 0, 0, .5);
-    border: solid 2px #565656;
-    border-radius: 50%;
-    display: block;
-    height: 24px;
-    margin-bottom: 5px;
-    padding: 3px;
-    transition: all 450ms ease-in-out;
-    width: 24px;
-
-    &:hover {
-      background: rgba(0, 0, 0, .7);
-      border: solid 2px white;
-      transform: scale(1.1);
-    }
-
-    img {
-      height: 15px;
-      width: 15px;
-    }
-  }
-}

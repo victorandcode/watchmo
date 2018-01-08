@@ -1,13 +1,13 @@
 import React from 'react';
-import MovieCardContainer from '../../containers/MovieCardContainer/MovieCardContainer';
+import MovieSlider from '../MovieSlider/MovieSlider';
 import styles from './MovieGrid.scss'
 
-const MovieGrid = ({ movies }) => (
+const MovieGrid = ({ moviesRows }) => (
   <div className={styles.movieGrid}>
-    {movies.map((movieItem, movieItemIndex) => {
+    {moviesRows.map((moviesRow, moviesRowIndex) => {
       return (
-        <div className={styles.movieCardWrapper} key={movieItemIndex}>
-          <MovieCardContainer movie={movieItem}/>
+        <div className={styles.group} key={moviesRowIndex}>
+          <MovieSlider movies={moviesRow} />
         </div>
       )
     })}

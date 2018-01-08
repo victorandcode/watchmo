@@ -50,6 +50,7 @@ function getVideoUrl(videos) {
 
 function parseMovieDetails(movieDetails) {
   return {
+    detailsFetched: 1,
     year: getYear(movieDetails.release_date),
     voteAverage: getVoteAverage(movieDetails.vote_average),
     adultFilm: movieDetails.adult,
@@ -70,17 +71,22 @@ function getMovieData(basicMovieData, movieDetails) {
   if(movieDetails) {
     Object.assign(movie, parseMovieDetails(movieDetails))
   }
-
   return movie;
 }
 
+function getIsClickable(movie) {
+  return movie.videoUrl !== undefined && movie.vieoUrl !== "";
+}
+
 const mapStateToProps = (state, ownProps) => {
+  let movie = getMovieData(ownProps.movie, state.movieDetails[ownProps.movie.id]);
   return {
-    movie: getMovieData(ownProps.movie, state.movieDetails[ownProps.movie.id])
+    movie,
+    isClickable: getIsClickable(movie)
   }
 };
 
-const mapDispatchToLinkProps = dispatch => {
+const mapDispatchToLinkProps = (dispatch, ownProps) => {
   return {
     fetchMovieDetails: (movieId) => {
       fetchMovieDetails(dispatch, movieId);
@@ -91,9 +97,20 @@ const mapDispatchToLinkProps = dispatch => {
   }
 };
 
+const mergeProps = (state, actions) => ({
+  ...state,
+  ...actions,
+  fetchMovieDetails: (movieId) => {
+    if(state.movie.detailsFetched === undefined) {
+      actions.fetchMovieDetails(movieId);
+    }
+  }
+});
+
 const MovieCardContainer = connect(
   mapStateToProps,
-  mapDispatchToLinkProps
+  mapDispatchToLinkProps,
+  mergeProps
 )(MovieCard);
 
 export default MovieCardContainer;

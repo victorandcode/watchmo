@@ -1,15 +1,9 @@
-$cards-per-row: 6;
-$movie-grid-width: 90vw;
-$card-width: $movie-grid-width / $cards-per-row;
-$card-height: $card-width * 0.6;
-
 .movieGrid {
-  margin: 0 auto;
-  width: $movie-grid-width;
+  overflow: hidden;
+  position: relative;
 }
-.movieCardWrapper {
-  display: inline-block;
-  height: $card-height;
-  margin-bottom: 20px;
-  width: $card-width;
+
+.group {
+  margin: 0 auto 30px;
+  width: 90vw;
 }

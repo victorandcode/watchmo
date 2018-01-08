@@ -9,10 +9,11 @@ class MovieCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showingDetails: false
+      "showingDetails": false
     }
     this.handleOnMouseEnter = this.handleOnMouseEnter.bind(this);
     this.handleOnClick = this.handleOnClick.bind(this);
+    this.getMovieCardClassName = this.getMovieCardClassName.bind(this);
   }
 
   handleOnMouseEnter() {
@@ -21,13 +22,29 @@ class MovieCard extends React.Component {
   }
 
   handleOnClick() {
-    this.props.openModalVideo(this.props.movie.videoUrl);
+    if(this.props.isClickable) {
+      this.props.openModalVideo(this.props.movie.videoUrl);
+    }
+  }
+
+  setClickableState() {
+    this.setState({ 
+      "movieCardClassName": [styles.MovieCard, styles.hoverable].join(" "),
+    })
+  }
+
+  getMovieCardClassName() {
+    if(this.props.isClickable) {
+      return [styles.MovieCard, styles.hoverable].join(" ");
+    } else {
+      return styles.MovieCard;
+    }
   }
 
   render() {
     return (
       <div 
-        className={styles.MovieCard}
+        className={this.getMovieCardClassName()}
         onClick={this.handleOnClick}
         onMouseEnter={() => this.handleOnMouseEnter()}
         onMouseLeave={() => this.setState({ showingDetails: false})}>

@@ -1,12 +1,11 @@
-import MovieGrid from '../../components/MovieGrid/MovieGrid';
 import { connect } from 'react-redux';
-
-const moviesPerRow = 6;
+import MovieGrid from '../../components/MovieGrid/MovieGrid';
+import { MOVIES_PER_ROW } from '../../constants';
 
 function getMoviesRows(queryMovies) {
   let result = [];
-  for(let i = 0; i < queryMovies.length; i += moviesPerRow) {
-    let row = queryMovies.slice(i, i + moviesPerRow);
+  for(let i = 0; i < queryMovies.length; i += MOVIES_PER_ROW) {
+    let row = queryMovies.slice(i, i + MOVIES_PER_ROW);
     result.push(row)
   }
   return result;

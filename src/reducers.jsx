@@ -4,6 +4,7 @@ import {
   OPEN_MODAL_VIDEO,
   RECEIVE_CATEGORIES,
   RECEIVE_MOVIES,
+  RECEIVE_MOVIES_NOW_PLAYING,
   RECEIVE_QUERY_MOVIES,
   RECEIVE_MOVIE_DETAILS,
   UPDATE_SEARCH_QUERY
@@ -66,57 +67,13 @@ function featuredMovie(state = {
   return state
 }
 
-function latestMovies(state = [
-  {
-    "type": "New Arrival",
-    "imageUrl": "http://image.tmdb.org/t/p/w300/2SEgJ0mHJ7TSdVDbkGU061tR33K.jpg",
-    "title": "Sleight",
-    "timeSinceFeatured": "5 days ago"
-  },
-  {
-    "type": "Now Available",
-    "imageUrl": "http://image.tmdb.org/t/p/w300//lj3wkYkJGkfmDfXkKrVarSJpFD4.jpg",
-    "title": "Atomic Blonde",
-    "timeSinceFeatured": "1 month ago"
-  },
-  {
-    "type": "New Arrival",
-    "imageUrl": "http://image.tmdb.org/t/p/w300/2SEgJ0mHJ7TSdVDbkGU061tR33K.jpg",
-    "title": "Sleight",
-    "timeSinceFeatured": "5 days ago"
-  },
-  {
-    "type": "Now Available",
-    "imageUrl": "http://image.tmdb.org/t/p/w300//lj3wkYkJGkfmDfXkKrVarSJpFD4.jpg",
-    "title": "Atomic Blonde",
-    "timeSinceFeatured": "1 month ago"
-  },
-  {
-    "type": "New Arrival",
-    "imageUrl": "http://image.tmdb.org/t/p/w300/2SEgJ0mHJ7TSdVDbkGU061tR33K.jpg",
-    "title": "Sleight",
-    "timeSinceFeatured": "5 days ago"
-  },
-  {
-    "type": "Now Available",
-    "imageUrl": "http://image.tmdb.org/t/p/w300//lj3wkYkJGkfmDfXkKrVarSJpFD4.jpg",
-    "title": "Atomic Blonde",
-    "timeSinceFeatured": "1 month ago"
-  },
-  {
-    "type": "New Arrival",
-    "imageUrl": "http://image.tmdb.org/t/p/w300/2SEgJ0mHJ7TSdVDbkGU061tR33K.jpg",
-    "title": "Sleight",
-    "timeSinceFeatured": "5 days ago"
-  },
-  {
-    "type": "Now Available",
-    "imageUrl": "http://image.tmdb.org/t/p/w300//lj3wkYkJGkfmDfXkKrVarSJpFD4.jpg",
-    "title": "Atomic Blonde",
-    "timeSinceFeatured": "1 month ago"
+function moviesNowPlaying(state = [], action) {
+  switch(action.type) {
+    case RECEIVE_MOVIES_NOW_PLAYING:
+      return action.movies;
+    default:
+      return state;
   }
-], action) {
-  return state;
 }
 
 function users(state = [
@@ -171,7 +128,7 @@ function searchQuery(state = "", action) {
 const rootReducer = combineReducers({
   categories,
   featuredMovie,
-  latestMovies,
+  moviesNowPlaying,
   movies,
   queryMovies,
   movieDetails,

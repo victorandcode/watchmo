@@ -2,6 +2,7 @@ import React from 'react';
 import bell from './bell.png';
 import styles from './Notifications.scss';
 import { CSSTransitionGroup } from 'react-transition-group';
+import NotificationContainer from '../../containers/NotificationContainer/NotificationContainer';
 
 class Notifications extends React.Component {
   constructor(props) {
@@ -9,6 +10,10 @@ class Notifications extends React.Component {
     this.state = {
       "showingNotificationItems": false
     };
+  }
+
+  componentDidMount() {
+    this.props.onLoad();
   }
 
   render() {
@@ -38,18 +43,7 @@ class Notifications extends React.Component {
               <div className={styles.topBar}/>
               {
                 this.props.notificationList.map((item, index) => {
-                  return (
-                    <div key={index} className={styles.item}>
-                      <img src={item.imageUrl} alt="NotificationImg" className={styles.itemImg}/>
-                      <div className={styles.itemText}>
-                        <div className={styles.itemHeaders}>
-                          <div>{item.type}</div>
-                          <div>{item.title}</div>
-                        </div>
-                        <div className={styles.subheaderText}>{item.timeSinceFeatured}</div>
-                      </div>
-                    </div>
-                  )
+                  return <NotificationContainer movie={item} key={index}/>
                 })
               }
             </div>

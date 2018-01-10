@@ -1,5 +1,5 @@
-import ContentByCategory from '../../components/ContentByCategory/ContentByCategory';
 import { connect } from 'react-redux';
+import ContentByCategory from '../../components/ContentByCategory/ContentByCategory';
 import { fetchDiscoverMovies } from '../../actions';
 
 const categories = ["Watchmo picks", "Trending Now", "Recommended for you"]

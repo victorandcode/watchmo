@@ -4,13 +4,19 @@ import styles from './MovieGrid.scss'
 
 const MovieGrid = ({ moviesRows }) => (
   <div className={styles.movieGrid}>
-    {moviesRows.map((moviesRow, moviesRowIndex) => {
-      return (
-        <div className={styles.group} key={moviesRowIndex}>
-          <MovieSlider movies={moviesRow} />
+    {moviesRows.length ?
+      moviesRows.map((moviesRow, moviesRowIndex) => {
+        return (
+          <div className={styles.group} key={moviesRowIndex}>
+            <MovieSlider movies={moviesRow} />
+          </div>
+        )
+      })
+      : 
+        <div className={styles.moviesNotFound}>
+          Sorry! Your search: ... didn't produce any results. Please change your search term.
         </div>
-      )
-    })}
+    }
   </div>
 );
 

@@ -1,9 +1,8 @@
 import React from 'react';
 import { CSSTransitionGroup } from 'react-transition-group';
+import { MOVIES_PER_ROW } from '../../constants';
 import downArrow from './down-arrow.png';
 import styles from './CategoryLinks.scss';
-
-const itemsPerColumn = 6;
 
 class CategoryLinks extends React.Component {
   constructor(props) {
@@ -31,7 +30,7 @@ class CategoryLinks extends React.Component {
   }
 
   indexRequiresNewColumn(index) {
-    return index !== 0 && (index + 1) % itemsPerColumn === 0;
+    return index !== 0 && (index + 1) % MOVIES_PER_ROW === 0;
   }
 
   getColumns(items, getColumnFn) {

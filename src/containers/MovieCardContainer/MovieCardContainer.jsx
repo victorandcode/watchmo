@@ -4,12 +4,11 @@ import {
   fetchMovieDetails,
   openModalVideo
 } from '../../actions';
-
-const baseImageUrl = "http://image.tmdb.org/t/p/w500/";
+import { IMAGE_BASE_URL_W300 } from '../../constants';
 
 function getBackdropUrl(backdropPath) {
   if(backdropPath) {
-    return baseImageUrl + backdropPath;
+    return IMAGE_BASE_URL_W300 + backdropPath;
   } else {
     return "";
   }
@@ -91,8 +90,8 @@ const mapDispatchToLinkProps = (dispatch, ownProps) => {
     fetchMovieDetails: (movieId) => {
       fetchMovieDetails(dispatch, movieId);
     },
-    openModalVideo: (videoId) => {
-      dispatch(openModalVideo(videoId));
+    openModalVideo: (videoUrl) => {
+      dispatch(openModalVideo(videoUrl));
     }
   }
 };

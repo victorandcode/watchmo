@@ -1,4 +1,5 @@
 export const RECEIVE_MOVIES = "RECEIVE_MOVIES";
+export const RECEIVE_MOVIES_NOW_PLAYING = "RECEIVE_MOVIES_NOW_PLAYING";
 export const RECEIVE_QUERY_MOVIES = "RECEIVE_QUERY_MOVIES";
 export const REQUEST_SEARCH_QUERY = "REQUEST_SEARCH_QUERY";
 export const RECEIVE_CATEGORIES = "RECEIVE_CATEGORIES";
@@ -7,9 +8,10 @@ export const OPEN_MODAL_VIDEO = "OPEN_MODAL_VIDEO";
 export const CLOSE_MODAL_VIDEO = "CLOSE_MODAL_VIDEO";
 export const UPDATE_SEARCH_QUERY = "UPDATE_SEARCH_QUERY";
 
-const apiKey = "60bab434a5295afc1c82c16e3a8dcc83"
-const apiBaseUrl = "https://api.themoviedb.org/3"
+const apiKey = "60bab434a5295afc1c82c16e3a8dcc83";
+const apiBaseUrl = "https://api.themoviedb.org/3";
 const discoverMoviesUrl = `${apiBaseUrl}/discover/movie?page=1&api_key=${apiKey}`;
+const moviesNowPlayingUrl = `${apiBaseUrl}/movie/now_playing?page=1&api_key=${apiKey}`;
 const searchMoviesUrl = `${apiBaseUrl}/search/movie?api_key=${apiKey}&query={searchQuery}`;
 const categoriesUrl = `${apiBaseUrl}/genre/movie/list?page=1&api_key=${apiKey}&language=en-US`;
 const movieDetailsUrl = `${apiBaseUrl}/movie/{movieId}?api_key=${apiKey}&append_to_response=videos,images`;
@@ -17,6 +19,13 @@ const movieDetailsUrl = `${apiBaseUrl}/movie/{movieId}?api_key=${apiKey}&append_
 export function receiveMovies(json) {
   return {
     type: RECEIVE_MOVIES,
+    movies: json.results
+  }
+}
+
+export function receiveMoviesNowPlaying(json) {
+  return {
+    type: RECEIVE_MOVIES_NOW_PLAYING,
     movies: json.results
   }
 }
@@ -76,6 +85,23 @@ export function fetchDiscoverMovies(dispatch) {
       error => console.log("An error ocurred.", error)
     )
     .then(json => dispatch(receiveMovies(json)))
+}
+
+function processReceiveMoviesNowPlaying(dispatch, json) {
+  dispatch(receiveMoviesNowPlaying(json));
+  let elements = json.results;
+  for (let i = 0; i < elements.length; i++) {
+    fetchMovieDetails(dispatch, elements[i].id);
+  }
+}
+
+export function fetchMoviesNowPlaying(dispatch) {
+  fetch(moviesNowPlayingUrl)
+    .then(
+      response => response.json(),
+      error => console.log("An error ocurred.", error)
+    )
+    .then(json => processReceiveMoviesNowPlaying(dispatch, json))
 }
 
 export function fetchCategories(dispatch) {

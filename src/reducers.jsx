@@ -1,12 +1,15 @@
 import { combineReducers } from 'redux';
 import { 
+  CLOSE_LIGHTBOX,
   CLOSE_MODAL_VIDEO,
+  OPEN_LIGHTBOX,
   OPEN_MODAL_VIDEO,
   RECEIVE_CATEGORIES,
   RECEIVE_MOVIES,
   RECEIVE_MOVIES_NOW_PLAYING,
   RECEIVE_QUERY_MOVIES,
   RECEIVE_MOVIE_DETAILS,
+  SET_LIGHTBOX_INDEX,
   UPDATE_SEARCH_QUERY
 } from './actions';
 
@@ -116,6 +119,33 @@ function showVideoModal(state = {
   }
 }
 
+function showLightbox(state = {
+  showing: false,
+  images: [],
+  index: 0
+}, action) {
+  switch(action.type) {
+    case OPEN_LIGHTBOX:
+      return {
+        showing: true,
+        images: action.images,
+        index: 0
+      }
+    case CLOSE_LIGHTBOX:
+      return {
+        showing: false,
+        images: [],
+        index: 0
+      }
+    case SET_LIGHTBOX_INDEX:
+      return Object.assign({}, state, {
+        index: action.index
+      })
+    default:
+      return state;
+  }
+}
+
 function searchQuery(state = "", action) {
   switch(action.type) {
     case UPDATE_SEARCH_QUERY:
@@ -134,6 +164,7 @@ const rootReducer = combineReducers({
   movieDetails,
   users,
   userLinks,
+  showLightbox,
   showVideoModal,
   searchQuery
 });

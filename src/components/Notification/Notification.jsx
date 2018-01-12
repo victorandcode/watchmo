@@ -8,7 +8,7 @@ class Notification extends React.Component {
   }
 
   handleClick() {
-    this.props.openModalVideo(this.props.movie.videoUrl);
+    this.props.triggerMovieAction(this.props.movie);
   }
 
   render() {

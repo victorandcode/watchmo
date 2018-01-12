@@ -1,11 +1,14 @@
+export const CLOSE_MODAL_VIDEO = "CLOSE_MODAL_VIDEO";
+export const CLOSE_LIGHTBOX = "CLOSE_LIGHTBOX";
+export const OPEN_LIGHTBOX = "OPEN_LIGHTBOX";
+export const OPEN_MODAL_VIDEO = "OPEN_MODAL_VIDEO";
 export const RECEIVE_MOVIES = "RECEIVE_MOVIES";
 export const RECEIVE_MOVIES_NOW_PLAYING = "RECEIVE_MOVIES_NOW_PLAYING";
 export const RECEIVE_QUERY_MOVIES = "RECEIVE_QUERY_MOVIES";
 export const REQUEST_SEARCH_QUERY = "REQUEST_SEARCH_QUERY";
 export const RECEIVE_CATEGORIES = "RECEIVE_CATEGORIES";
 export const RECEIVE_MOVIE_DETAILS = "RECEIVE_MOVIE_DETAILS";
-export const OPEN_MODAL_VIDEO = "OPEN_MODAL_VIDEO";
-export const CLOSE_MODAL_VIDEO = "CLOSE_MODAL_VIDEO";
+export const SET_LIGHTBOX_INDEX = "SET_LIGHTBOX_INDEX";
 export const UPDATE_SEARCH_QUERY = "UPDATE_SEARCH_QUERY";
 
 const apiKey = "60bab434a5295afc1c82c16e3a8dcc83";
@@ -16,24 +19,31 @@ const searchMoviesUrl = `${apiBaseUrl}/search/movie?api_key=${apiKey}&query={sea
 const categoriesUrl = `${apiBaseUrl}/genre/movie/list?page=1&api_key=${apiKey}&language=en-US`;
 const movieDetailsUrl = `${apiBaseUrl}/movie/{movieId}?api_key=${apiKey}&append_to_response=videos,images`;
 
+function filterMoviesOnlyWithBackdrop(movies) {
+  return movies.filter((movie) => {
+    return movie.backdrop_path !== "" && movie.backdrop_path !== null;
+  });
+}
+
 export function receiveMovies(json) {
   return {
     type: RECEIVE_MOVIES,
-    movies: json.results
+    movies: filterMoviesOnlyWithBackdrop(json.results)
   }
 }
 
 export function receiveMoviesNowPlaying(json) {
   return {
     type: RECEIVE_MOVIES_NOW_PLAYING,
-    movies: json.results
+    movies: filterMoviesOnlyWithBackdrop(json.results)
   }
 }
 
 export function receiveQueryMovies(json) {
+  let temp = filterMoviesOnlyWithBackdrop(json.results);
   return {
     type: RECEIVE_QUERY_MOVIES,
-    movies: json.results
+    movies: temp
   }
 }
 
@@ -58,16 +68,48 @@ export function receiveMovieDetails(json) {
   }
 }
 
-export function openModalVideo(videoId) {
+export function triggerMovieAction(movie) {
+  let videos = movie.videos;
+  let images = movie.images;
+  if(videos.length) {
+    return openModalVideo(videos[0].key)
+  } else if(images.length) {
+    return openLightbox(images);
+  } else {
+    alert("NO INFORMATION TO SHOW");
+  }
+}
+
+function openModalVideo(videoId) {
   return {
     type: OPEN_MODAL_VIDEO,
     videoId
   }
 }
 
+function openLightbox(images) {
+  return {
+    type: OPEN_LIGHTBOX,
+    images
+  }
+}
+
+export function closeLightbox() {
+  return {
+    type: CLOSE_LIGHTBOX
+  }
+}
+
 export function closeModalVideo() {
   return {
     type: CLOSE_MODAL_VIDEO
+  }
+}
+
+export function setLightboxIndex(index) {
+  return {
+    type: SET_LIGHTBOX_INDEX,
+    index
   }
 }
 

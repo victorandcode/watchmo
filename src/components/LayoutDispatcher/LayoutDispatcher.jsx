@@ -1,5 +1,6 @@
 import React from 'react';
 import { CSSTransitionGroup } from 'react-transition-group';
+import AppLightboxContainer from '../../containers/AppLightboxContainer/AppLightboxContainer';
 import LayoutLanding from '../LayoutLanding/LayoutLanding';
 import MovieGridContainer from '../../containers/MovieGridContainer/MovieGridContainer';
 import ModalVideoPlayerContainer from '../../containers/ModalVideoPlayerContainer/ModalVideoPlayerContainer';
@@ -23,6 +24,7 @@ class LayoutDispatcher extends React.Component {
           }
         </CSSTransitionGroup>
         <ModalVideoPlayerContainer />
+        <AppLightboxContainer />
       </div>
     )
   }

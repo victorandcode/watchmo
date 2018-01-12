@@ -20,7 +20,7 @@ class MovieCard extends React.Component {
 
   handleOnClick() {
     if(this.props.isClickable) {
-      this.props.openModalVideo(this.props.movie.videoUrl);
+      this.props.triggerMovieAction(this.props.movie);
     }
   }
 

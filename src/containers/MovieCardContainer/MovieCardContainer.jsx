@@ -11,7 +11,10 @@ function getIsClickable(movieDetails) {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let movie = getMovieData(ownProps.movie, state.movieDetails[ownProps.movie.id]);
+  let movie = getMovieData(
+    ownProps.movie, 
+    state.movieDetails[ownProps.movie.id],
+    { imageIsBig: true });
   return {
     movie,
     isClickable: getIsClickable(state.movieDetails[ownProps.movie.id])

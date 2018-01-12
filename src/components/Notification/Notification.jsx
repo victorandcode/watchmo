@@ -16,7 +16,7 @@ class Notification extends React.Component {
       <div 
         className={styles.Notification}
         onClick={this.handleClick}>
-        <img src={this.props.movie.imageUrl} alt="NotificationImg" className={styles.notificationImg}/>
+        <img src={this.props.movie.backdropUrl} alt="NotificationImg" className={styles.notificationImg}/>
         <div className={styles.notificationText}>
           <div className={styles.notificationHeaders}>
             <div>{this.props.movie.title}</div>

@@ -9,7 +9,7 @@ class HeroRecommendation extends React.Component {
   }
 
   handleClick() {
-    this.props.openModalVideo(this.props.recommendedMovie.videoId);
+    this.props.triggerMovieAction(this.props.recommendedMovie);
   }
 
   render() {

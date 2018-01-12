@@ -5,7 +5,6 @@ class AppLightbox extends Component {
   render() {
     let photoIndex = this.props.index;
     let images = this.props.images;
-    console.log(images);
     return (
       <div>
         {this.props.isOpen && (

@@ -37,6 +37,7 @@
     "react-dev-utils": "^4.2.1",
     "react-dom": "^16.2.0",
     "react-github-corner": "^2.0.0",
+    "react-hotjar": "^1.0.11",
     "react-image-lightbox": "^4.4.0",
     "react-modal-video": "^1.0.7",
     "react-redux": "^5.0.6",

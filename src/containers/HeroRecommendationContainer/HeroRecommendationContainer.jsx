@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import HeroRecommendation from '../../components/HeroRecommendation/HeroRecommendation';
+import { triggerMovieAction } from '../../actions';
 
 const mapStateToProps = state => {
   return {
@@ -9,8 +10,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToLinkProps = dispatch => {
   return {
-    openModalVideo: (videoId) => {
-      
+    triggerMovieAction: (movie) => {
+      dispatch(triggerMovieAction(movie));
     }
   }
 };

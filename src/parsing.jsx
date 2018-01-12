@@ -40,7 +40,6 @@ function getDuration(runtime) {
 }
 
 function parseImages(imagesObjs = []) {
-  console.log(imagesObjs);
   return imagesObjs.map((imageObj) => {
     return IMAGE_BASE_URL_W500 + imageObj.file_path;
   })

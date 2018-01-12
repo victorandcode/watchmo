@@ -6,11 +6,7 @@ import { triggerMovieAction } from '../../actions';
 const mapStateToProps = (state, ownProps) => {
   let basicMovieData = ownProps.movie;
   return {
-    movie: getMovieData(
-      basicMovieData,
-      state.movieDetails[basicMovieData.id], 
-      { imageIsBig: true}
-    )
+    movie: getMovieData(basicMovieData, state.movieDetails[basicMovieData.id])
   }
 };
 

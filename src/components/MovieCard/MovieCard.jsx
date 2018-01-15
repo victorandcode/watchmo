@@ -14,6 +14,8 @@ class MovieCard extends React.Component {
   }
 
   handleOnMouseEnter() {
+    if(this.state.showingDetails)
+      return;
     this.setState({ showingDetails: true});
     this.props.fetchMovieDetails(this.props.movie.id);
   }
@@ -25,7 +27,7 @@ class MovieCard extends React.Component {
   }
 
   setClickableState() {
-    this.setState({ 
+    this.setState({
       "movieCardClassName": [styles.MovieCard, styles.hoverable].join(" "),
     })
   }
@@ -43,29 +45,39 @@ class MovieCard extends React.Component {
       <div 
         className={this.getMovieCardClassName()}
         onClick={this.handleOnClick}
-        onMouseEnter={() => this.handleOnMouseEnter()}
-        onMouseLeave={() => this.setState({ showingDetails: false})}>
+        onMouseOver={() => this.handleOnMouseEnter()}
+        onMouseLeave={() => this.setState({ showingDetails: false })}>
         <div 
           className={styles.movieCardInner}
           style={{"backgroundImage": `url(${this.props.movie.backdropUrl || notFoundPlaceholder})`}}>
             {this.state.showingDetails ? <div className={styles.overlay}/> : null}
             {this.state.showingDetails ?
               <div className={styles.content}>
-                <div className={styles.detailsContainer}>
+                <div className={styles.infoContainer}>
                   <div className={styles.title}>{this.props.movie.title}</div>
-                  <div className={styles.generalInfoContainer}>
-                    <span className={styles.voteAverage}>{this.props.movie.voteAverage}</span>
-                    <span className={styles.year}>{this.props.movie.year}</span>
-                    {this.props.movie.adultFilm
-                      ? <span className={styles.adultFilm}>18+</span>
-                      : null
-                    }
-                    <span className={styles.duration}>{this.props.movie.duration}</span>
+                  <div className={styles.detailsContainer}>
+                    
+                    {this.props.isLoadingDetails ?
+                        <span className={styles.loadingMessage}>Loading movie details...</span>
+                      :
+                        <div>
+                          <span className={styles.voteAverage}>{this.props.movie.voteAverage}</span>
+                          <span className={styles.year}>{this.props.movie.year}</span>
+                          {this.props.movie.adultFilm ? 
+                              <span className={styles.adultFilm}>18+</span>
+                            : 
+                              null
+                          }
+                          <span className={styles.duration}>{this.props.movie.duration}</span>
+                        </div>
+                    }                    
                   </div>
+
                   <div className={styles.overview}>{this.props.movie.overview}</div>
                 </div>
               </div>
-              : null
+              : 
+                null
             }
         </div>
       </div>

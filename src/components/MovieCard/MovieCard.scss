@@ -33,7 +33,7 @@
   position: relative;
 }
 
-.detailsContainer {
+.infoContainer {
   bottom: 0;
   position: absolute;
   width: 180px;
@@ -45,8 +45,15 @@
   margin-bottom: 5px;
 }
 
-.generalInfoContainer {
+.detailsContainer {
   margin-bottom: 5px;
+}
+
+.loadingMessage {
+  color: #46d369;
+  font-size: .8vw;
+  font-weight: bold;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .7);
 }
 
 .voteAverage {

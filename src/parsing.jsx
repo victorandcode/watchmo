@@ -60,7 +60,8 @@ function parseMovieDetails(movieDetails) {
 function parseBasicMovieData(basicMovieData, imageIsBig) {
   return Object.assign({}, basicMovieData, {
     id: basicMovieData.id,
-    backdropUrl: getBackdropUrl(basicMovieData.backdrop_path, imageIsBig)
+    backdropUrl: getBackdropUrl(basicMovieData.backdrop_path, imageIsBig),
+    releasedDate: basicMovieData.release_date
   })
 }
 

@@ -1,3 +1,4 @@
+export const CLEAR_QUERY_MOVIES = "CLEAR_QUERY_MOVIES";
 export const CLOSE_MODAL_VIDEO = "CLOSE_MODAL_VIDEO";
 export const CLOSE_LIGHTBOX = "CLOSE_LIGHTBOX";
 export const OPEN_LIGHTBOX = "OPEN_LIGHTBOX";
@@ -113,6 +114,12 @@ export function setLightboxIndex(index) {
   }
 }
 
+function clearQueryMovies() {
+  return {
+    type: CLEAR_QUERY_MOVIES
+  }
+}
+
 function updateSearchQuery(searchQuery) {
   return {
     type: UPDATE_SEARCH_QUERY,
@@ -167,6 +174,9 @@ export function fetchMovieDetails(dispatch, movieId) {
 
 export function updateAndFetchSearchQuery(dispatch, searchQueryRaw) {
   let searchQuery = searchQueryRaw.trim();
+  if(!searchQueryRaw.length) {
+    dispatch(clearQueryMovies());
+  }
   dispatch(updateSearchQuery(searchQuery));
   if(searchQuery) {
     const url = searchMoviesUrl.replace("{searchQuery}", searchQuery);

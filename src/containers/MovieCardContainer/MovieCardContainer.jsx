@@ -6,7 +6,7 @@ import {
 } from '../../actions';
 import { getMovieData } from '../../parsing';
 
-function getIsClickable(movieDetails) {
+function movieDetailsExist(movieDetails) {
   return movieDetails !== undefined;
 }
 
@@ -15,9 +15,11 @@ const mapStateToProps = (state, ownProps) => {
     ownProps.movie, 
     state.movieDetails[ownProps.movie.id],
     { imageIsBig: true });
+  let detailsExist = movieDetailsExist(state.movieDetails[ownProps.movie.id]);
   return {
     movie,
-    isClickable: getIsClickable(state.movieDetails[ownProps.movie.id])
+    isClickable: detailsExist,
+    isLoadingDetails: !detailsExist
   }
 };
 

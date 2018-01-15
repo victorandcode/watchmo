@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { 
+  CLEAR_QUERY_MOVIES,
   CLOSE_LIGHTBOX,
   CLOSE_MODAL_VIDEO,
   OPEN_LIGHTBOX,
@@ -22,10 +23,21 @@ function movies(state = [], action) {
   }
 }
 
-function queryMovies(state = [], action) {
+function queryMovies(state = {
+  movies: [],
+  searchHasTriggered: false
+}, action) {
   switch(action.type) {
     case RECEIVE_QUERY_MOVIES:
-      return action.movies;
+      return {
+        movies: action.movies,
+        searchHasTriggered: true
+      }
+    case CLEAR_QUERY_MOVIES:
+      return {
+        movies: [],
+        searchHasTriggered: false
+      }
     default:
       return state;
   }

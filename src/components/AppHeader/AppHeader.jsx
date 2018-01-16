@@ -1,6 +1,6 @@
 import React from 'react';
 import GithubCorner from 'react-github-corner';
-import AppNav from '../AppNav/AppNav';
+import AppNavContainer from '../../containers/AppNavContainer/AppNavContainer';
 import Logo from '../Logo/Logo';
 import NotificationsContainer from '../../containers/NotificationsContainer/NotificationsContainer';
 import ProfileContainer from '../../containers/ProfileContainer/ProfileContainer';
@@ -42,7 +42,7 @@ class AppHeader extends  React.Component {
             octoColor="#fff"
             bannerColor="#fd6c6c"/>
           <Logo />
-          <AppNav />
+          <AppNavContainer />
           <ul className={styles.userActions}>
             <li><SearchBarContainer/></li>
             <li><NotificationsContainer /></li>

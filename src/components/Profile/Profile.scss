@@ -1,6 +1,5 @@
 .Profile {
   display: inline-block;
-  cursor: pointer;
 }
 
 .profileIcon {
@@ -54,13 +53,23 @@
 }
 
 .changeProfileLink {
+  color: #747070;
   line-height: 1em;
   padding: 5px 0;
+
+  &:hover {
+    color: #747070;
+  }
 }
 
 .textLink {
-  cursor: pointer;
+  color: #747070;
+  cursor: default;
   display: block;
   line-height: 1em;
   padding: 5px 0;
+
+  &:hover {
+    color: #747070;
+  }
 }

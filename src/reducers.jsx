@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { 
-  CLEAR_QUERY_MOVIES,
+  CLEAR_SEARCHED_MOVIES,
   CLOSE_LIGHTBOX,
   CLOSE_MODAL_VIDEO,
   OPEN_LIGHTBOX,
@@ -8,9 +8,10 @@ import {
   RECEIVE_CATEGORIES,
   RECEIVE_MOVIES,
   RECEIVE_MOVIES_NOW_PLAYING,
-  RECEIVE_QUERY_MOVIES,
+  RECEIVE_SEARCHED_MOVIES,
   RECEIVE_MOVIE_DETAILS,
   SET_LIGHTBOX_INDEX,
+  SET_SEARCHED_MOVIES_TITLE,
   UPDATE_SEARCH_QUERY
 } from './actions';
 
@@ -23,21 +24,27 @@ function movies(state = [], action) {
   }
 }
 
-function queryMovies(state = {
+function searchedMovies(state = {
   movies: [],
-  searchHasTriggered: false
+  searchHasTriggered: false,
+  searchTitle: ""
 }, action) {
   switch(action.type) {
-    case RECEIVE_QUERY_MOVIES:
-      return {
+    case RECEIVE_SEARCHED_MOVIES:
+      return Object.assign({}, state, {
         movies: action.movies,
         searchHasTriggered: true
-      }
-    case CLEAR_QUERY_MOVIES:
+      });
+    case CLEAR_SEARCHED_MOVIES:
       return {
         movies: [],
-        searchHasTriggered: false
+        searchHasTriggered: false,
+        searchTitle: ""
       }
+    case SET_SEARCHED_MOVIES_TITLE:
+      return Object.assign({}, state, {
+        searchTitle: action.title
+      })
     default:
       return state;
   }
@@ -61,17 +68,6 @@ function categories(state = [], action) {
     default:
       return state;
   }
-}
-
-function userLinks(state = [
-  "Discover",
-  "Popular",
-  "Latest added",
-  "My favorites",
-  "Continue watching",
-  "I'm feeling lucky"
-], action) {
-  return state;
 }
 
 function featuredMovie(state = {
@@ -172,10 +168,9 @@ const rootReducer = combineReducers({
   featuredMovie,
   moviesNowPlaying,
   movies,
-  queryMovies,
+  searchedMovies,
   movieDetails,
   users,
-  userLinks,
   showLightbox,
   showVideoModal,
   searchQuery

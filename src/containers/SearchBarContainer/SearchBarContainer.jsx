@@ -1,12 +1,12 @@
 import SearchBar from '../../components/SearchBar/SearchBar';
-import { updateAndFetchSearchQuery } from '../../actions';
+import { triggerQuerySearch } from '../../actions';
 import { connect } from 'react-redux';
 
 
 const mapDispatchToProps = dispatch => {
   return {
     searchQueryChange: (searchQuery) => {
-      updateAndFetchSearchQuery(dispatch, searchQuery);
+      triggerQuerySearch(dispatch, searchQuery);
     }
   }
 };

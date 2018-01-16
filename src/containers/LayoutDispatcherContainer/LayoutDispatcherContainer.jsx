@@ -3,7 +3,7 @@ import LayoutDispatcher from '../../components/LayoutDispatcher/LayoutDispatcher
 
 const mapStateToProps = state => {
   return {
-    searchQuery: state.searchQuery
+    showSearchedMovies: state.searchedMovies.searchHasTriggered
   }
 };
 

@@ -39,8 +39,7 @@ npm start
 - https://codepen.io/anon/pen/KyryVq?editors=1100 for guidelines on how to add the scaling effect on movie cards
 
 ## Pending improvements
-- Add a slider
+- Add infinite paging
 - Improve responsive support
+- Add a slider
 - Footer
-- Perform search
-- Play video trailers

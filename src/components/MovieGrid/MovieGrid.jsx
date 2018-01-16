@@ -2,9 +2,9 @@ import React from 'react';
 import MovieSlider from '../MovieSlider/MovieSlider';
 import styles from './MovieGrid.scss'
 
-const MovieGrid = ({ moviesRows, searchQuery, showNoElementsFound }) => (
+const MovieGrid = ({ moviesRows, searchQuery, showNoElementsFound, title }) => (
   <div className={styles.movieGrid}>
-    <div className={styles.title}>Movies found for '{searchQuery}':</div>
+    <div className={styles.title}>{title}</div>
     {moviesRows.length ?
       moviesRows.map((moviesRow, moviesRowIndex) => {
         return (

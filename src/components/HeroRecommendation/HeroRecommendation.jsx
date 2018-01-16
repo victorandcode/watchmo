@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './HeroRecommendation.scss';
-import recommendationLogo from './recommendation-logo.webp';
+import recommendationLogo from './recommendation-logo.png';
 
 class HeroRecommendation extends React.Component {
   constructor(props) {

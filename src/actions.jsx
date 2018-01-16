@@ -1,24 +1,35 @@
-export const CLEAR_QUERY_MOVIES = "CLEAR_QUERY_MOVIES";
+import {
+  get80sMoviesUrl,
+  get90sMoviesUrl,
+  getDiscoverMoviesUrl,
+  getGenresUrl,
+  getHighlyRatedMoviesUrl,
+  getLongMoviesUrl,
+  getMoviesByGenreUrl,
+  getMovieDetailsUrl,
+  getMoviesNowPlayingUrl,
+  getNewMoviesUrl,
+  getPoorlyRatedMoviesUrl,
+  getSearchMoviesUrl,
+  getShortMoviesUrl,
+  getUpcomingMoviesUrl
+} from './utils/url-builders';
+
+export const CLEAR_SEARCHED_MOVIES = "CLEAR_SEARCHED_MOVIES";
 export const CLOSE_MODAL_VIDEO = "CLOSE_MODAL_VIDEO";
 export const CLOSE_LIGHTBOX = "CLOSE_LIGHTBOX";
 export const OPEN_LIGHTBOX = "OPEN_LIGHTBOX";
 export const OPEN_MODAL_VIDEO = "OPEN_MODAL_VIDEO";
 export const RECEIVE_MOVIES = "RECEIVE_MOVIES";
 export const RECEIVE_MOVIES_NOW_PLAYING = "RECEIVE_MOVIES_NOW_PLAYING";
-export const RECEIVE_QUERY_MOVIES = "RECEIVE_QUERY_MOVIES";
+export const RECEIVE_SEARCHED_MOVIES = "RECEIVE_SEARCHED_MOVIES";
 export const REQUEST_SEARCH_QUERY = "REQUEST_SEARCH_QUERY";
 export const RECEIVE_CATEGORIES = "RECEIVE_CATEGORIES";
 export const RECEIVE_MOVIE_DETAILS = "RECEIVE_MOVIE_DETAILS";
 export const SET_LIGHTBOX_INDEX = "SET_LIGHTBOX_INDEX";
+export const SET_SEARCHED_MOVIES_TITLE = "SET_SEARCHED_MOVIES_TITLE";
 export const UPDATE_SEARCH_QUERY = "UPDATE_SEARCH_QUERY";
 
-const apiKey = "60bab434a5295afc1c82c16e3a8dcc83";
-const apiBaseUrl = "https://api.themoviedb.org/3";
-const discoverMoviesUrl = `${apiBaseUrl}/discover/movie?page=1&api_key=${apiKey}`;
-const moviesNowPlayingUrl = `${apiBaseUrl}/movie/now_playing?page=1&api_key=${apiKey}`;
-const searchMoviesUrl = `${apiBaseUrl}/search/movie?api_key=${apiKey}&query={searchQuery}`;
-const categoriesUrl = `${apiBaseUrl}/genre/movie/list?page=1&api_key=${apiKey}&language=en-US`;
-const movieDetailsUrl = `${apiBaseUrl}/movie/{movieId}?api_key=${apiKey}&append_to_response=videos,images`;
 
 function filterMoviesOnlyWithBackdrop(movies) {
   return movies.filter((movie) => {
@@ -40,11 +51,11 @@ export function receiveMoviesNowPlaying(json) {
   }
 }
 
-export function receiveQueryMovies(json) {
-  let temp = filterMoviesOnlyWithBackdrop(json.results);
+export function receiveSearchedMovies(json, title) {
   return {
-    type: RECEIVE_QUERY_MOVIES,
-    movies: temp
+    type: RECEIVE_SEARCHED_MOVIES,
+    movies: filterMoviesOnlyWithBackdrop(json.results),
+    title
   }
 }
 
@@ -114,9 +125,16 @@ export function setLightboxIndex(index) {
   }
 }
 
-function clearQueryMovies() {
+export function setSearchedMoviesTitle(title) {
   return {
-    type: CLEAR_QUERY_MOVIES
+    type: SET_SEARCHED_MOVIES_TITLE,
+    title
+  }
+}
+
+function clearSearchedMovies() {
+  return {
+    type: CLEAR_SEARCHED_MOVIES
   }
 }
 
@@ -128,7 +146,7 @@ function updateSearchQuery(searchQuery) {
 }
 
 export function fetchDiscoverMovies(dispatch) {
-  fetch(discoverMoviesUrl)
+  fetch(getDiscoverMoviesUrl())
     .then(
       response => response.json(),
       error => console.log("An error ocurred.", error)
@@ -145,7 +163,7 @@ function processReceiveMoviesNowPlaying(dispatch, json) {
 }
 
 export function fetchMoviesNowPlaying(dispatch) {
-  fetch(moviesNowPlayingUrl)
+  fetch(getMoviesNowPlayingUrl())
     .then(
       response => response.json(),
       error => console.log("An error ocurred.", error)
@@ -154,7 +172,7 @@ export function fetchMoviesNowPlaying(dispatch) {
 }
 
 export function fetchCategories(dispatch) {
-  fetch(categoriesUrl)
+  fetch(getGenresUrl())
     .then(
       response => response.json(),
       error => console.log("An error ocurred.", error)
@@ -163,8 +181,7 @@ export function fetchCategories(dispatch) {
 }
 
 export function fetchMovieDetails(dispatch, movieId) {
-  const url = movieDetailsUrl.replace("{movieId}", movieId);
-  fetch(url)
+  fetch(getMovieDetailsUrl(movieId))
     .then(
       response => response.json(),
       error => console.log("An error ocurred.", error)
@@ -172,19 +189,72 @@ export function fetchMovieDetails(dispatch, movieId) {
     .then(json => dispatch(receiveMovieDetails(json)))
 }
 
-export function updateAndFetchSearchQuery(dispatch, searchQueryRaw) {
+function fetchSearchedMovies(dispatch, url, title) {
+  dispatch(setSearchedMoviesTitle(title));
+
+  fetch(url)
+    .then(
+      response => response.json(),
+      error => console.log("An error ocurred.", error)
+    )
+    .then(json => dispatch(receiveSearchedMovies(json)))
+}
+
+export function triggerQuerySearch(dispatch, searchQueryRaw) {
   let searchQuery = searchQueryRaw.trim();
+  let title = `Results for '${searchQuery}':`;
   if(!searchQueryRaw.length) {
-    dispatch(clearQueryMovies());
+    dispatch(clearSearchedMovies());
   }
   dispatch(updateSearchQuery(searchQuery));
   if(searchQuery) {
-    const url = searchMoviesUrl.replace("{searchQuery}", searchQuery);
-    fetch(url)
-      .then(
-        response => response.json(),
-        error => console.log("An error ocurred.", error)
-      )
-      .then(json => dispatch(receiveQueryMovies(json)))
+    const url = getSearchMoviesUrl(searchQuery);
+    fetchSearchedMovies(dispatch, url, title);
   }
+}
+
+export function triggerGenreSearch(dispatch, genreName, genreId) {
+  const url = getMoviesByGenreUrl(genreId);
+  let title = `Results for genre '${genreName}':`;
+  fetchSearchedMovies(dispatch, url, title);
+}
+
+export function trigger80sMoviesSearch(dispatch) {
+  let title = "80's movies:"
+  fetchSearchedMovies(dispatch, get80sMoviesUrl(), title);
+}
+
+export function trigger90sMoviesSearch(dispatch) {
+  let title = "90's movies:";
+  fetchSearchedMovies(dispatch, get90sMoviesUrl(), title);
+}
+
+export function triggerHighlyRatedMoviesSearch(dispatch) {
+  let title = "Highly rated movies:";
+  fetchSearchedMovies(dispatch, getHighlyRatedMoviesUrl(), title);
+}
+
+export function triggerPoorlyRatedMoviesSearch(dispatch) {
+  let title = "Poorly rated movies:";
+  fetchSearchedMovies(dispatch, getPoorlyRatedMoviesUrl(), title);
+}
+
+export function triggerLongMoviesSearch(dispatch) {
+  let title = "Long movies:";
+  fetchSearchedMovies(dispatch, getLongMoviesUrl(), title);
+}
+
+export function triggerShortMoviesSearch(dispatch) {
+  let title = "Short movies:";
+  fetchSearchedMovies(dispatch, getShortMoviesUrl(), title);
+}
+
+export function triggerNewMoviesSearch(dispatch) {
+  let title = "New movies:";
+  fetchSearchedMovies(dispatch, getNewMoviesUrl(), title); 
+}
+
+export function triggerUpcomingMoviesSearch(dispatch) {
+  let title = "Upcoming movies:";
+  fetchSearchedMovies(dispatch, getUpcomingMoviesUrl(), title); 
 }

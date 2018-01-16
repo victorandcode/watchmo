@@ -17,7 +17,7 @@ class LayoutDispatcher extends React.Component {
           }}
           transitionEnterTimeout={500}
           transitionLeave={false}>
-          {this.props.searchQuery ?
+          {this.props.showSearchedMovies ?
             <MovieGridContainer key={1}/>
            :
             <LayoutLanding key={2}/>

@@ -1,22 +1,21 @@
-*WORK IN PROGRESS
-
 <a href="https://watchmo.herokuapp.com/" target="_blank">DEMO</a>
 
 # Description
-The objective of this project is to show a clone Netflix's Search Page functionality with my own React+Redux design
+Trailer viewing website using React+Redux architecture and with Netflix's look and feel
+Please consider the movie db API is slow so queries might take a bit to load
 
 ![Demo of using terminal-gif](./video.gif)
 
 
-## Scope (for the moment)
-- Show a React component structure to replicate Netflix's Search Page
+## Scope
+- Show a React component structure to replicate Netflix's Landing Page
+- Show trailers in youtube or image sliders when trailer not available
 - Manage state using Redux when necessary
 - CSS as faithful as possible
-- All data from Moviedb's API. Some data not available is hardcoded or randomized (temporarily ;).
-- Only GET actions
-- Unoptimized image usage (no webp or svg)
-- Unoptimized browser support
-- Not responsive
+- All data from Moviedb's API
+- Searches by multiple pre-build criterias
+- Search using query string
+- Only desktop support
 
 ## Technologies used
 - React with ejected create-react-app template
@@ -42,4 +41,3 @@ npm start
 - Add infinite paging
 - Improve responsive support
 - Add a slider
-- Footer

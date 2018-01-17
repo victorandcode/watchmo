@@ -132,6 +132,7 @@ export function getHighlyRatedMoviesUrl() {
 
 export function getPoorlyRatedMoviesUrl() {
   let query = {
+    voteAverageGt: 1,
     voteAverageLt: 3
   };
   let builder = new DiscoverMoviesUrlBuilder(query);

@@ -1,6 +1,8 @@
 import {
   get80sMoviesUrl,
   get90sMoviesUrl,
+  getBestOf2016Url,
+  getBestOf2017Url,
   getDiscoverMoviesUrl,
   getGenresUrl,
   getHighlyRatedMoviesUrl,
@@ -20,12 +22,14 @@ export const CLOSE_MODAL_VIDEO = "CLOSE_MODAL_VIDEO";
 export const CLOSE_LIGHTBOX = "CLOSE_LIGHTBOX";
 export const OPEN_LIGHTBOX = "OPEN_LIGHTBOX";
 export const OPEN_MODAL_VIDEO = "OPEN_MODAL_VIDEO";
-export const RECEIVE_MOVIES = "RECEIVE_MOVIES";
+export const RECEIVE_DISCOVER_MOVIES = "RECEIVE_DISCOVER_MOVIES";
 export const RECEIVE_MOVIES_NOW_PLAYING = "RECEIVE_MOVIES_NOW_PLAYING";
 export const RECEIVE_SEARCHED_MOVIES = "RECEIVE_SEARCHED_MOVIES";
 export const REQUEST_SEARCH_QUERY = "REQUEST_SEARCH_QUERY";
 export const RECEIVE_CATEGORIES = "RECEIVE_CATEGORIES";
 export const RECEIVE_MOVIE_DETAILS = "RECEIVE_MOVIE_DETAILS";
+export const RECEIVE_NEW_MOVIES = "RECEIVE_NEW_MOVIES";
+export const RECEIVE_UPCOMING_MOVIES = "RECEIVE_UPCOMING_MOVIES";
 export const SET_LIGHTBOX_INDEX = "SET_LIGHTBOX_INDEX";
 export const SET_SEARCHED_MOVIES_TITLE = "SET_SEARCHED_MOVIES_TITLE";
 export const UPDATE_SEARCH_QUERY = "UPDATE_SEARCH_QUERY";
@@ -37,9 +41,9 @@ function filterMoviesOnlyWithBackdrop(movies) {
   });
 }
 
-export function receiveMovies(json) {
+export function receiveDiscoverMovies(json) {
   return {
-    type: RECEIVE_MOVIES,
+    type: RECEIVE_DISCOVER_MOVIES,
     movies: filterMoviesOnlyWithBackdrop(json.results)
   }
 }
@@ -47,6 +51,20 @@ export function receiveMovies(json) {
 export function receiveMoviesNowPlaying(json) {
   return {
     type: RECEIVE_MOVIES_NOW_PLAYING,
+    movies: filterMoviesOnlyWithBackdrop(json.results)
+  }
+}
+
+export function receiveNewMovies(json) {
+  return {
+    type: RECEIVE_NEW_MOVIES,
+    movies: filterMoviesOnlyWithBackdrop(json.results)
+  }
+}
+
+export function receiveUpcomingMovies(json) {
+  return {
+    type: RECEIVE_UPCOMING_MOVIES,
     movies: filterMoviesOnlyWithBackdrop(json.results)
   }
 }
@@ -151,7 +169,7 @@ export function fetchDiscoverMovies(dispatch) {
       response => response.json(),
       error => console.log("An error ocurred.", error)
     )
-    .then(json => dispatch(receiveMovies(json)))
+    .then(json => dispatch(receiveDiscoverMovies(json)))
 }
 
 function processReceiveMoviesNowPlaying(dispatch, json) {
@@ -169,6 +187,24 @@ export function fetchMoviesNowPlaying(dispatch) {
       error => console.log("An error ocurred.", error)
     )
     .then(json => processReceiveMoviesNowPlaying(dispatch, json))
+}
+
+export function fetchNewMovies(dispatch) {
+  fetch(getNewMoviesUrl())
+    .then(
+      response => response.json(),
+      error => console.log("An error ocurred.", error)
+    )
+    .then(json => dispatch(receiveNewMovies(json)))
+}
+
+export function fetchUpcomingMovies(dispatch) {
+  fetch(getUpcomingMoviesUrl())
+    .then(
+      response => response.json(),
+      error => console.log("An error ocurred.", error)
+    )
+    .then(json => dispatch(receiveUpcomingMovies(json))) 
 }
 
 export function fetchCategories(dispatch) {
@@ -249,12 +285,12 @@ export function triggerShortMoviesSearch(dispatch) {
   fetchSearchedMovies(dispatch, getShortMoviesUrl(), title);
 }
 
-export function triggerNewMoviesSearch(dispatch) {
-  let title = "New movies:";
-  fetchSearchedMovies(dispatch, getNewMoviesUrl(), title); 
+export function triggerBestOf2017Search(dispatch) {
+  let title = "Best of 2017:";
+  fetchSearchedMovies(dispatch, getBestOf2017Url(), title); 
 }
 
-export function triggerUpcomingMoviesSearch(dispatch) {
-  let title = "Upcoming movies:";
-  fetchSearchedMovies(dispatch, getUpcomingMoviesUrl(), title); 
+export function triggerBestOf2016Search(dispatch) {
+  let title = "Best of 2016:";
+  fetchSearchedMovies(dispatch, getBestOf2016Url(), title); 
 }

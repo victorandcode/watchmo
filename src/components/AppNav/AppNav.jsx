@@ -5,18 +5,18 @@ import styles from './AppNav.scss';
 class AppNav extends React.Component {
   constructor(props) {
     super(props);
-    this.handleNewSearchClick = this.handleNewSearchClick.bind(this);
-    this.handleUpcomingClick = this.handleUpcomingClick.bind(this);
+    this.handleBestOf2016Click = this.handleBestOf2016Click.bind(this);
+    this.handleBestOf2017Click = this.handleBestOf2017Click.bind(this);
   }
 
-  handleNewSearchClick(e) {
+  handleBestOf2017Click(e) {
     e.preventDefault();
-    this.props.triggerNewSearch();
+    this.props.triggerBestOf2017();
   }
 
-  handleUpcomingClick(e) {
+  handleBestOf2016Click(e) {
     e.preventDefault();
-    this.props.triggerUpcomingSearch();
+    this.props.triggerBestOf2016();
   }
 
   render() {
@@ -25,10 +25,10 @@ class AppNav extends React.Component {
         <ul className={styles.linkList}>
           <li className={styles.linkItem}><NavLinksContainer /></li>
           <li className={styles.linkItem}>
-            <a className="navLink" href="/" onClick={this.handleNewSearchClick}>New</a>
+            <a className="navLink" href="/" onClick={this.handleBestOf2017Click}>Best of 2017</a>
           </li>
           <li className={styles.linkItem}>
-            <a className="navLink" href="/" onClick={this.handleUpcomingClick}>Upcoming</a>
+            <a className="navLink" href="/" onClick={this.handleBestOf2016Click}>Best of 2016</a>
           </li>
         </ul>
       </nav>

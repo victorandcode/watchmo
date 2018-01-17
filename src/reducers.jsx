@@ -1,23 +1,43 @@
 import { combineReducers } from 'redux';
-import { 
+import {
   CLEAR_SEARCHED_MOVIES,
   CLOSE_LIGHTBOX,
   CLOSE_MODAL_VIDEO,
   OPEN_LIGHTBOX,
   OPEN_MODAL_VIDEO,
   RECEIVE_CATEGORIES,
-  RECEIVE_MOVIES,
+  RECEIVE_DISCOVER_MOVIES,
   RECEIVE_MOVIES_NOW_PLAYING,
+  RECEIVE_NEW_MOVIES,
   RECEIVE_SEARCHED_MOVIES,
   RECEIVE_MOVIE_DETAILS,
+  RECEIVE_UPCOMING_MOVIES,
   SET_LIGHTBOX_INDEX,
   SET_SEARCHED_MOVIES_TITLE,
   UPDATE_SEARCH_QUERY
 } from './actions';
 
-function movies(state = [], action) {
+function discoverMovies(state = [], action) {
   switch(action.type) {
-    case RECEIVE_MOVIES:
+    case RECEIVE_DISCOVER_MOVIES:
+      return action.movies;
+    default:
+      return state;
+  }
+}
+
+function newMovies(state = [], action) {
+  switch(action.type) {
+    case RECEIVE_NEW_MOVIES:
+      return action.movies;
+    default:
+      return state;
+  }
+}
+
+function upcomingMovies(state = [], action) {
+  switch(action.type) {
+    case RECEIVE_UPCOMING_MOVIES:
       return action.movies;
     default:
       return state;
@@ -71,9 +91,9 @@ function categories(state = [], action) {
 }
 
 function featuredMovie(state = {
-  "synopsis": "James Bond must get out of retirement to face an old enemy that emerged from the shadows by destroying MI6 from the inside out.",
+  "synopsis": "Jake Pentecost, son of Stacker Pentecost, reunites with Mako Mori to lead a new generation of Jaeger pilots",
   "ageRestriction": "16+",
-  "videos": [{"key": "6kw1UVovByw"}]
+  "videos": [{"key": "Am-gG-VyXPg"}]
 }, action) {
   return state
 }
@@ -167,8 +187,10 @@ const rootReducer = combineReducers({
   categories,
   featuredMovie,
   moviesNowPlaying,
-  movies,
+  discoverMovies,
   searchedMovies,
+  newMovies,
+  upcomingMovies,
   movieDetails,
   users,
   showLightbox,

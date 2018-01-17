@@ -1,33 +1,21 @@
 import { connect } from 'react-redux';
 import ContentByCategory from '../../components/ContentByCategory/ContentByCategory';
-import { fetchDiscoverMovies } from '../../actions';
+import { 
+  fetchDiscoverMovies,
+  fetchNewMovies,
+  fetchUpcomingMovies
+} from '../../actions';
+import { MOVIES_PER_ROW } from '../../constants';
 
-const categories = ["Watchmo picks", "Trending Now", "Recommended for you"]
-const getCategoryGroups = (movies) => {
-  const moviesPerCategory = parseInt(movies.length / categories.length, 10);
-  let result = [];
-  let currentGroup = {
-    category: "",
-    content: []
-  };
-  for (let i = 0; i < movies.length; i++) {
-    currentGroup.content.push(movies[i]);
-    if((i + 1) % moviesPerCategory === 0) {
-      let categoryIndex = parseInt(i / moviesPerCategory, 10);
-      currentGroup.category = categories[categoryIndex];
-      result.push(currentGroup);
-      currentGroup = {
-        category: "",
-        content: []
-      };
-    }
-  }
-  return result;
+function sliceMaxElements(movies) {
+  return movies.slice(0, MOVIES_PER_ROW);
 }
 
 const mapStateToProps = state => {
   return {
-    categoryGroups: getCategoryGroups(state.movies)
+    discoverMovies: sliceMaxElements(state.discoverMovies),
+    newMovies: sliceMaxElements(state.newMovies),
+    upcomingMovies: sliceMaxElements(state.upcomingMovies)
   }
 };
 
@@ -35,6 +23,8 @@ const mapDispatchToLinkProps = dispatch => {
   return {
     onLoad: () => {
       fetchDiscoverMovies(dispatch);
+      fetchNewMovies(dispatch);
+      fetchUpcomingMovies(dispatch);
     }
   }
 };

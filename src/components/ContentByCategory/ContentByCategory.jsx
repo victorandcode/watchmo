@@ -11,16 +11,24 @@ class ContentByCategory extends React.Component {
   render() {
     return (
       <div className={styles.ContentByCategory}>
-        {this.props.categoryGroups.map((groupItem, groupIndex) => {
-          return (
-            <div className={styles.group} key={groupIndex}>
-              <div className={styles.title}>{groupItem.category}</div>
-              <div className={styles.sliderContainer}>
-                <MovieSlider movies={groupItem.content}/>
-              </div>
-            </div>
-          )
-        })}
+        <div className={styles.group}>
+          <div className={styles.title}>Discover</div>
+          <div className={styles.sliderContainer}>
+            <MovieSlider movies={this.props.discoverMovies}/>
+          </div>
+        </div>
+        <div className={styles.group}>
+          <div className={styles.title}>New Movies</div>
+          <div className={styles.sliderContainer}>
+            <MovieSlider movies={this.props.newMovies}/>
+          </div>
+        </div>
+        <div className={styles.group}>
+          <div className={styles.title}>Upcoming Movies</div>
+          <div className={styles.sliderContainer}>
+            <MovieSlider movies={this.props.upcomingMovies}/>
+          </div>
+        </div>
       </div>
     );
   }

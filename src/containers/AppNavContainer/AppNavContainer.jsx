@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
 import AppNav from '../../components/AppNav/AppNav';
 import {
-  triggerNewMoviesSearch,
-  triggerUpcomingMoviesSearch
+  triggerBestOf2017Search,
+  triggerBestOf2016Search
 } from '../../actions';
 
 const mapDispatchToLinkProps = dispatch => {
   return {
-    triggerNewSearch: () => {
-      triggerNewMoviesSearch(dispatch);
+    triggerBestOf2017: () => {
+      triggerBestOf2017Search(dispatch);
     },
-    triggerUpcomingSearch: () => {
-      triggerUpcomingMoviesSearch(dispatch);
+    triggerBestOf2016: () => {
+      triggerBestOf2016Search(dispatch);
     }
   }
 }

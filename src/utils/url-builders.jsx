@@ -184,3 +184,23 @@ export function getUpcomingMoviesUrl() {
   let builder = new DiscoverMoviesUrlBuilder(query);
   return builder.getUrl();  
 }
+
+export function getBestOf2016Url() {
+  let query = {
+    releasedDateGt: "2016-01-01",
+    releasedDateLt: "2016-12-31",
+    voteAverageGt: 7
+  };
+  let builder = new DiscoverMoviesUrlBuilder(query);
+  return builder.getUrl();   
+}
+
+export function getBestOf2017Url() {
+  let query = {
+    releasedDateGt: "2017-01-01",
+    releasedDateLt: "2017-12-31",
+    voteAverageGt: 7
+  };
+  let builder = new DiscoverMoviesUrlBuilder(query);
+  return builder.getUrl();   
+}

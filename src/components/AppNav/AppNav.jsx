@@ -23,11 +23,11 @@ class AppNav extends React.Component {
     return (
       <nav className={styles.AppNav}>
         <ul className={styles.linkList}>
-          <li className={styles.linkItem}><NavLinksContainer /></li>
-          <li className={styles.linkItem}>
+          <li className={[styles.linkItem]}><NavLinksContainer /></li>
+          <li className={[styles.linkItem, styles.preBuiltLink].join(" ")}>
             <a className="navLink" href="/" onClick={this.handleBestOf2017Click}>Best of 2017</a>
           </li>
-          <li className={styles.linkItem}>
+          <li className={[styles.linkItem, styles.preBuiltLink].join(" ")}>
             <a className="navLink" href="/" onClick={this.handleBestOf2016Click}>Best of 2016</a>
           </li>
         </ul>

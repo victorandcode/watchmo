@@ -1,6 +1,8 @@
+@import '../_variables.scss';
+
 .AppNav {
   display: inline-block;
-  padding: 0 60px;
+  padding: 0 20px;
   heigth: 100%;
   vertical-align: top
 }
@@ -14,3 +16,14 @@
   padding: 0 25px;
   vertical-align: top
 }
+
+@media(max-width: $max-md-width) {
+  .linkItem {
+    padding: 0;
+  }
+
+  .preBuiltLink {
+    display: none;
+  }  
+}
+

@@ -19,6 +19,7 @@ class AppLightbox extends Component {
             onMoveNextRequest={() =>
               this.props.setIndex((photoIndex + 1) % images.length)
             }
+            imageTitle="Sorry! No trailers for this movie yet"
           />
         )}
       </div>

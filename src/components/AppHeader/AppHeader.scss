@@ -1,3 +1,5 @@
+@import '../_variables.scss';
+
 .AppHeader {
   background: rgb(0, 0, 0);
   color: white;
@@ -35,6 +37,11 @@
   height: 100%;
 }
 
+.githubCorner {
+  height: 80px;
+  width: 80px;
+}
+
 .userActions {
   display: inline-block;
   float: right;
@@ -45,5 +52,22 @@
   li {
     display: inline-block;
     margin-left: 30px;
+  }
+}
+
+@media(max-width: $max-xs-width) {
+  .innerHeader {
+    padding: 0 20px;
+  }
+
+  .githubCorner {
+    height: 45px;
+    width: 45px;
+  }
+
+  .userActions {
+    .searchBar {
+      display: none;
+    }
   }
 }

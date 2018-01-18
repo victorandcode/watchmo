@@ -1,0 +1,14 @@
+@import '../_variables.scss';
+
+@media(min-width: $min-md-width) {
+  .mobileVersion {
+    display: none;
+  }
+}
+
+@media(max-width: $max-sm-width) {
+  .desktopVisible {
+    display: none;
+  }
+}
+

@@ -1,4 +1,17 @@
+@import '../_variables.scss';
+
 .Logo {
   display: inline-block;
   vertical-align: middle;
+  width: 120px;
+}
+
+.image {
+  width: 100%;
+}
+
+@media(max-width: $max-sm-width) {
+  .Logo {
+    width: 20vw;
+  }
 }

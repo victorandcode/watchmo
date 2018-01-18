@@ -98,10 +98,10 @@ class NavLinks extends React.Component {
         className={styles.NavLinks} 
         onMouseEnter={() => this.setState({ showingLinkContainer: true})}
         onMouseLeave={() => this.setState({ showingLinkContainer: false})}>
-        <a className={styles.mainLink} href="/">
+        <button className={styles.toggleLinksBtn}>
           Browse
           <img src={downArrow} alt="DownArrow" className={styles.downArrowIcon} />
-        </a>
+        </button>
         
         <CSSTransitionGroup
           transitionName={{
@@ -116,11 +116,13 @@ class NavLinks extends React.Component {
             <div className={styles.linkContainer}> 
               <div className={styles.topBar}></div>
               <div className={styles.linksArrow}></div>
-              {this.getPreBuildLinksColumn()}
-              {this.getColumns(
-                this.props.genres, 
-                this.getCategoryColumn,
-                this.getGenreRow)}
+              <div className={styles.links}>
+                {this.getPreBuildLinksColumn()}
+                {this.getColumns(
+                  this.props.genres, 
+                  this.getCategoryColumn,
+                  this.getGenreRow)}
+              </div>
             </div>
           : null}
         </CSSTransitionGroup>

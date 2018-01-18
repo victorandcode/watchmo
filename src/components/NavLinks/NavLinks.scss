@@ -1,9 +1,16 @@
+@import '../_variables.scss';
+
+
 .NavLinks {
   position: relative
 }
 
-a.mainLink {
+.toggleLinksBtn {
+  background: none;
+  border: none;
   color: #ad2dd7;
+  cursor: pointer;
+  font-size: 16px;
   font-weight: bold;
 };
 
@@ -84,4 +91,42 @@ a.mainLink {
   height: 100%;
   vertical-align: top;
   width: 1px;
+}
+
+@media(max-width: $max-sm-width) {
+  .NavLinks {
+    position: static;
+  }
+
+  .userLinks {
+    border: 0;
+  }
+
+  .linkContainer {
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+    width: 70vw;
+  }
+
+  .links {
+    max-height: 40vh;
+    overflow-y: scroll;
+  }
+
+  .linksColumn {
+    display: block;
+    padding: 0 15px;
+  }
+
+  .linksArrow {
+    left: 0;
+    margin: 0 auto;
+    right: 0;
+  }
+
+  .linksRow {
+    padding: 10px 0;
+  }
 }

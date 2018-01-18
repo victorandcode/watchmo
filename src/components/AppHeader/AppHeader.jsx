@@ -1,7 +1,7 @@
 import React from 'react';
-import GithubCorner from 'react-github-corner';
-import AppNavContainer from '../../containers/AppNavContainer/AppNavContainer';
 import Logo from '../Logo/Logo';
+import AppGithubCorner from '../AppGithubCorner/AppGithubCorner';
+import AppNavContainer from '../../containers/AppNavContainer/AppNavContainer';
 import NotificationsContainer from '../../containers/NotificationsContainer/NotificationsContainer';
 import ProfileContainer from '../../containers/ProfileContainer/ProfileContainer';
 import SearchBarContainer from '../../containers/SearchBarContainer/SearchBarContainer';
@@ -36,15 +36,11 @@ class AppHeader extends  React.Component {
     return(
       <header className={styles.AppHeader}>
         <div className={this.state.innerHeaderStyle}>
-          <GithubCorner 
-            direction="left"
-            href="https://github.com/victor-cordova/watchmo" 
-            octoColor="#fff"
-            bannerColor="#fd6c6c"/>
+          <AppGithubCorner />
           <Logo />
           <AppNavContainer />
           <ul className={styles.userActions}>
-            <li><SearchBarContainer/></li>
+            <li className={styles.searchBar}><SearchBarContainer/></li>
             <li><NotificationsContainer /></li>
             <li><ProfileContainer /></li>
           </ul>

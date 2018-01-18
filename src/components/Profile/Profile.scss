@@ -1,3 +1,5 @@
+@import '../_variables.scss';
+
 .Profile {
   display: inline-block;
 }
@@ -12,64 +14,8 @@
   margin-left: 10px;
 }
 
-.downArrowIcon {
-  margin-left: 5px;
-}
-
-.profileLinks {
-  background: rgba(0, 0, 0, .9);
-  position: absolute;
-  right: 0;
-  width: 164px;
-  white-space: nowrap;
-}
-
-.profileLinksEnter {
-  opacity: 0.1;
-  transition: opacity 200ms ease-in;
-}
-
-.profileLinksEnterActive {
-  opacity: 1;
-  transition: opacity 200ms ease-in;
-}
-
-.profileLinksLeave {
-  opacity: 1;
-}
-
-.profileLinksLeaveActive {
-  opacity: 0.1; 
-  transition: opacity 200ms ease-in;
-}
-
-.linkGroup {
-  font-size: 13px;
-  padding: 10px;
-}
-
-.topBorderSeparator {
-  border-top: solid 1px rgba(255, 255, 255, .25);
-}
-
-.changeProfileLink {
-  color: #747070;
-  line-height: 1em;
-  padding: 5px 0;
-
-  &:hover {
-    color: #747070;
-  }
-}
-
-.textLink {
-  color: #747070;
-  cursor: default;
-  display: block;
-  line-height: 1em;
-  padding: 5px 0;
-
-  &:hover {
-    color: #747070;
+@media(max-width: $max-sm-width) {
+  .userName {
+    display: none;
   }
 }

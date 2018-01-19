@@ -8,17 +8,22 @@ class MovieCard extends React.Component {
     this.state = {
       "showingDetails": false
     }
-    this.handleOnMouseEnter = this.handleOnMouseEnter.bind(this);
+    this.getMovieDataIfNecessary = this.getMovieDataIfNecessary.bind(this);
+    this.handleOnMouseOver = this.handleOnMouseOver.bind(this);
     this.handleOnClickDesktop = this.handleOnClickDesktop.bind(this);
     this.handleOnClickMobile = this.handleOnClickMobile.bind(this);
     this.getMovieCardClassName = this.getMovieCardClassName.bind(this);
   }
 
-  handleOnMouseEnter() {
+  getMovieDataIfNecessary() {
     if(this.state.showingDetails)
       return;
     this.setState({ showingDetails: true});
     this.props.fetchMovieDetails(this.props.movie.id);
+  }
+
+  handleOnMouseOver() {
+    this.getMovieDataIfNecessary();
   }
 
   handleOnClickDesktop() {
@@ -28,7 +33,7 @@ class MovieCard extends React.Component {
   }
 
   handleOnClickMobile() {
-    this.props.fetchMovieDetails(this.props.movie.id);
+    this.getMovieDataIfNecessary();
     this.props.openMovieDetailsBanner();
   }
 
@@ -48,9 +53,12 @@ class MovieCard extends React.Component {
 
   render() {
     return (
-      <div 
-        className={this.getMovieCardClassName()}>
-        
+      <div className={this.getMovieCardClassName()}>
+        <div 
+          className={styles.clickReceiverDesktop} 
+          onClick={this.handleOnClickDesktop} 
+          onMouseOver={() => this.handleOnMouseOver()}
+          onMouseLeave={() => this.setState({ showingDetails: false })}/>
         <div className={styles.clickReceiverMobile} onClick={this.handleOnClickMobile} />
         <div 
           className={styles.movieCardInner}

@@ -32,8 +32,8 @@ class HeroRecommendation extends React.Component {
           <div className={styles.recommendationSynopsis}>
             {this.props.recommendedMovie.synopsis}
           </div>
-          <div className={styles.ageRestriction}>
-            {this.props.recommendedMovie.ageRestriction}
+          <div className={styles.releaseDate}>
+            Release date: {this.props.recommendedMovie.releaseDate}
           </div>
         </div>
       </div>

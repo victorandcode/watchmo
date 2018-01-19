@@ -1,3 +1,5 @@
+@import '../_variables.scss';
+
 .SearchBar {
   display: inline-block;
   vertical-align: middle;
@@ -50,4 +52,14 @@
 .inputAppearActive {
   width: 250px;
   transition: width 300ms ease-in;
+}
+
+@media(min-width: $min-sm-width) and (max-width: $max-sm-width) {
+  .searchInput {
+    width: 150px;
+  }
+
+  .inputAppearActive {
+    width: 150px;
+  }
 }

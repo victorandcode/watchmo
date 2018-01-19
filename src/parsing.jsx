@@ -48,8 +48,6 @@ function parseImages(imagesObjs = []) {
 function parseMovieDetails(movieDetails) {
   return {
     detailsFetched: 1,
-    year: getYear(movieDetails.release_date),
-    voteAverage: getVoteAverage(movieDetails.vote_average),
     adultFilm: movieDetails.adult,
     duration: getDuration(movieDetails.runtime),
     videos: movieDetails.videos.results,
@@ -61,7 +59,10 @@ function parseBasicMovieData(basicMovieData, imageIsBig) {
   return Object.assign({}, basicMovieData, {
     id: basicMovieData.id,
     backdropUrl: getBackdropUrl(basicMovieData.backdrop_path, imageIsBig),
-    releasedDate: basicMovieData.release_date
+    overview: basicMovieData.overview,
+    releasedDate: basicMovieData.release_date,
+    voteAverage: getVoteAverage(basicMovieData.vote_average),
+    year: getYear(basicMovieData.release_date)
   })
 }
 

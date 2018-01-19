@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import {
   CLEAR_SEARCHED_MOVIES,
+  CLEAR_SELECTED_MOVIE,
   CLOSE_LIGHTBOX,
   CLOSE_MODAL_VIDEO,
   OPEN_LIGHTBOX,
@@ -14,6 +15,7 @@ import {
   RECEIVE_UPCOMING_MOVIES,
   SET_LIGHTBOX_INDEX,
   SET_SEARCHED_MOVIES_TITLE,
+  SELECT_MOVIE,
   UPDATE_SEARCH_QUERY
 } from './actions';
 
@@ -92,7 +94,7 @@ function categories(state = [], action) {
 
 function featuredMovie(state = {
   "synopsis": "Jake Pentecost, son of Stacker Pentecost, reunites with Mako Mori to lead a new generation of Jaeger pilots",
-  "ageRestriction": "16+",
+  "releaseDate": "21/03/2018",
   "videos": [{"key": "Am-gG-VyXPg"}]
 }, action) {
   return state
@@ -183,6 +185,26 @@ function searchQuery(state = "", action) {
   }
 }
 
+function selectedMovie(state = {
+  movie: undefined,
+  containerKey: undefined
+}, action) {
+  switch(action.type) {
+    case SELECT_MOVIE:
+      return {
+        movie: action.movie,
+        containerKey: action.containerKey
+      };
+    case CLEAR_SELECTED_MOVIE:
+      return {
+        movie: undefined,
+        containerKey: undefined
+      };
+    default:
+      return state;    
+  }
+}
+
 const rootReducer = combineReducers({
   categories,
   featuredMovie,
@@ -195,7 +217,8 @@ const rootReducer = combineReducers({
   users,
   showLightbox,
   showVideoModal,
-  searchQuery
+  searchQuery,
+  selectedMovie
 });
 
 export default rootReducer;

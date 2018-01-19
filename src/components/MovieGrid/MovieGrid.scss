@@ -1,3 +1,5 @@
+@import '../_variables.scss';
+
 .movieGrid {
   margin: 0 auto;
   overflow: hidden;
@@ -19,4 +21,10 @@
 .moviesNotFound {
   text-align: center;
   color: #ffff;
+}
+
+@media(max-width: $max-sm-width) {
+  .title {
+    font-size: 16px;
+  }
 }

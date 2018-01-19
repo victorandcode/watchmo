@@ -18,6 +18,7 @@ import {
 } from './utils/url-builders';
 
 export const CLEAR_SEARCHED_MOVIES = "CLEAR_SEARCHED_MOVIES";
+export const CLEAR_SELECTED_MOVIE = "CLEAR_SELECTED_MOVIE";
 export const CLOSE_MODAL_VIDEO = "CLOSE_MODAL_VIDEO";
 export const CLOSE_LIGHTBOX = "CLOSE_LIGHTBOX";
 export const OPEN_LIGHTBOX = "OPEN_LIGHTBOX";
@@ -32,6 +33,7 @@ export const RECEIVE_NEW_MOVIES = "RECEIVE_NEW_MOVIES";
 export const RECEIVE_UPCOMING_MOVIES = "RECEIVE_UPCOMING_MOVIES";
 export const SET_LIGHTBOX_INDEX = "SET_LIGHTBOX_INDEX";
 export const SET_SEARCHED_MOVIES_TITLE = "SET_SEARCHED_MOVIES_TITLE";
+export const SELECT_MOVIE = "SELECT_MOVIE";
 export const UPDATE_SEARCH_QUERY = "UPDATE_SEARCH_QUERY";
 
 
@@ -293,4 +295,18 @@ export function triggerBestOf2017Search(dispatch) {
 export function triggerBestOf2016Search(dispatch) {
   let title = "Best of 2016:";
   fetchSearchedMovies(dispatch, getBestOf2016Url(), title); 
+}
+
+export function selectMovie(movie, containerKey) {
+  return {
+    type: SELECT_MOVIE,
+    movie,
+    containerKey
+  }
+}
+
+export function clearSelectedMovie() {
+  return {
+    type: CLEAR_SELECTED_MOVIE
+  }
 }

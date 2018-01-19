@@ -1,3 +1,5 @@
+@import '../_variables.scss';
+
 $cards-per-row: 6;
 $container-width: 90vw;
 $card-width: $container-width / $cards-per-row;
@@ -45,3 +47,34 @@ $move-right: ($card-width * ($growth-factor - 1));
   -webkit-transform: translate3d($move-right, 0, 0);
           transform: translate3d($move-right, 0, 0);
 }
+
+@media(max-width: $max-sm-width) {
+  .wrapperMoveLeft {
+    &:hover {
+      transform: none;
+    } 
+  }
+
+  .wrapperMoveLeftExtra {
+    &:hover {
+      transform: none;
+    }
+  }
+
+  .movieCardWrapper {
+    &:hover {
+      transform: none;
+    }
+  }
+
+  .desktopSlider {
+    display: none;
+  }
+}
+
+@media(min-width: $min-md-width) {
+  .mobileSlider {
+    display: none;
+  }  
+}
+

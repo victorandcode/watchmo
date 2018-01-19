@@ -9,7 +9,8 @@ class MovieCard extends React.Component {
       "showingDetails": false
     }
     this.handleOnMouseEnter = this.handleOnMouseEnter.bind(this);
-    this.handleOnClick = this.handleOnClick.bind(this);
+    this.handleOnClickDesktop = this.handleOnClickDesktop.bind(this);
+    this.handleOnClickMobile = this.handleOnClickMobile.bind(this);
     this.getMovieCardClassName = this.getMovieCardClassName.bind(this);
   }
 
@@ -20,10 +21,14 @@ class MovieCard extends React.Component {
     this.props.fetchMovieDetails(this.props.movie.id);
   }
 
-  handleOnClick() {
+  handleOnClickDesktop() {
     if(this.props.isClickable) {
       this.props.triggerMovieAction(this.props.movie);
     }
+  }
+
+  handleOnClickMobile() {
+    this.props.openMovieDetailsBanner();
   }
 
   setClickableState() {
@@ -44,9 +49,10 @@ class MovieCard extends React.Component {
     return (
       <div 
         className={this.getMovieCardClassName()}
-        onClick={this.handleOnClick}
         onMouseOver={() => this.handleOnMouseEnter()}
         onMouseLeave={() => this.setState({ showingDetails: false })}>
+        <div className={styles.clickReceiverDesktop} onClick={this.handleOnClickDesktop} />
+        <div className={styles.clickReceiverMobile} onClick={this.handleOnClickMobile} />
         <div 
           className={styles.movieCardInner}
           style={{"backgroundImage": `url(${this.props.movie.backdropUrl || notFoundPlaceholder})`}}>
@@ -55,8 +61,7 @@ class MovieCard extends React.Component {
               <div className={styles.content}>
                 <div className={styles.infoContainer}>
                   <div className={styles.title}>{this.props.movie.title}</div>
-                  <div className={styles.detailsContainer}>
-                    
+                  <div className={styles.detailsContainer}>     
                     {this.props.isLoadingDetails ?
                         <span className={styles.loadingMessage}>Loading movie details...</span>
                       :
@@ -72,7 +77,6 @@ class MovieCard extends React.Component {
                         </div>
                     }                    
                   </div>
-
                   <div className={styles.overview}>{this.props.movie.overview}</div>
                 </div>
               </div>

@@ -1,9 +1,18 @@
+@import '../_variables.scss';
+
 .MovieCard {
   color: white;
   height: 100%;
-  padding: 0 4px;
+  padding: 4px;
   position: relative;
   width: 100%;
+}
+
+.clickReceiverDesktop, .clickReceiverMobile {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: 9;
 }
 
 .hoverable {
@@ -92,4 +101,30 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+@media(min-width: $min-sm-width) and (max-width: $max-sm-width) {
+  .MovieCard {
+    height: 120px;
+  } 
+}
+
+@media(max-width: $max-sm-width) {
+  .MovieCard {
+    height: 100px;
+  }
+
+  .clickReceiverDesktop {
+    display: none;
+  }
+
+  .content {
+    display: none;
+  }
+}
+
+@media(min-width: $min-md-width) {
+  .clickReceiverMobile {
+    display: none;
+  }
 }

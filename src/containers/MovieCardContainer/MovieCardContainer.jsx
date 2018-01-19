@@ -2,6 +2,7 @@ import MovieCard from '../../components/MovieCard/MovieCard';
 import { connect } from 'react-redux';
 import { 
   fetchMovieDetails,
+  selectMovie,
   triggerMovieAction
 } from '../../actions';
 import { getMovieData } from '../../parsing';
@@ -30,6 +31,9 @@ const mapDispatchToLinkProps = (dispatch, ownProps) => {
     },
     triggerMovieAction: (movie) => {
       dispatch(triggerMovieAction(movie));
+    },
+    openMovieDetailsBanner: (movie) => {
+      dispatch(selectMovie(movie, ownProps.detailsBannerKey));
     }
   }
 };
@@ -41,6 +45,9 @@ const mergeProps = (state, actions) => ({
     if(state.movie.detailsFetched === undefined) {
       actions.fetchMovieDetails(movieId);
     }
+  },
+  openMovieDetailsBanner: () => {
+    actions.openMovieDetailsBanner(state.movie);
   }
 });
 

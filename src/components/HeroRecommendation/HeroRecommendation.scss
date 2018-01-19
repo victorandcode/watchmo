@@ -1,3 +1,5 @@
+@import '../_variables.scss';
+
 .HeroRecommendation {
   background-image: url("./recommendation-banner.jpg");
   background-repeat: no-repeat;
@@ -42,10 +44,6 @@
     .playLogo {
       background-image: url("./play-logo-hover.png");
     }
-
-    .addLogo {
-      background-image: url("./add-logo-hover.png");
-    }
   }
 }
 
@@ -63,14 +61,6 @@
   width: 1.2vw;
 }
 
-.addLogo {
-  background-image: url("./add-logo-normal.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 1.2vw;
-  width: 1.2vw;
-}
-
 .recommendationSynopsis {
   color: white;
   font-size: 1.5vw;
@@ -78,7 +68,7 @@
   width: 100%;
 }
 
-.ageRestriction {
+.releaseDate {
   background-color: rgba(255, 255, 255, .2);
   border-left: solid 3px white;
   color: white;
@@ -86,4 +76,38 @@
   padding: 10px 45px 10px 10px;
   position: absolute;
   right: 0;
+}
+
+@media(max-width: $max-xs-width) {
+  .heroInfo {
+    width: 50%;
+  }
+
+  .recommendationLogo {
+    margin-bottom: 15px;
+  }
+
+  .recommendationBtnLogo {
+    margin-bottom: 8px;
+  }
+
+  .recommendationBtn {
+    font-size: 16px;
+    padding: 8px 32px;
+  }
+
+  .playLogo {
+    height: 16px;
+    width: 16px;
+  }
+
+  .recommendationSynopsis {
+    font-size: 9px;
+  }
+}
+
+@media(max-width: $max-sm-width) {
+  .releaseDate {
+    display: none;
+  } 
 }

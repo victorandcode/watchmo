@@ -28,6 +28,7 @@ class MovieCard extends React.Component {
   }
 
   handleOnClickMobile() {
+    this.props.fetchMovieDetails(this.props.movie.id);
     this.props.openMovieDetailsBanner();
   }
 
@@ -48,10 +49,8 @@ class MovieCard extends React.Component {
   render() {
     return (
       <div 
-        className={this.getMovieCardClassName()}
-        onMouseOver={() => this.handleOnMouseEnter()}
-        onMouseLeave={() => this.setState({ showingDetails: false })}>
-        <div className={styles.clickReceiverDesktop} onClick={this.handleOnClickDesktop} />
+        className={this.getMovieCardClassName()}>
+        
         <div className={styles.clickReceiverMobile} onClick={this.handleOnClickMobile} />
         <div 
           className={styles.movieCardInner}

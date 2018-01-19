@@ -1,3 +1,5 @@
+@import '../_variables.scss';
+
 .Notification {
   background: rgba(0, 0, 0, .85);
   border-bottom: solid 1px rgba(255, 255, 255, .2);
@@ -34,4 +36,22 @@
   color: rgb(128, 128, 128);
   font-size: 13px;
   margin-top: 4px;
+}
+
+@media(max-width: $max-sm-width) {
+  .Notification {
+    padding: 10px 7px;   
+  }
+
+  .notificationImg {
+    width: 100px;
+  } 
+
+  .notificationHeaders {
+    font-size: 14px;   
+  }
+
+  .subheaderText {
+    font-size: 11px;
+  }
 }

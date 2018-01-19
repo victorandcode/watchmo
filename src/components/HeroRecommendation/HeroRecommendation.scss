@@ -109,5 +109,21 @@
 @media(max-width: $max-sm-width) {
   .releaseDate {
     display: none;
-  } 
+  }
+}
+
+@media(max-width: $max-xxs-width) {
+  .playLogo {
+    height: 13px;
+    width: 13px;
+  }
+
+  .recommendationBtn {
+    font-size: 13px;
+    padding: 6px 16px;   
+  }
+
+  .heroInfo {
+    margin-top: 7vw;   
+  }
 }

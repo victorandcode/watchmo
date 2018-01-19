@@ -32,6 +32,12 @@ class MovieSlider extends React.Component {
             settings: {
               slidesToShow: 3
             }
+          },
+          {
+            breakpoint: 350,
+            settings: {
+              slidesToShow: 2
+            }
           }
         ]
       },

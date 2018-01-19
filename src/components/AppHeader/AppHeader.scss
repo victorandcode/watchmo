@@ -71,3 +71,11 @@
     }
   }
 }
+
+@media(max-width: $max-xxs-width) {
+  .userActions {
+    li {
+      margin-left: 15px;
+    }
+  }
+}

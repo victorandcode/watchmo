@@ -21,13 +21,13 @@ class Notifications extends React.Component {
       <div
         onMouseEnter={() => this.setState({ showingNotificationItems: true })}
         onMouseLeave={() => this.setState({ showingNotificationItems: false })}>
-        <div className={styles.notificationIconContainer}>
+        <button className={styles.notificationIconContainer}>
           <img src={bell} alt="Bell"/>
           {this.state.showingNotificationItems ?
             <div className={styles.itemsContainerArrow}/>
            :null
           }
-        </div>
+        </button>
         
         <CSSTransitionGroup
           transitionName={{

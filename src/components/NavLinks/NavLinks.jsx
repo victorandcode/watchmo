@@ -96,9 +96,19 @@ class NavLinks extends React.Component {
     return (
       <div 
         className={styles.NavLinks} 
-        onMouseEnter={() => this.setState({ showingLinkContainer: true})}
         onMouseLeave={() => this.setState({ showingLinkContainer: false})}>
-        <button className={styles.toggleLinksBtn}>
+        <button 
+          className={[styles.toggleLinksBtn, styles.desktopVersion].join(" ")}
+          onMouseEnter={() => this.setState({ showingLinkContainer: true})}>
+          Browse
+          <img src={downArrow} alt="DownArrow" className={styles.downArrowIcon} />
+        </button>
+
+        <button 
+          className={[styles.toggleLinksBtn, styles.mobileVersion].join(" ")}
+          onClick={() => this.setState({ 
+            showingLinkContainer: !this.state.showingLinkContainer
+          })}>
           Browse
           <img src={downArrow} alt="DownArrow" className={styles.downArrowIcon} />
         </button>

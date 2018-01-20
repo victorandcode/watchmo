@@ -98,6 +98,10 @@
     position: static;
   }
 
+  .desktopVersion {
+    display: none;
+  }
+
   .userLinks {
     border: 0;
   }
@@ -128,5 +132,11 @@
 
   .linksRow {
     padding: 10px 0;
+  }
+}
+
+@media(min-width: $min-md-width) {
+  .mobileVersion {
+    display: none;
   }
 }

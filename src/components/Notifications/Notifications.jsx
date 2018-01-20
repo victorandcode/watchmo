@@ -19,9 +19,22 @@ class Notifications extends React.Component {
   render() {
     return (
       <div
-        onMouseEnter={() => this.setState({ showingNotificationItems: true })}
         onMouseLeave={() => this.setState({ showingNotificationItems: false })}>
-        <button className={styles.notificationIconBtn}>
+        <button 
+          className={[styles.notificationIconBtn, styles.desktopVersion].join(" ")}
+          onMouseEnter={() => this.setState({ showingNotificationItems: true })}>
+          <img src={bell} alt="Bell"/>
+          {this.state.showingNotificationItems ?
+            <div className={styles.itemsContainerArrow}/>
+           :null
+          }
+        </button>
+
+        <button 
+          className={[styles.notificationIconBtn, styles.mobileVersion].join(" ")}
+          onClick={() => this.setState({ 
+            showingNotificationItems: !this.state.showingNotificationItems
+          })}>
           <img src={bell} alt="Bell"/>
           {this.state.showingNotificationItems ?
             <div className={styles.itemsContainerArrow}/>

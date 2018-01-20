@@ -74,6 +74,12 @@
 
 @media(max-width: $max-xxs-width) {
   .userActions {
+    li.notificationsContainer {
+      display: none;
+    }
+  }
+
+  .userActions {
     li {
       margin-left: 15px;
     }

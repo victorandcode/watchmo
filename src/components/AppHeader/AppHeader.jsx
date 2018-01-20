@@ -41,7 +41,7 @@ class AppHeader extends  React.Component {
           <AppNavContainer />
           <ul className={styles.userActions}>
             <li className={styles.searchBar}><SearchBarContainer/></li>
-            <li><NotificationsContainer /></li>
+            <li className={styles.notificationsContainer}><NotificationsContainer /></li>
             <li><ProfileContainer /></li>
           </ul>
         </div>

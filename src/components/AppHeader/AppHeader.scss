@@ -1,13 +1,13 @@
 @import '../_variables.scss';
 
 .AppHeader {
-  background: rgb(0, 0, 0);
   color: white;
   height: 70px;
   width: 100%;
 }
 
 .innerHeader {
+  background: rgb(0, 0, 0);
   height: 70px;
   padding: 0 60px;
   position: relative;
@@ -22,6 +22,7 @@
 }
 
 .innerHeaderScrolled {
+  background: rgb(0, 0, 0);
   height: 70px;
   padding: 0 60px;
   position: fixed;

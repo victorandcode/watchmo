@@ -4,10 +4,15 @@ import {
   clearSelectedMovie,
   triggerMovieAction
 } from '../../actions';
+import { getMovieData } from '../../parsing';
 
 const mapStateToProps = (state, ownProps) => {
+  let movie = state.selectedMovie.movie !== undefined ? getMovieData(
+      state.selectedMovie.movie,
+      state.movieDetails[state.selectedMovie.movie.id],
+  ) : undefined;
   return {
-    movie: state.selectedMovie.movie,
+    movie,
     selectedContainerKey: state.selectedMovie.containerKey,
     containerKey: ownProps.containerKey
   }

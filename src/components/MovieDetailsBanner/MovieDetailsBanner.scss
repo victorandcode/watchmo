@@ -20,6 +20,7 @@
 }
 
 .textContent {
+  display: inline-block;
   position: relative;
   width: 60%;
 }
@@ -65,4 +66,34 @@
   position: absolute;
   right: 0;
   top: 0;
+}
+
+.playActionContainer {
+  display: inline-block;
+  height: 100%;
+  position: relative;
+  text-align: center;
+  vertical-align: top;
+  width: 40%;
+}
+
+.playBtnWrapper {
+  background: none;
+  border: 4px solid #ffff;
+  border-radius: 50%;
+  padding: 7px 7px 7px 10px;
+  vertical-align: middle;
+}
+
+.playActionContainer:before {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+.playBtn {
+  height: 7vw;
+  max-width: 30px;
+  max-height: 30px;
+  width: 7vw;
 }

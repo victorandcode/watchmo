@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './MovieDetailsBanner.scss';
 import closeIcon from './close-icon.png';
+import playIcon from './play-icon.png';
 
 class MovieDetailsBanner extends React.Component {
   render() {
@@ -13,7 +14,6 @@ class MovieDetailsBanner extends React.Component {
               <img 
                 className={styles.movieImg}
                 src={movie.backdropUrl}
-                onClick={this.props.triggerMovieAction}
                 alt="Movie backdrop"/>
             </div>
             <div className={styles.textContent}>
@@ -24,6 +24,16 @@ class MovieDetailsBanner extends React.Component {
                 <span className={styles.duration}>{movie.duration}</span>
               </div>
               <div className={styles.overview}>{movie.overview}</div>
+            </div>
+            <div 
+              className={styles.playActionContainer}
+              onClick={this.props.triggerMovieAction}>
+              <button className={styles.playBtnWrapper}>
+                <img
+                  className={styles.playBtn}
+                  src={playIcon}
+                  alt="Play button"/>
+              </button>
             </div>
             <div className={styles.closeIconWrapper}
                 onClick={this.props.clearSelectedMovie}>

@@ -21,6 +21,12 @@ class NavLinks extends React.Component {
       "showingLinkContainer": false
     }
     this.props.onLoad();
+    this.hideContainer = this.hideContainer.bind(this);
+    this.getGenreRow = this.getGenreRow.bind(this);
+  }
+
+  hideContainer() {
+    this.setState({ showingLinkContainer: false});
   }
 
   getUserLinkRow(key, item) {
@@ -34,7 +40,7 @@ class NavLinks extends React.Component {
   getGenreRow(key, item) {
     return (
       <li key={key} className={styles.linksRow}>
-        <GenreSearchLinkContainer genre={item}/>
+        <GenreSearchLinkContainer genre={item} clickCallback={this.hideContainer}/>
       </li>
     );
   }
@@ -71,22 +77,40 @@ class NavLinks extends React.Component {
     return (
       <ul className={[styles.linksColumn, styles.userLinks].join(' ')}>
         <li className={styles.linksRow}>
-          <DiscoverPreBuiltLinkContainer title="Highly voted" type={TYPE_HIGHLY_VOTED}/>
+          <DiscoverPreBuiltLinkContainer 
+            title="Highly voted" 
+            type={TYPE_HIGHLY_VOTED} 
+            clickCallback={this.hideContainer}/>
         </li>
         <li className={styles.linksRow}>
-          <DiscoverPreBuiltLinkContainer title="Poorly voted" type={TYPE_POORLY_VOTED}/>
+          <DiscoverPreBuiltLinkContainer 
+            title="Poorly voted" 
+            type={TYPE_POORLY_VOTED}
+            clickCallback={this.hideContainer}/>
         </li>
         <li className={styles.linksRow}>
-          <DiscoverPreBuiltLinkContainer title="80's movies" type={TYPE_80S}/>
+          <DiscoverPreBuiltLinkContainer 
+            title="80's movies" 
+            type={TYPE_80S}
+            clickCallback={this.hideContainer}/>
         </li>
         <li className={styles.linksRow}>
-          <DiscoverPreBuiltLinkContainer title="90's movies" type={TYPE_90S}/>
+          <DiscoverPreBuiltLinkContainer 
+            title="90's movies" 
+            type={TYPE_90S}
+            clickCallback={this.hideContainer}/>
         </li>
         <li className={styles.linksRow}>
-          <DiscoverPreBuiltLinkContainer title="Long movies" type={TYPE_LONG_MOVIES}/>
+          <DiscoverPreBuiltLinkContainer 
+            title="Long movies" 
+            type={TYPE_LONG_MOVIES}
+            clickCallback={this.hideContainer}/>
         </li>
         <li className={styles.linksRow}>
-          <DiscoverPreBuiltLinkContainer title="Short movies" type={TYPE_SHORT_MOVIES}/>
+          <DiscoverPreBuiltLinkContainer 
+            title="Short movies" 
+            type={TYPE_SHORT_MOVIES}
+            clickCallback={this.hideContainer}/>
         </li>
       </ul>
     );
@@ -96,7 +120,7 @@ class NavLinks extends React.Component {
     return (
       <div 
         className={styles.NavLinks} 
-        onMouseLeave={() => this.setState({ showingLinkContainer: false})}>
+        onMouseLeave={this.hideContainer}>
         <button 
           className={[styles.toggleLinksBtn, styles.desktopVersion].join(" ")}
           onMouseEnter={() => this.setState({ showingLinkContainer: true})}>

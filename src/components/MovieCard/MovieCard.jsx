@@ -6,8 +6,18 @@ class MovieCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      "showingDetails": false
+      "showingDetails": false,
+      "imageUrl": notFoundPlaceholder,
     }
+    
+    let movieBackdrop = new Image();
+    movieBackdrop.onload = () => {
+      this.setState({
+        "imageUrl": this.props.movie.backdropUrl
+      })
+    };
+    movieBackdrop.src = this.props.movie.backdropUrl;
+
     this.getMovieDataIfNecessary = this.getMovieDataIfNecessary.bind(this);
     this.handleOnMouseOver = this.handleOnMouseOver.bind(this);
     this.handleOnClickDesktop = this.handleOnClickDesktop.bind(this);
@@ -62,7 +72,7 @@ class MovieCard extends React.Component {
         <div className={styles.clickReceiverMobile} onClick={this.handleOnClickMobile} />
         <div 
           className={styles.movieCardInner}
-          style={{"backgroundImage": `url(${this.props.movie.backdropUrl || notFoundPlaceholder})`}}>
+          style={{"backgroundImage": `url(${this.state.imageUrl})`}}>
             {this.state.showingDetails ? <div className={styles.overlay}/> : null}
             {this.state.showingDetails ?
               <div className={styles.content}>

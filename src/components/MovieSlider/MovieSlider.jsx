@@ -89,7 +89,7 @@ class MovieSlider extends React.Component {
               return (
                 <div 
                   className={styles.movieCardWrapper} 
-                  key={movieItemIndex} 
+                  key={movieItem.id} 
                   onMouseEnter={(e) => {this.setHoverClasses(movieItemIndex)}}>
                   <MovieCardContainer movie={movieItem}/>
                 </div>

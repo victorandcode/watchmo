@@ -61,8 +61,10 @@
 
 .loadingMessage {
   color: #46d369;
+  display: inline-block;
   font-size: .8vw;
   font-weight: bold;
+  margin-right: 5px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, .7);
 }
 

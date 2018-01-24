@@ -11,10 +11,12 @@ const mapStateToProps = (state, ownProps) => {
       state.selectedMovie.movie,
       state.movieDetails[state.selectedMovie.movie.id],
   ) : undefined;
+  let isLoadingDetails = movie !== undefined && movie.detailsFetched === undefined;
   return {
     movie,
     selectedContainerKey: state.selectedMovie.containerKey,
-    containerKey: ownProps.containerKey
+    containerKey: ownProps.containerKey,
+    isLoadingDetails
   }
 };
 

@@ -22,6 +22,12 @@ class MovieDetailsBanner extends React.Component {
                 <span className={styles.voteAverage}>{movie.voteAverage}</span>
                 <span className={styles.year}>{movie.year}</span>
                 <span className={styles.duration}>{movie.duration}</span>
+                {this.props.isLoadingDetails ?
+                  <div>
+                    Loading movie trailer...
+                  </div>
+                  : null
+                }
               </div>
               <div className={styles.overview}>{movie.overview}</div>
             </div>
@@ -35,12 +41,15 @@ class MovieDetailsBanner extends React.Component {
                   alt="Play button"/>
               </button>
             </div>
-            <div className={styles.closeIconWrapper}
-                onClick={this.props.clearSelectedMovie}>
-              <img
-                src={closeIcon}
-                alt="Close Icon"/>
-            </div>
+            {!this.props.isLoadingDetails ?
+              <div className={styles.closeIconWrapper}
+                  onClick={this.props.clearSelectedMovie}>
+                <img
+                  src={closeIcon}
+                  alt="Close Icon"/>
+              </div>
+              : null
+            }
           </div>
           : null
         }

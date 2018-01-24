@@ -3,9 +3,8 @@ import styles from './ContentByCategory.scss';
 import MovieSlider from '../MovieSlider/MovieSlider';
 
 class ContentByCategory extends React.Component {
-  constructor(props) {
-    super(props);
-    props.onLoad();
+  componentDidMount() {
+    this.props.onLoad();
   }
 
   render() {

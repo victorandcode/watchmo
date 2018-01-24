@@ -20,9 +20,12 @@ class NavLinks extends React.Component {
     this.state = {
       "showingLinkContainer": false
     }
-    this.props.onLoad();
     this.hideContainer = this.hideContainer.bind(this);
     this.getGenreRow = this.getGenreRow.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.onLoad();
   }
 
   hideContainer() {

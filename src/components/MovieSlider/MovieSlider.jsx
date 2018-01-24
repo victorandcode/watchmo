@@ -98,16 +98,19 @@ class MovieSlider extends React.Component {
           }
         </div>
         <div className={styles.mobileSlider}>
-          <Slider {...this.state.sliderSettings}>
-            {this.props.movies.map((movieItem, movieItemIndex) => {
-              return (
-                <div key={movieItemIndex}>
-                  <MovieCardContainer movie={movieItem} detailsBannerKey={this.state.detailsBannerKey}/>
-                </div>
-              );
-            })
+          {this.props.movies.length ?
+            <Slider {...this.state.sliderSettings}>
+              {this.props.movies.map((movieItem, movieItemIndex) => {
+                return (
+                  <div key={movieItemIndex}>
+                    <MovieCardContainer movie={movieItem} detailsBannerKey={this.state.detailsBannerKey}/>
+                  </div>
+                );
+              })
+            }
+            </Slider>
+            : null
           }
-          </Slider>
         </div>
         <MovieDetailsBannerContainer containerKey={this.state.detailsBannerKey}/>
       </div>

@@ -15,6 +15,7 @@ class MovieSlider extends React.Component {
     this.state = {
       innerClass: styles.sliderWrapperInner,
       sliderSettings: {
+        arrows: false,
         dots: false,
         infinite: false,
         speed: 500,
@@ -47,6 +48,8 @@ class MovieSlider extends React.Component {
     this.setFirstHovered = this.setFirstHovered.bind(this);
     this.setLastHovered = this.setLastHovered.bind(this);
     this.setNonBorderHovered = this.setNonBorderHovered.bind(this);
+    this.prevSlide = this.prevSlide.bind(this);
+    this.nextSlide = this.nextSlide.bind(this);
   }
 
   setHoverClasses(index) {
@@ -81,6 +84,14 @@ class MovieSlider extends React.Component {
     })
   }
 
+  nextSlide() {
+    this.slider.slickNext();
+  }
+
+  prevSlide() {
+    this.slider.slickPrev();
+  }
+
   render() {
     return (
       <div className={styles.sliderWrapper}>
@@ -99,16 +110,28 @@ class MovieSlider extends React.Component {
         </div>
         <div className={styles.mobileSlider}>
           {this.props.movies.length ?
-            <Slider {...this.state.sliderSettings}>
-              {this.props.movies.map((movieItem, movieItemIndex) => {
-                return (
-                  <div key={movieItemIndex}>
-                    <MovieCardContainer movie={movieItem} detailsBannerKey={this.state.detailsBannerKey}/>
-                  </div>
-                );
-              })
-            }
-            </Slider>
+            <div>
+              <div 
+                className={styles.sliderPrevBtnWrapper}
+                onClick={this.prevSlide}>
+                <span className={styles.prevBtn} />
+              </div>
+              <Slider ref={c => this.slider = c} {...this.state.sliderSettings}>
+                {this.props.movies.map((movieItem, movieItemIndex) => {
+                  return (
+                    <div key={movieItemIndex}>
+                      <MovieCardContainer movie={movieItem} detailsBannerKey={this.state.detailsBannerKey}/>
+                    </div>
+                  );
+                })
+              }
+              </Slider>
+              <div 
+                className={styles.sliderNextBtnWrapper}
+                onClick={this.nextSlide}>
+                <span className={styles.nextBtn} />
+              </div>
+            </div>
             : null
           }
         </div>

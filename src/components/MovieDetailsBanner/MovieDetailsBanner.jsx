@@ -41,15 +41,12 @@ class MovieDetailsBanner extends React.Component {
                   alt="Play button"/>
               </button>
             </div>
-            {!this.props.isLoadingDetails ?
-              <div className={styles.closeIconWrapper}
-                  onClick={this.props.clearSelectedMovie}>
-                <img
-                  src={closeIcon}
-                  alt="Close Icon"/>
-              </div>
-              : null
-            }
+            <div className={styles.closeIconWrapper}
+                onClick={this.props.clearSelectedMovie}>
+              <img
+                src={closeIcon}
+                alt="Close Icon"/>
+            </div>
           </div>
           : null
         }

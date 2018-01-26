@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { createResponsiveStateReducer } from 'redux-responsive';
 import {
   CLEAR_SEARCHED_MOVIES,
   CLEAR_SELECTED_MOVIE,
@@ -18,6 +19,7 @@ import {
   SELECT_MOVIE,
   UPDATE_SEARCH_QUERY
 } from './actions';
+import { RESPONSIVE_COLUMN_CONFIG } from './constants';
 
 function discoverMovies(state = [], action) {
   switch(action.type) {
@@ -205,6 +207,15 @@ function selectedMovie(state = {
   }
 }
 
+const responsiveReducer = createResponsiveStateReducer({
+  smallest: RESPONSIVE_COLUMN_CONFIG["smallest"]["breakpoint"],
+  extraSmall: RESPONSIVE_COLUMN_CONFIG["extraSmall"]["breakpoint"],
+  small: RESPONSIVE_COLUMN_CONFIG["small"]["breakpoint"],
+  medium: RESPONSIVE_COLUMN_CONFIG["medium"]["breakpoint"],
+  large: RESPONSIVE_COLUMN_CONFIG["large"]["breakpoint"],
+  extraLarge: RESPONSIVE_COLUMN_CONFIG["extraLarge"]["breakpoint"],
+});
+
 const rootReducer = combineReducers({
   categories,
   featuredMovie,
@@ -218,7 +229,8 @@ const rootReducer = combineReducers({
   showLightbox,
   showVideoModal,
   searchQuery,
-  selectedMovie
+  selectedMovie,
+  browser: responsiveReducer
 });
 
 export default rootReducer;

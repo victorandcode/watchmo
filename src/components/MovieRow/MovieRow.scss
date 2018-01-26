@@ -1,0 +1,102 @@
+@import '../_variables.scss';
+
+$container-width: 90vw;
+$card-width-large: $container-width / $lg-cols;
+$card-height: $card-width-large * 0.6;
+
+$growth-factor: 1.5;
+$move-left: -($card-width-large * ($growth-factor - 1) / 2);
+$move-left-extra: -($card-width-large * ($growth-factor - 1));
+$move-right: ($card-width-large * ($growth-factor - 1));
+
+.MovieRow {
+  overflow-x: visible;
+  width: $container-width;
+}
+
+.moviesWrapper {
+  transition: all 450ms ease-in-out;
+  white-space: nowrap;
+}
+
+.wrapperMoveLeft {
+  &:hover {
+    transform: translate3d($move-left, 0, 0);
+  }
+}
+
+.wrapperMoveLeftExtra {
+  &:hover {
+    transform: translate3d($move-left-extra, 0, 0);
+  }
+}
+
+.movieCardWrapper {
+  display: inline-block;
+  height: $card-height;
+  transition: all 450ms ease-in-out;
+  transform-origin: center left;
+  width: $card-width-large;
+
+  &:hover {
+    transform: scale($growth-factor);
+  }
+}
+
+.movieCardWrapper:hover ~ .movieCardWrapper {
+  -webkit-transform: translate3d($move-right, 0, 0);
+          transform: translate3d($move-right, 0, 0);
+}
+
+@media(max-width: $max-sm-width) {
+  .movieCardWrapper {
+    &:hover {
+      transform: none;
+    }
+  }
+
+  .movieCardWrapper:hover ~ .movieCardWrapper {
+    transform: none;
+  }
+
+  .wrapperMoveLeft {
+    &:hover {
+      transform: none;
+    }
+  }
+
+  .wrapperMoveLeftExtra {
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+
+@media(max-width: $max-md-width) {
+  .movieCardWrapper {
+    height: ($container-width / $md-cols ) *  0.6;
+    width: ($container-width / $md-cols );
+  }
+}
+
+@media(max-width: $max-sm-width) {
+  .movieCardWrapper {
+    height: ($container-width / $sm-cols ) *  0.6;
+    width: ($container-width / $sm-cols );
+  }
+}
+
+@media(max-width: $max-xs-width) {
+  .movieCardWrapper {
+    height: ($container-width / $xs-cols ) *  0.6;
+    width: ($container-width / $xs-cols );
+  }
+}
+
+@media(max-width: $max-xxs-width) {
+  .movieCardWrapper {
+    height: ($container-width / $xxs-cols ) *  0.6;
+    width: ($container-width / $xxs-cols );
+  }
+}

@@ -1,11 +1,26 @@
 import { connect } from 'react-redux';
 import MovieGrid from '../../components/MovieGrid/MovieGrid';
-import { MOVIES_PER_ROW } from '../../constants';
+import { RESPONSIVE_COLUMN_CONFIG } from '../../constants';
 
-function getMoviesRows(searchedMovies) {
+function getCols(browserInfo) {
+  if(browserInfo.greaterThan.medium) {
+    return RESPONSIVE_COLUMN_CONFIG["large"]["cols"];
+  } else if(browserInfo.greaterThan.small) {
+    return RESPONSIVE_COLUMN_CONFIG["medium"]["cols"];
+  } else if(browserInfo.greaterThan.extraSmall) {
+    return RESPONSIVE_COLUMN_CONFIG["small"]["cols"];
+  } else if(browserInfo.greaterThan.smallest) {
+    return RESPONSIVE_COLUMN_CONFIG["extraSmall"]["cols"];
+  } else {
+    return RESPONSIVE_COLUMN_CONFIG["smallest"]["cols"];
+  }
+}
+
+function getMoviesRows(searchedMovies, browserInfo) {
+  let colsPerRow = getCols(browserInfo);
   let result = [];
-  for(let i = 0; i < searchedMovies.length; i += MOVIES_PER_ROW) {
-    let row = searchedMovies.slice(i, i + MOVIES_PER_ROW);
+  for(let i = 0; i < searchedMovies.length; i += colsPerRow) {
+    let row = searchedMovies.slice(i, i + colsPerRow);
     result.push(row);
   }
   return result;
@@ -13,7 +28,7 @@ function getMoviesRows(searchedMovies) {
 
 const mapStateToProps = state => {
   let moviesRows = state.searchedMovies.movies 
-                    ? getMoviesRows(state.searchedMovies.movies) 
+                    ? getMoviesRows(state.searchedMovies.movies, state.browser) 
                     : [];
   return {
     moviesRows,

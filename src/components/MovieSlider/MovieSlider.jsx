@@ -6,6 +6,8 @@ import MovieCardContainer from '../../containers/MovieCardContainer/MovieCardCon
 import MovieDetailsBannerContainer from '../../containers/MovieDetailsBannerContainer/MovieDetailsBannerContainer';
 import styles from './MovieSlider.scss';
 import { v4 } from 'node-uuid';
+import { RESPONSIVE_COLUMN_CONFIG } from '../../constants';
+
 
 const maxIndex = 5;
 
@@ -19,25 +21,26 @@ class MovieSlider extends React.Component {
         dots: false,
         infinite: false,
         speed: 500,
-        slidesToShow: 5,
+        slidesToShow: RESPONSIVE_COLUMN_CONFIG["medium"]["cols"],
         slidesToScroll: 1,
+        edgeFriction: 1,
         responsive: [
           {
-            breakpoint: 991,
+            breakpoint: RESPONSIVE_COLUMN_CONFIG["small"]["breakpoint"],
             settings: {
-              slidesToShow: 4
+              slidesToShow: RESPONSIVE_COLUMN_CONFIG["small"]["cols"]
             }
           },
           {
-            breakpoint: 767,
+            breakpoint: RESPONSIVE_COLUMN_CONFIG["extraSmall"]["breakpoint"],
             settings: {
-              slidesToShow: 3
+              slidesToShow: RESPONSIVE_COLUMN_CONFIG["extraSmall"]["cols"]
             }
           },
           {
-            breakpoint: 350,
+            breakpoint: RESPONSIVE_COLUMN_CONFIG["smallest"]["breakpoint"],
             settings: {
-              slidesToShow: 2
+              slidesToShow: RESPONSIVE_COLUMN_CONFIG["smallest"]["cols"]
             }
           }
         ]

@@ -1,27 +1,31 @@
 import React from 'react';
-import MovieSlider from '../MovieSlider/MovieSlider';
+import MovieRow from '../MovieRow/MovieRow';
 import styles from './MovieGrid.scss'
 
-const MovieGrid = ({ moviesRows, searchQuery, showNoElementsFound, title }) => (
-  <div className={styles.movieGrid}>
-    <div className={styles.title}>{title}</div>
-    {moviesRows.length ?
-      moviesRows.map((moviesRow, moviesRowIndex) => {
-        return (
-          <div className={styles.group} key={moviesRowIndex}>
-            <MovieSlider movies={moviesRow} />
+class MovieGrid extends React.Component {  
+  render() {
+    return (
+      <div className={styles.movieGrid}>
+        <div className={styles.title}>{this.props.title}</div>
+        {this.props.moviesRows.length ?
+          this.props.moviesRows.map((moviesRow, moviesRowIndex) => {
+            return (
+              <div className={styles.group} key={moviesRowIndex}>
+                <MovieRow movies={moviesRow} />
+              </div>
+            )
+          })
+          : null
+        }
+        {this.props.showNoElementsFound ?
+          <div className={styles.moviesNotFound}>
+              Sorry! Your search: '{this.props.searchQuery}' didn't produce any results. Please change your search term.
           </div>
-        )
-      })
-      : null
-    }
-    {showNoElementsFound ?
-      <div className={styles.moviesNotFound}>
-          Sorry! Your search: '{searchQuery}' didn't produce any results. Please change your search term.
+          : null
+        }
       </div>
-      : null
-    }
-  </div>
-);
+    )
+  }
+}
 
 export default MovieGrid;

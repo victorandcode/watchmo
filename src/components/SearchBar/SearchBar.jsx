@@ -51,8 +51,10 @@ class SearchBar extends React.Component {
                 appear: styles.inputAppear,
                 appearActive: styles.inputAppearActive,
               }}
+              transitionEnter={false}
               transitionAppearTimeout={300}
-              transitionAppear={true}>
+              transitionAppear={true}
+              transitionLeave={false}>
               <input 
                 type="text" 
                 className={styles.searchInput} 
@@ -71,7 +73,7 @@ class SearchBar extends React.Component {
           </div>
          : 
           <span className={styles.searchPreview} onClick={this.showSearchBar}>
-            <img className={styles.seachIcon} src={searchIcon} alt="SearchIcon"/>
+            <img className={styles.searchIcon} src={searchIcon} alt="SearchIcon"/>
             Search
           </span>
         }

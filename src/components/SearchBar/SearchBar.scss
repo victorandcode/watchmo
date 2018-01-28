@@ -10,9 +10,11 @@
   display: inline-block;
 }
 
-.seachIcon {
+.searchIcon {
   display: inline-block;
   margin-right: 10px;
+  height: 11px;
+  width: 11px;
 }
 
 .SearchBarUserInput {
@@ -22,12 +24,6 @@
   line-height: initial;
   padding: 5px;
   transition: all 450ms ease-in-out;
-}
-
-.searchIcon {
-  display: inline-block;
-  margin-right: 10px;
-  vertical-align: middle;
 }
 
 .searchInput {

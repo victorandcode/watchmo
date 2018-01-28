@@ -124,35 +124,52 @@ class NavLinks extends React.Component {
       <div 
         className={styles.NavLinks} 
         onMouseLeave={this.hideContainer}>
-        <button 
-          className={[styles.toggleLinksBtn, styles.desktopVersion].join(" ")}
-          onMouseEnter={() => this.setState({ showingLinkContainer: true})}>
-          Browse
-          <img src={downArrow} alt="DownArrow" className={styles.downArrowIcon} />
-        </button>
+        <span className={styles.toggleLinksBtnContainer}>
+          <button
+            className={[styles.toggleLinksBtn, styles.desktopVersion].join(" ")}
+            onMouseEnter={() => this.setState({ showingLinkContainer: true})}>
+            Browse
+            <img src={downArrow} alt="DownArrow" className={styles.downArrowIcon} />
+          </button>
 
-        <button 
-          className={[styles.toggleLinksBtn, styles.mobileVersion].join(" ")}
-          onClick={() => this.setState({ 
-            showingLinkContainer: !this.state.showingLinkContainer
-          })}>
-          Browse
-          <img src={downArrow} alt="DownArrow" className={styles.downArrowIcon} />
-        </button>
+          <button 
+            className={[styles.toggleLinksBtn, styles.mobileVersion].join(" ")}
+            onClick={() => this.setState({ 
+              showingLinkContainer: !this.state.showingLinkContainer
+            })}>
+            Browse
+            <img src={downArrow} alt="DownArrow" className={styles.downArrowIcon} />
+          </button>
+          
+          <CSSTransitionGroup
+            transitionName={{
+              enter: styles.containerElementEnter,
+              enterActive: styles.containerElementEnterActive,
+              leave: styles.containerElementLeave,
+              leaveActive: styles.containerElementLeaveActive,
+            }}
+            transitionEnterTimeout={200}
+            transitionLeaveTimeout={200}>
+            {this.state.showingLinkContainer ?
+              <div className={styles.linksArrow}></div>
+              : null
+            }
+          </CSSTransitionGroup>
+
+        </span>
         
         <CSSTransitionGroup
           transitionName={{
-            enter: styles.linkContainerEnter,
-            enterActive: styles.linkContainerEnterActive,
-            leave: styles.linkContainerLeave,
-            leaveActive: styles.linkContainerLeaveActive,
+            enter: styles.containerElementEnter,
+            enterActive: styles.containerElementEnterActive,
+            leave: styles.containerElementLeave,
+            leaveActive: styles.containerElementLeaveActive,
           }}
           transitionEnterTimeout={200}
           transitionLeaveTimeout={200}>
           {this.state.showingLinkContainer ?
             <div className={styles.linkContainer}> 
               <div className={styles.topBar}></div>
-              <div className={styles.linksArrow}></div>
               <div className={styles.links}>
                 {this.getPreBuildLinksColumn()}
                 {this.getColumns(

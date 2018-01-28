@@ -44,6 +44,7 @@ class MovieDetailsBanner extends React.Component {
             <div className={styles.closeIconWrapper}
                 onClick={this.props.clearSelectedMovie}>
               <img
+                className={styles.closeIcon}
                 src={closeIcon}
                 alt="Close Icon"/>
             </div>

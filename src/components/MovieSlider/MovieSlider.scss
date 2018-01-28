@@ -87,7 +87,6 @@ $move-right: ($card-width * ($growth-factor - 1));
   margin-right: -15px;
 }
 
-
 @media(max-width: $max-sm-width) {
   .wrapperMoveLeft {
     &:hover {
@@ -101,7 +100,9 @@ $move-right: ($card-width * ($growth-factor - 1));
     }
   }
 
-  .movieCardWrapper {
+  .sliderItem {
+    height: 100px;
+
     &:hover {
       transform: none;
     }
@@ -117,4 +118,3 @@ $move-right: ($card-width * ($growth-factor - 1));
     display: none;
   }  
 }
-

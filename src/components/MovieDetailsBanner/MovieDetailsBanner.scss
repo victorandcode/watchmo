@@ -29,7 +29,6 @@
 .title {
   font-size: 16px;
   font-weight: bold;
-  margin-bottom: 15px;
 }
 
 .groupedAttributes {
@@ -67,6 +66,11 @@
   position: absolute;
   right: 0;
   top: 0;
+}
+
+.closeIcon {
+  height: 20px;
+  width: 20px;
 }
 
 .playActionContainer {

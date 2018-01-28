@@ -123,7 +123,9 @@ class MovieSlider extends React.Component {
                 {this.props.movies.map((movieItem, movieItemIndex) => {
                   return (
                     <div key={movieItemIndex}>
-                      <MovieCardContainer movie={movieItem} detailsBannerKey={this.state.detailsBannerKey}/>
+                      <div className={styles.sliderItem}>
+                        <MovieCardContainer movie={movieItem} detailsBannerKey={this.state.detailsBannerKey}/>
+                      </div>
                     </div>
                   );
                 })

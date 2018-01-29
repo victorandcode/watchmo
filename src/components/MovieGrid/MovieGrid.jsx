@@ -1,5 +1,5 @@
 import React from 'react';
-import MovieRow from '../MovieRow/MovieRow';
+import MovieRowContainer from '../../containers/MovieRowContainer/MovieRowContainer';
 import styles from './MovieGrid.scss'
 
 class MovieGrid extends React.Component {  
@@ -11,7 +11,7 @@ class MovieGrid extends React.Component {
           this.props.moviesRows.map((moviesRow, moviesRowIndex) => {
             return (
               <div className={styles.group} key={moviesRowIndex}>
-                <MovieRow movies={moviesRow} />
+                <MovieRowContainer movies={moviesRow} />
               </div>
             )
           })

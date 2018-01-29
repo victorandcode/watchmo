@@ -149,7 +149,8 @@ export function getLongMoviesUrl() {
 
 export function getShortMoviesUrl() {
   let query = {
-    runtimeLt: 90
+    runtimeGt: 10,
+    runtimeLt: 31
   };
   let builder = new DiscoverMoviesUrlBuilder(query);
   return builder.getUrl(); 

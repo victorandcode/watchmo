@@ -73,7 +73,11 @@ class MovieRow extends React.Component {
             )
           })}
         </div>
-        <MovieDetailsBannerContainer containerKey={this.state.detailsBannerKey}/>
+        {this.props.isMobile ?
+          <MovieDetailsBannerContainer containerKey={this.state.detailsBannerKey}/>
+          :
+            null
+        }
       </div>
     );
   }

@@ -41,7 +41,7 @@ const mapDispatchToLinkProps = (dispatch, ownProps) => {
     onClick: () => {
       ownProps.clickCallback();
       let fn = getClickFunction(ownProps.type);
-      return fn(dispatch);
+      dispatch(fn());
     }
   }
 };

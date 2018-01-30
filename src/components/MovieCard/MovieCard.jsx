@@ -71,7 +71,7 @@ class MovieCard extends React.Component {
           :
             null
         }
-        <div 
+        <div
           className={styles.clickReceiverDesktop} 
           onClick={this.handleOnClickDesktop} 
           onMouseOver={() => this.getDataAndSelectMovie()}
@@ -86,37 +86,40 @@ class MovieCard extends React.Component {
           : 
             null
         }
-        <div 
-          className={styles.movieCardInner}
-          style={{"backgroundImage": `url(${this.state.imageUrl})`}}>
-            {this.state.userInteractedWithCard ? <div className={styles.detailsOverlay}/> : null}
-            {this.state.userInteractedWithCard ?
-              <div className={styles.content}>
-                <div className={styles.infoContainer}>
-                  <div className={styles.title}>{this.props.movie.title}</div>
-                  <div className={styles.detailsContainer}>
-                    <div>
-                      <span className={styles.voteAverage}>{this.props.movie.voteAverage}</span>
-                      <span className={styles.year}>{this.props.movie.year}</span>
-                      {this.props.movie.adultFilm ? 
-                          <span className={styles.adultFilm}>18+</span>
-                        :
+        
+        <div className={styles.containerGutter}>
+          <div 
+            className={styles.movieCardInner}
+            style={{"backgroundImage": `url(${this.state.imageUrl})`}}>
+              {this.state.userInteractedWithCard ? <div className={styles.detailsOverlay}/> : null}
+              {this.state.userInteractedWithCard ?
+                <div className={styles.content}>
+                  <div className={styles.infoContainer}>
+                    <div className={styles.title}>{this.props.movie.title}</div>
+                    <div className={styles.detailsContainer}>
+                      <div>
+                        <span className={styles.voteAverage}>{this.props.movie.voteAverage}</span>
+                        <span className={styles.year}>{this.props.movie.year}</span>
+                        {this.props.movie.adultFilm ? 
+                            <span className={styles.adultFilm}>18+</span>
+                          :
+                            null
+                        }
+                        <span className={styles.duration}>{this.props.movie.duration}</span>
+                      </div>
+                      {this.props.isLoadingDetails ?
+                          <span className={styles.loadingMessage}>Loading trailer...</span>
+                        : 
                           null
-                      }
-                      <span className={styles.duration}>{this.props.movie.duration}</span>
+                      }                    
                     </div>
-                    {this.props.isLoadingDetails ?
-                        <span className={styles.loadingMessage}>Loading trailer...</span>
-                      : 
-                        null
-                    }                    
+                    <div className={styles.overview}>{this.props.movie.overview}</div>
                   </div>
-                  <div className={styles.overview}>{this.props.movie.overview}</div>
                 </div>
-              </div>
-              : 
-                null
-            }
+                : 
+                  null
+              }
+          </div>
         </div>
       </div>
     );

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 const mapDispatchToProps = dispatch => {
   return {
     searchQueryChange: (searchQuery) => {
-      triggerQuerySearch(dispatch, searchQuery);
+      dispatch(triggerQuerySearch(searchQuery));
     }
   }
 };

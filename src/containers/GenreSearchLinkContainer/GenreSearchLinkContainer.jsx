@@ -13,7 +13,7 @@ const mapDispatchToLinkProps = (dispatch, ownProps) => {
   return {
     onClick: () => {
       ownProps.clickCallback();
-      triggerGenreSearch(dispatch, ownProps.genre.name, ownProps.genre.id);
+      dispatch(triggerGenreSearch(ownProps.genre.name, ownProps.genre.id));
     }
   }
 };

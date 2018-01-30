@@ -11,7 +11,7 @@ const mapStateToProps = state => {
 const mapDispatchToLinkProps = dispatch => {
   return {
     onLoad: () => {
-      fetchCategories(dispatch);
+      dispatch(fetchCategories());
     }
   }
 }

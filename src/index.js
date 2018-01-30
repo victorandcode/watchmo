@@ -2,8 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import throttle from 'lodash/throttle';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { 
+  applyMiddleware, 
+  createStore, 
+  compose 
+} from 'redux';
 import { responsiveStoreEnhancer } from 'redux-responsive';
+import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 import './index.scss';
 import App from './App';
@@ -15,7 +20,10 @@ const persistedState = loadState();
 const store = createStore(
   rootReducer,
   persistedState,
-  responsiveStoreEnhancer
+  compose(
+    responsiveStoreEnhancer,
+    applyMiddleware(thunk)
+  )
 );
 
 store.subscribe(throttle(() => {
@@ -23,6 +31,7 @@ store.subscribe(throttle(() => {
     movieDetails: store.getState().movieDetails
   });
 }, 1000));
+
 
 
 ReactDOM.render(

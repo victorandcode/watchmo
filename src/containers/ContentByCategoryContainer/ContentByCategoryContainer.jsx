@@ -22,9 +22,9 @@ const mapStateToProps = state => {
 const mapDispatchToLinkProps = dispatch => {
   return {
     onLoad: () => {
-      fetchDiscoverMovies(dispatch);
-      fetchNewMovies(dispatch);
-      fetchUpcomingMovies(dispatch);
+      dispatch(fetchDiscoverMovies());
+      dispatch(fetchNewMovies());
+      dispatch(fetchUpcomingMovies());
     }
   }
 };

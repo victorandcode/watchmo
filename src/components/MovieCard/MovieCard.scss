@@ -5,7 +5,6 @@ $gutter-padding: 4px;
 .MovieCard {
   color: white;
   height: 100%;
-  padding: $gutter-padding;
   position: relative;
   width: 100%;
 }
@@ -46,6 +45,12 @@ $gutter-padding: 4px;
   display: inline-block;
   color: #ffff;
   white-space: normal;
+}
+
+.containerGutter {
+  padding: $gutter-padding;
+  height: 100%;
+  width: 100%;
 }
 
 .movieCardInner {

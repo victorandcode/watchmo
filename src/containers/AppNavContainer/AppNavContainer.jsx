@@ -8,10 +8,10 @@ import {
 const mapDispatchToLinkProps = dispatch => {
   return {
     triggerBestOf2017: () => {
-      triggerBestOf2017Search(dispatch);
+      dispatch(triggerBestOf2017Search());
     },
     triggerBestOf2016: () => {
-      triggerBestOf2016Search(dispatch);
+      dispatch(triggerBestOf2016Search());
     }
   }
 }

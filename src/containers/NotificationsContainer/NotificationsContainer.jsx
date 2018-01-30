@@ -12,7 +12,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onLoad: () => {
-      fetchMoviesNowPlaying(dispatch);
+      dispatch(fetchMoviesNowPlaying());
     }
   }
 };

@@ -3,6 +3,14 @@ import MovieRowContainer from '../../containers/MovieRowContainer/MovieRowContai
 import styles from './MovieGrid.scss'
 
 class MovieGrid extends React.Component {  
+  componentDidMount() {
+    this.timer = setInterval(this.props.handleScroll, 200);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
   render() {
     return (
       <div className={styles.movieGrid}>

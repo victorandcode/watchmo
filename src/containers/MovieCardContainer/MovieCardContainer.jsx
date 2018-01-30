@@ -26,7 +26,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToLinkProps = (dispatch, ownProps) => {
   return {
     fetchMovieDetails: (movieId) => {
-      fetchMovieDetails(dispatch, movieId);
+      dispatch(fetchMovieDetails(movieId));
     },
     triggerMovieAction: (movie) => {
       dispatch(triggerMovieAction(movie));

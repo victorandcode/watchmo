@@ -2,7 +2,7 @@ const apiKey = "60bab434a5295afc1c82c16e3a8dcc83";
 const apiBaseUrl = "https://api.themoviedb.org/3";
 const discoverMoviesUrl = `${apiBaseUrl}/discover/movie?page=1&api_key=${apiKey}`;
 const moviesNowPlayingUrl = `${apiBaseUrl}/movie/now_playing?page=1&api_key=${apiKey}`;
-const searchMoviesUrl = `${apiBaseUrl}/search/movie?api_key=${apiKey}&query={searchQuery}`;
+const searchMoviesUrl = `${apiBaseUrl}/search/movie?api_key=${apiKey}&page=1&query={searchQuery}`;
 const genresUrl = `${apiBaseUrl}/genre/movie/list?page=1&api_key=${apiKey}&language=en-US`;
 const movieDetailsUrl = `${apiBaseUrl}/movie/{movieId}?api_key=${apiKey}&append_to_response=videos,images`;
 const moviesByGenreUrl = `${apiBaseUrl}/discover/movie?page=1&api_key=${apiKey}&with_genres={genreId}`;
@@ -88,8 +88,10 @@ export function getMoviesNowPlayingUrl() {
   return moviesNowPlayingUrl;
 }
 
-export function getSearchMoviesUrl(searchQuery) {
-  return searchMoviesUrl.replace("{searchQuery}", searchQuery);
+export function getSearchMoviesUrl(searchQuery, page) {
+  let result = searchMoviesUrl.replace("{searchQuery}", searchQuery)
+  result = result.replace("{page}", page);
+  return result;
 }
 
 export function getMoviesByGenreUrl(genreId) {
@@ -205,4 +207,13 @@ export function getBestOf2017Url() {
   };
   let builder = new DiscoverMoviesUrlBuilder(query);
   return builder.getUrl();   
+}
+
+export function getSearchMoviesNextPageUrl(lastQueryUrl, currentPage) {
+  let startPos = lastQueryUrl.indexOf("page=");
+  let lastPos = lastQueryUrl.indexOf("&", startPos);
+  if(lastPos === -1) {
+    lastPos = lastQueryUrl.length - 1;
+  }
+  return lastQueryUrl.slice(0, startPos) + `page=${currentPage}` + lastQueryUrl.slice(lastPos);
 }

@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import MovieGrid from '../../components/MovieGrid/MovieGrid';
 import { RESPONSIVE_COLUMN_CONFIG } from '../../constants';
+import { triggerSearchedMoviesNextPage } from '../../actions';
 
 function getCols(browserInfo) {
   if(browserInfo.greaterThan.medium) {
@@ -26,6 +27,10 @@ function getMoviesRows(searchedMovies, browserInfo) {
   return result;
 }
 
+const userAtScreenBottom = () => {
+  return (window.innerHeight + window.scrollY) >= document.body.offsetHeight;
+};
+
 const mapStateToProps = state => {
   let moviesRows = state.searchedMovies.movies 
                     ? getMoviesRows(state.searchedMovies.movies, state.browser) 
@@ -38,8 +43,19 @@ const mapStateToProps = state => {
   }
 }
 
+const mapDispatchToLinkProps = dispatch => {
+  return {
+    handleScroll: (event) => {
+      if(userAtScreenBottom()) {
+        dispatch(triggerSearchedMoviesNextPage());
+      }
+    }
+  }
+};
+
 const MovieGridContainer = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToLinkProps
 )(MovieGrid);
 
 export default MovieGridContainer;

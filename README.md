@@ -2,24 +2,27 @@
 
 # Description
 Trailer viewing website using React+Redux architecture and with Netflix's look and feel
-Please consider the movie db API is slow so queries might take a bit to load
+Please consider sometimes the movie db API is slow so queries might take a bit to load
 
 ![Demo of using terminal-gif](./video.gif)
 
-
-## Scope
-- Show a React component structure to replicate Netflix's Landing Page
+## Features
 - Show trailers in youtube or image sliders when trailer not available
+- Searches by multiple pre-build criterias
+- Search using query string
+
+
+## Implementation details
 - Manage state using Redux when necessary
 - CSS as faithful as possible
 - All data from Moviedb's API
-- Searches by multiple pre-build criterias
-- Search using query string
-- Only desktop support
 
 ## Technologies used
-- React with ejected create-react-app template
-- Redux
+- React.js with ejected create-react-app template
+- react-responsive
+- redux
+- redux-thunk
+- slick carousel
 - SASS
 - MovieDB API
 
@@ -36,8 +39,3 @@ npm start
 - Iconfinder for all icons used on this page
 - MovieDB for their data :)
 - https://codepen.io/anon/pen/KyryVq?editors=1100 for guidelines on how to add the scaling effect on movie cards
-
-## Pending improvements
-- Add infinite paging
-- Improve responsive support
-- Add a slider

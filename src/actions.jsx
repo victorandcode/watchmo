@@ -22,6 +22,7 @@ export const CLEAR_SEARCHED_MOVIES = "CLEAR_SEARCHED_MOVIES";
 export const CLEAR_SELECTED_MOVIE = "CLEAR_SELECTED_MOVIE";
 export const CLOSE_MODAL_VIDEO = "CLOSE_MODAL_VIDEO";
 export const CLOSE_LIGHTBOX = "CLOSE_LIGHTBOX";
+export const MARK_ABOUT_WAS_SHOWN = "MARK_ABOUT_WAS_SHOWN";
 export const OPEN_LIGHTBOX = "OPEN_LIGHTBOX";
 export const OPEN_MODAL_VIDEO = "OPEN_MODAL_VIDEO";
 export const RECEIVE_DISCOVER_MOVIES = "RECEIVE_DISCOVER_MOVIES";
@@ -383,5 +384,12 @@ export function selectMovie(movie, containerKey) {
 export function clearSelectedMovie() {
   return {
     type: CLEAR_SELECTED_MOVIE
+  }
+}
+
+
+export function markAboutWasShon() {
+  return {
+    type: MARK_ABOUT_WAS_SHOWN
   }
 }

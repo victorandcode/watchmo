@@ -28,6 +28,7 @@ const store = createStore(
 
 store.subscribe(throttle(() => {
   saveState({
+    userInteractions: store.getState().userInteractions,
     movieDetails: store.getState().movieDetails
   });
 }, 1000));

@@ -14,6 +14,77 @@
   margin-left: 10px;
 }
 
+.downArrowIcon {
+  margin-left: 5px;
+}
+
+.profileLinks {
+  background: rgba(0, 0, 0, .9);
+  position: absolute;
+  right: 0;
+  width: 164px;
+  white-space: nowrap;
+}
+
+.profileLinksEnter {
+  opacity: 0.1;
+  transition: opacity 200ms ease-in;
+}
+
+.profileLinksEnterActive {
+  opacity: 1;
+  transition: opacity 200ms ease-in;
+}
+
+.profileLinksLeave {
+  opacity: 1;
+}
+
+.profileLinksLeaveActive {
+  opacity: 0.1; 
+  transition: opacity 200ms ease-in;
+}
+
+.linkGroup {
+  font-size: 13px;
+  padding: 10px;
+}
+
+.topBorderSeparator {
+  border-top: solid 2px rgb(255, 255, 255);
+}
+
+.textLink {
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  display: block;
+  line-height: 1em;
+  padding: 5px 0;
+
+  &:hover {
+    color: rgba(255, 255, 255, .7);
+  }
+}
+
+.modalContentWrapper { 
+  height: 100%;
+  width: 100%;
+}
+
+.modalContent {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.popular {
+  color: #ffd700;
+}
+
+.bizarre {
+  color: #fd00ff;
+}
+
 @media(max-width: $max-sm-width) {
   .userName {
     display: none;

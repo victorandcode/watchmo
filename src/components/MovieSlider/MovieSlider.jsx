@@ -24,6 +24,7 @@ class MovieSlider extends React.Component {
         slidesToShow: RESPONSIVE_COLUMN_CONFIG["medium"]["cols"],
         slidesToScroll: 1,
         edgeFriction: 1,
+        swipeToSlide: true,
         responsive: [
           {
             breakpoint: RESPONSIVE_COLUMN_CONFIG["small"]["breakpoint"],

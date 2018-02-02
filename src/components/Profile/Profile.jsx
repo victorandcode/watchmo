@@ -23,8 +23,8 @@ class Profile extends React.Component {
           textAlign: 'center'
         },
         overlay: {
-         zIndex: '9999',
-         backgroundColor: 'rgba(0, 0, 0, .6)'
+         backgroundColor: 'rgba(0, 0, 0, .8)',
+         zIndex: '9999'
         }
       }
     }

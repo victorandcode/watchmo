@@ -95,6 +95,24 @@
   color: #fd00ff;
 }
 
+.moviedbAttribution {
+  margin-top: 10px;
+}
+
+.attributionText {
+  color: #ffff; 
+  display: inline-block;
+  font-size: 10px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.moviedbLogo {
+  display: inline-block;
+  vertical-align: middle;
+  width: 50px;
+}
+
 @media(max-width: $max-sm-width) {
   .userName {
     display: none;

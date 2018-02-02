@@ -1,7 +1,8 @@
 import React from 'react';
-import styles from './Profile.scss';
 import { CSSTransitionGroup } from 'react-transition-group';
 import Modal from 'react-modal';
+import styles from './Profile.scss';
+import moviedbLogo from './moviedb-logo.png';
 
 const currentUserId = 0;
 
@@ -18,6 +19,7 @@ class Profile extends React.Component {
           border: 'none',
           color: '#fff',
           fontSize: '2em',
+          padding: '0',
           textAlign: 'center'
         },
         overlay: {
@@ -27,7 +29,7 @@ class Profile extends React.Component {
       }
     }
     this.showAboutModal = this.showAboutModal.bind(this);
-    this.hideAboutModal = this.hideAboutModal.bind(this);
+    this.closeAboutModal = this.closeAboutModal.bind(this);
     this.onAboutModalOpen = this.onAboutModalOpen.bind(this);
     this.getMobileContent = this.getMobileContent.bind(this);
     this.getDesktopContent = this.getDesktopContent.bind(this);
@@ -47,7 +49,7 @@ class Profile extends React.Component {
     });
   }
 
-  hideAboutModal() {
+  closeAboutModal() {
     this.setState({
       showAboutModal: false
     });
@@ -125,12 +127,17 @@ class Profile extends React.Component {
         <Modal
           isOpen={this.state.showAboutModal}
           style={this.state.modalStyles}
-          onAfterOpen={this.onAboutModalOpen}>
+          onAfterOpen={this.onAboutModalOpen}
+          onRequestClose={this.closeAboutModal}>
           <div 
             className={styles.modalContentWrapper}
-            onClick={this.hideAboutModal}>
+            onClick={this.closeAboutModal}>
             <div className={styles.modalContent}>
               "Discover <span className={styles.popular}>Popular</span> and <span className={styles.bizarre}>Bizzare</span> movies, take a look at their trailer, you like what you see?"
+              <div className={styles.moviedbAttribution}>
+                <div className={styles.attributionText}>This product uses the TMDb API but is not endorsed or certified by TMDb.</div>
+                <img src={moviedbLogo} className={styles.moviedbLogo} />
+              </div>
             </div>
           </div>
         </Modal>

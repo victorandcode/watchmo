@@ -28,6 +28,7 @@ class ContentByCategory extends React.Component {
             <MovieSliderContainer movies={this.props.upcomingMovies}/>
           </div>
         </div>
+        <div className={styles.wantMoreMessage}>Want more? Expore our filters at the top of the page</div>
       </div>
     );
   }

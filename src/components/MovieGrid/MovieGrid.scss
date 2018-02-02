@@ -18,9 +18,10 @@
   width: 90vw;
 }
 
-.moviesNotFound {
-  text-align: center;
+.infoMessage {
   color: #ffff;
+  height: 3em;
+  text-align: center;
 }
 
 @media(max-width: $max-sm-width) {

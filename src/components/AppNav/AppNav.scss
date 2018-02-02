@@ -3,7 +3,7 @@
 .AppNav {
   display: inline-block;
   padding: 0 20px;
-  heigth: 100%;
+  height: 100%;
   vertical-align: top
 }
 
@@ -18,6 +18,16 @@
 }
 
 @media(max-width: $max-md-width) {
+  .AppNav {
+    padding: 0 5px;
+  }
+
+  .linkItem {
+    padding: 0 15px;
+  }
+}
+
+@media(max-width: $max-sm-width) {
   .linkItem {
     padding: 0;
   }

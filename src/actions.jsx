@@ -268,7 +268,10 @@ function fetchSearchedMoviesNextPage(newQueryUrl) {
   return dispatch => {
      fetch(newQueryUrl)
       .then(
-        response => response.json(),
+        response => {
+          console.log("FETCHED A NEW PAGE");
+          return response.json();
+        },
         error => console.log("An error ocurred.", error)
       )
       .then(json => dispatch(receiveSearchedMovies(json)))
@@ -278,7 +281,7 @@ function fetchSearchedMoviesNextPage(newQueryUrl) {
 export function triggerSearchedMoviesNextPage() {
   return (dispatch, getState) => {
     let { searchedMovies  } = getState();
-    if(searchedMovies.searchInProgress) {
+    if(searchedMovies.searchInProgress || searchedMovies.noMorePages) {
       return;  
     }
     let newQueryUrl = getSearchMoviesNextPageUrl(

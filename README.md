@@ -10,7 +10,7 @@ Please consider sometimes the movie db API is slow so queries might take a bit t
 - Show trailers in youtube or image sliders when trailer not available
 - Searches by multiple pre-build criterias
 - Search using query string
-
+- Infinite paging
 
 ## Implementation details
 - Manage state using Redux when necessary

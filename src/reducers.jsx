@@ -52,9 +52,11 @@ function upcomingMovies(state = [], action) {
 const searchedMoviesInitialState = {
   lastQueryUrl: "",
   movies: [],
+  noMorePages: false,
   page: 1,
   searchInProgress: false,
   searchHasTriggered: false,
+  searchHasNoResults: false,
   searchTitle: "",
 };
 
@@ -62,18 +64,25 @@ function searchedMovies(state = searchedMoviesInitialState, action) {
   switch(action.type) {
     case START_SEARCHED_MOVIES_REQUEST:
       return Object.assign({}, state, {
+        searchHasTriggered: true,
+        searchHasNoResults: false,
         searchInProgress: true,
         lastQueryUrl: action.newQueryUrl
       });
     case RECEIVE_SEARCHED_MOVIES:
-      return Object.assign({}, state, {
-        movies: [
+      let movies = [
           ...state.movies,
           ...action.movies,
-        ],
-        searchHasTriggered: true,
+      ];
+      let noMorePages = action.movies.length === 0;
+      let searchHasNoResults = movies.length === 0;
+      let page = noMorePages ? state.page : state.page + 1;
+      return Object.assign({}, state, {
+        movies: movies,
+        noMorePages: noMorePages,
+        searchHasNoResults: searchHasNoResults,
         searchInProgress: false,
-        page: state.page + 1
+        page: page
       });
     case CLEAR_SEARCHED_MOVIES:
       return searchedMoviesInitialState;

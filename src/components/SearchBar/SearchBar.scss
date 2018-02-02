@@ -52,7 +52,7 @@
   transition: width 300ms ease-in;
 }
 
-@media(min-width: $min-sm-width) and (max-width: $max-sm-width) {
+@media(min-width: $min-sm-width) and (max-width: $max-md-width) {
   .searchInput {
     width: 150px;
   }

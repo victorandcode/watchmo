@@ -28,7 +28,8 @@ function getMoviesRows(searchedMovies, browserInfo) {
 }
 
 const userAtScreenBottom = () => {
-  return (window.innerHeight + window.scrollY) >= document.body.offsetHeight;
+  let offsetCorrection = 2; /*Without this, sometimes the next inequality sum fails because of some small value*/
+  return (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - offsetCorrection;
 };
 
 const mapStateToProps = state => {
@@ -37,15 +38,17 @@ const mapStateToProps = state => {
                     : [];
   return {
     moviesRows,
+    noMorePages: state.searchedMovies.noMorePages,
     searchQuery: state.searchQuery,
-    showNoElementsFound: moviesRows.length === 0 && state.searchedMovies.searchHasTriggered,
+    searchInProgress: state.searchedMovies.searchInProgress,
+    showNoElementsFound: state.searchedMovies.searchHasNoResults,
     title: state.searchedMovies.searchTitle
   }
 }
 
 const mapDispatchToLinkProps = dispatch => {
   return {
-    handleScroll: (event) => {
+    handleInfinitePaging: (event) => {
       if(userAtScreenBottom()) {
         dispatch(triggerSearchedMoviesNextPage());
       }

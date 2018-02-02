@@ -4,6 +4,16 @@
   display: inline-block;
 }
 
+.profileContentWrapper {
+  position: relative;
+}
+
+.desktopMouseReceiver {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
 .profileIcon {
   display: inline-block;
   vertical-align: middle;

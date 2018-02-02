@@ -4,6 +4,7 @@ import { markAboutWasShon } from '../../actions';
 
 const mapStateToProps = state => {
   return {
+    isMobile: state.browser.lessThan.medium,
     users: state.users,
     showModalOnLoad: !state.userInteractions.aboutWasShown
   }

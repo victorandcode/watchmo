@@ -29,6 +29,10 @@ class Profile extends React.Component {
     this.showAboutModal = this.showAboutModal.bind(this);
     this.hideAboutModal = this.hideAboutModal.bind(this);
     this.onAboutModalOpen = this.onAboutModalOpen.bind(this);
+    this.getMobileContent = this.getMobileContent.bind(this);
+    this.getDesktopContent = this.getDesktopContent.bind(this);
+    this.getCommonContent = this.getCommonContent.bind(this);
+    this.getProfileContent = this.getProfileContent.bind(this);
   }
 
   componentDidMount() {
@@ -53,38 +57,71 @@ class Profile extends React.Component {
     this.props.onModalShown();
   }
 
+  getCommonContent() {
+    return (
+      <div>
+        <img src={this.state.currentUser.iconUrl} alt="IconUrl" className={styles.profileIcon}/>
+        <div className={styles.userName}>{this.state.currentUser.name}</div>
+        <CSSTransitionGroup
+          transitionName={{
+            enter: styles.profileLinksEnter,
+            enterActive: styles.profileLinksEnterActive,
+            leave: styles.profileLinksLeave,
+            leaveActive: styles.profileLinksLeaveActive,
+          }}
+          transitionEnterTimeout={200}
+          transitionLeaveTimeout={200}>
+          {this.state.showingLinkContainer ?
+            <div className={styles.profileLinks}>
+              <div className={[styles.linkGroup, styles.topBorderSeparator].join(' ')}>
+                <span
+                  className={styles.textLink}
+                  onClick={this.showAboutModal}>
+                  About Watchmo
+                </span>
+              </div>
+            </div>
+            : null
+          }
+        </CSSTransitionGroup>
+      </div>
+    )
+  }
+
+  getMobileContent() {
+    return (
+      <div
+        className={styles.profileContentWrapper}
+        onClick={() => this.setState({ showingLinkContainer: !this.state.showingLinkContainer})}>
+        {this.getCommonContent()}
+      </div>
+    )
+  }
+
+  getDesktopContent() {
+    return (
+      <div
+        className={styles.profileContentWrapper}
+        onMouseEnter={() => this.setState({ showingLinkContainer: true})}
+        onMouseLeave={() => this.setState({ showingLinkContainer: false})}>
+        {this.getCommonContent()}
+      </div>
+    )
+  }
+
+  getProfileContent() {
+    if(this.props.isMobile) {
+      return this.getMobileContent();
+    } else {
+      return this.getDesktopContent();
+    }
+  }
+
   render() {
     return (
       <div 
         className={styles.Profile}>
-        <div
-          onMouseEnter={() => this.setState({ showingLinkContainer: true})}
-          onMouseLeave={() => this.setState({ showingLinkContainer: false})}>
-          <img src={this.state.currentUser.iconUrl} alt="IconUrl" className={styles.profileIcon}/>
-          <div className={styles.userName}>{this.state.currentUser.name}</div>
-          <CSSTransitionGroup
-            transitionName={{
-              enter: styles.profileLinksEnter,
-              enterActive: styles.profileLinksEnterActive,
-              leave: styles.profileLinksLeave,
-              leaveActive: styles.profileLinksLeaveActive,
-            }}
-            transitionEnterTimeout={200}
-            transitionLeaveTimeout={200}>
-            {this.state.showingLinkContainer ?
-              <div className={styles.profileLinks}>
-                <div className={[styles.linkGroup, styles.topBorderSeparator].join(' ')}>
-                  <span
-                    className={styles.textLink}
-                    onClick={this.showAboutModal}>
-                    About Watchmo
-                  </span>
-                </div>
-              </div>
-              : null
-            }
-          </CSSTransitionGroup>
-        </div>
+        {this.getProfileContent()}
         <Modal
           isOpen={this.state.showAboutModal}
           style={this.state.modalStyles}

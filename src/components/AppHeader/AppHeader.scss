@@ -53,9 +53,10 @@
 
 .userActionsBigSearch {
   display: block;
-  left: 0;
   line-height: 70px;
+  max-width: 250px;
   position: absolute;
+  right: 0;
   top: 0;
   width: 100%;
 }

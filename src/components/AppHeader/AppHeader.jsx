@@ -38,7 +38,7 @@ class AppHeader extends  React.Component {
 
   getUserActionClass() {
     if(this.state.bigSearchIsActive) {
-      return styles.userActionsBigSearch;
+      return styles.userActions;
     } else {
       return styles.userActions;
     }

@@ -77,6 +77,10 @@
 }
 
 @media(max-width: $max-xxs-width) {
+  .searchIcon {
+    margin-right: 5px;
+  }
+
   .searchPreview {
     font-size: 14px;
   }

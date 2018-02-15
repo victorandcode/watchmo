@@ -5,7 +5,6 @@ import {
   CLEAR_SELECTED_MOVIE,
   CLOSE_LIGHTBOX,
   CLOSE_MODAL_VIDEO,
-  MARK_ABOUT_WAS_SHOWN,
   OPEN_LIGHTBOX,
   OPEN_MODAL_VIDEO,
   RECEIVE_CATEGORIES,
@@ -228,19 +227,6 @@ const responsiveReducer = createResponsiveStateReducer({
   extraLarge: RESPONSIVE_COLUMN_CONFIG["extraLarge"]["breakpoint"],
 });
 
-function userInteractions(state = {
-  aboutWasShown: false
-}, action) {
-  switch(action.type) {
-    case MARK_ABOUT_WAS_SHOWN:
-      return Object.assign({}, {
-        aboutWasShown: true
-      })
-    default:
-      return state
-  }
-}
-
 const rootReducer = combineReducers({
   categories,
   featuredMovie,
@@ -255,8 +241,7 @@ const rootReducer = combineReducers({
   showVideoModal,
   searchQuery,
   selectedMovie,
-  browser: responsiveReducer,
-  userInteractions
+  browser: responsiveReducer
 });
 
 export default rootReducer;

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import AppHeader from './components/AppHeader/AppHeader';
+import AppHeaderContainer from './containers/AppHeaderContainer/AppHeaderContainer';
 import LayoutDispatcherContainer from './containers/LayoutDispatcherContainer/LayoutDispatcherContainer';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <AppHeader />
+        <AppHeaderContainer />
         <LayoutDispatcherContainer />
       </div>
     );

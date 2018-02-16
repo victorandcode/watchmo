@@ -59,6 +59,8 @@
 
 .overview {
   font-size: 12px;
+  max-height: 8em;
+  overflow: hidden;
 }
 
 .closeIconWrapper {

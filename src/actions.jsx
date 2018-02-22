@@ -43,7 +43,7 @@ export const UPDATE_SEARCH_QUERY = "UPDATE_SEARCH_QUERY";
 function filterMoviesOnlyWithBackdrop(movies) {
   return movies.filter((movie) => {
     return movie.backdrop_path !== "" && movie.backdrop_path !== null;
-  });
+  });  
 }
 
 export function receiveDiscoverMovies(json) {
@@ -75,9 +75,10 @@ export function receiveUpcomingMovies(json) {
 }
 
 export function receiveSearchedMovies(json) {
+  let results = json ? json.results : [];
   return {
     type: RECEIVE_SEARCHED_MOVIES,
-    movies: filterMoviesOnlyWithBackdrop(json.results)
+    movies: filterMoviesOnlyWithBackdrop(results)
   }
 }
 
@@ -246,7 +247,11 @@ export function fetchMovieDetails(movieId) {
       response => response.json(),
       error => console.log("An error ocurred.", error)
     )
-    .then(json => dispatch(receiveMovieDetails(json)))  
+    .then(json => {
+      if(json) {
+        dispatch(receiveMovieDetails(json))
+      }
+    })  
   }
 }
 
@@ -269,7 +274,6 @@ function fetchSearchedMoviesNextPage(newQueryUrl) {
      fetch(newQueryUrl)
       .then(
         response => {
-          console.log("FETCHED A NEW PAGE");
           return response.json();
         },
         error => console.log("An error ocurred.", error)

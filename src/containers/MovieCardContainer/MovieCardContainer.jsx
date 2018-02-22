@@ -1,5 +1,6 @@
 import MovieCard from '../../components/MovieCard/MovieCard';
 import { connect } from 'react-redux';
+
 import { 
   clearSelectedMovie,
   fetchMovieDetails,
@@ -14,10 +15,10 @@ const mapStateToProps = (state, ownProps) => {
     state.movieDetails[ownProps.movie.id],
     { imageIsBig: true });
   let detailsExist = movie.detailsFetched !== undefined;
-  let movieIsSelected = state.selectedMovie.movie !== undefined && movie.id === state.selectedMovie.movie.id;
+  let selectedElementId = state.selectedMovie.elementId;
   return {
     movie,
-    movieIsSelected,
+    selectedElementId,
     isClickable: detailsExist,
     isLoadingDetails: !detailsExist
   }
@@ -31,8 +32,8 @@ const mapDispatchToLinkProps = (dispatch, ownProps) => {
     triggerMovieAction: (movie) => {
       dispatch(triggerMovieAction(movie));
     },
-    selectMovie: (movie) => {
-      dispatch(selectMovie(movie, ownProps.detailsBannerKey));
+    selectMovie: (elementId, movie) => {
+      dispatch(selectMovie(elementId, movie, ownProps.detailsBannerKey));
     },
     clearSelectedMovie: () => {
       dispatch(clearSelectedMovie());
@@ -48,8 +49,8 @@ const mergeProps = (state, actions) => ({
       actions.fetchMovieDetails(movieId);
     }
   },
-  selectMovie: () => {
-    actions.selectMovie(state.movie);
+  selectMovie: (elementId, ) => {
+    actions.selectMovie(elementId, state.movie);
   }
 });
 

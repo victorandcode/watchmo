@@ -199,12 +199,14 @@ function searchQuery(state = "", action) {
 }
 
 function selectedMovie(state = {
+  elementId: undefined,
   movie: undefined,
   containerKey: undefined
 }, action) {
   switch(action.type) {
     case SELECT_MOVIE:
       return {
+        elementId: action.elementId,
         movie: action.movie,
         containerKey: action.containerKey
       };

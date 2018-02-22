@@ -376,9 +376,10 @@ export function triggerBestOf2016Search() {
   }
 }
 
-export function selectMovie(movie, containerKey) {
+export function selectMovie(elementId, movie, containerKey) {
   return {
     type: SELECT_MOVIE,
+    elementId,
     movie,
     containerKey
   }

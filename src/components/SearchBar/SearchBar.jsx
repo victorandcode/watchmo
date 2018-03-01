@@ -15,14 +15,20 @@ class SearchBar extends React.Component {
     this.hideIfNoText = this.hideIfNoText.bind(this);
     this.eraseTextAndHide = this.eraseTextAndHide.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.updateShowSearchBar = this.updateShowSearchBar.bind(this);
   }
 
-  showSearchBar(show) {
-    this.setState({ "showSearchBar": true});
+  showSearchBar() {
+    this.updateShowSearchBar(true);
   }
 
-  hideSearchBar(show) {
-    this.setState({ "showSearchBar": false});
+  hideSearchBar() {
+    this.updateShowSearchBar(false);
+  }
+
+  updateShowSearchBar(show) {
+    this.setState({ "showSearchBar": show});
+    this.props.searchOpenedCallback(show);
   }
 
   hideIfNoText() {

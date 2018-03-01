@@ -80,7 +80,7 @@ $gutter-padding: 4px;
 .infoContainer {
   bottom: 0;
   position: absolute;
-  width: 180px;
+  width: 100%;
 }
 
 .title {
@@ -134,7 +134,7 @@ $gutter-padding: 4px;
 
 .overview {
   font-size: .7vw;
-  max-height: 3.5em;
+  max-height: 3em;
   overflow: hidden;
   white-space: normal;
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { v4 } from 'node-uuid';
 import styles from './MovieCard.scss';
 import imagePlaceholder from './image-placeholder.png';
 
@@ -8,6 +9,7 @@ class MovieCard extends React.Component {
     this.state = {
       userInteractedWithCard: false,
       imageUrl: imagePlaceholder,
+      elementId: v4()
     }
     
     this.loadImage = this.loadImage.bind(this);
@@ -16,6 +18,7 @@ class MovieCard extends React.Component {
     this.handleOnClickDesktop = this.handleOnClickDesktop.bind(this);
     this.handleOnMouseLeave = this.handleOnMouseLeave.bind(this);
     this.getMovieCardClassName = this.getMovieCardClassName.bind(this);
+    this.getIsSelected = this.getIsSelected.bind(this);
   }
 
   componentDidMount() {
@@ -41,7 +44,7 @@ class MovieCard extends React.Component {
 
   getDataAndSelectMovie() {
     this.getMovieDataIfNecessary();
-    this.props.selectMovie();
+    this.props.selectMovie(this.state.elementId);
   }
   
   handleOnClickDesktop() {
@@ -63,10 +66,14 @@ class MovieCard extends React.Component {
     return result.join(" ");
   }
 
+  getIsSelected() {
+    return this.props.selectedElementId === this.state.elementId;
+  }
+
   render() {
     return (
       <div className={this.getMovieCardClassName()}>
-        {!this.props.movieIsSelected ?
+        {!this.getIsSelected() ?
           <div className={styles.containerOverlay} />
           :
             null
@@ -77,7 +84,7 @@ class MovieCard extends React.Component {
           onMouseOver={() => this.getDataAndSelectMovie()}
           onMouseLeave={() => this.handleOnMouseLeave()}/>
         <div className={styles.clickReceiverMobile} onClick={this.getDataAndSelectMovie} />
-        {!this.props.movieIsSelected ? 
+        {!this.getIsSelected() ? 
           <div className={styles.bigTitleContainer}>
             <div className={styles.bigTitle}>
               {this.props.movie.title}

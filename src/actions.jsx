@@ -22,7 +22,6 @@ export const CLEAR_SEARCHED_MOVIES = "CLEAR_SEARCHED_MOVIES";
 export const CLEAR_SELECTED_MOVIE = "CLEAR_SELECTED_MOVIE";
 export const CLOSE_MODAL_VIDEO = "CLOSE_MODAL_VIDEO";
 export const CLOSE_LIGHTBOX = "CLOSE_LIGHTBOX";
-export const MARK_ABOUT_WAS_SHOWN = "MARK_ABOUT_WAS_SHOWN";
 export const OPEN_LIGHTBOX = "OPEN_LIGHTBOX";
 export const OPEN_MODAL_VIDEO = "OPEN_MODAL_VIDEO";
 export const RECEIVE_DISCOVER_MOVIES = "RECEIVE_DISCOVER_MOVIES";
@@ -44,7 +43,7 @@ export const UPDATE_SEARCH_QUERY = "UPDATE_SEARCH_QUERY";
 function filterMoviesOnlyWithBackdrop(movies) {
   return movies.filter((movie) => {
     return movie.backdrop_path !== "" && movie.backdrop_path !== null;
-  });
+  });  
 }
 
 export function receiveDiscoverMovies(json) {
@@ -76,9 +75,10 @@ export function receiveUpcomingMovies(json) {
 }
 
 export function receiveSearchedMovies(json) {
+  let results = json ? json.results : [];
   return {
     type: RECEIVE_SEARCHED_MOVIES,
-    movies: filterMoviesOnlyWithBackdrop(json.results)
+    movies: filterMoviesOnlyWithBackdrop(results)
   }
 }
 
@@ -247,7 +247,11 @@ export function fetchMovieDetails(movieId) {
       response => response.json(),
       error => console.log("An error ocurred.", error)
     )
-    .then(json => dispatch(receiveMovieDetails(json)))  
+    .then(json => {
+      if(json) {
+        dispatch(receiveMovieDetails(json))
+      }
+    })  
   }
 }
 
@@ -270,7 +274,6 @@ function fetchSearchedMoviesNextPage(newQueryUrl) {
      fetch(newQueryUrl)
       .then(
         response => {
-          console.log("FETCHED A NEW PAGE");
           return response.json();
         },
         error => console.log("An error ocurred.", error)
@@ -373,9 +376,10 @@ export function triggerBestOf2016Search() {
   }
 }
 
-export function selectMovie(movie, containerKey) {
+export function selectMovie(elementId, movie, containerKey) {
   return {
     type: SELECT_MOVIE,
+    elementId,
     movie,
     containerKey
   }
@@ -384,12 +388,5 @@ export function selectMovie(movie, containerKey) {
 export function clearSelectedMovie() {
   return {
     type: CLEAR_SELECTED_MOVIE
-  }
-}
-
-
-export function markAboutWasShon() {
-  return {
-    type: MARK_ABOUT_WAS_SHOWN
   }
 }

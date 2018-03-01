@@ -49,10 +49,34 @@
   line-height: 70px;
   position: relative;
   vertical-align: top;
+}
 
-  li {
-    display: inline-block;
-    margin-left: 30px;
+.userActionsBigSearch {
+  display: block;
+  line-height: 70px;
+  max-width: 250px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+.actionItem {
+  display: inline-block;
+  margin-left: 30px;
+}
+
+.displayNone {
+  display: none
+}
+
+@media(max-width: $max-sm-width) {
+  .notificationsContainer {
+    display: none;
+  }
+
+  .actionItem {
+    margin-left: 15px;
   }
 }
 
@@ -65,24 +89,10 @@
     height: 45px;
     width: 45px;
   }
-
-  .userActions {
-    .searchBar {
-      display: none;
-    }
-  }
 }
 
-@media(max-width: $max-sm-width) {
-  .userActions {
-    li.notificationsContainer {
-      display: none;
-    }
-  }
-
-  .userActions {
-    li {
-      margin-left: 15px;
-    }
+@media(max-width: $max-xxs-width) {
+  .actionItem {
+    margin-left: 6px;
   }
 }

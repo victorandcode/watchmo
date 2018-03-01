@@ -11,19 +11,23 @@ class AppHeader extends  React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      "innerHeaderStyle": styles.innerHeader
+      "innerHeaderStyleClass": styles.innerHeader,
+      "bigSearchIsActive": false,
     };
     this.handleScroll = this.handleScroll.bind(this);
+    this.getUserActionClass = this.getUserActionClass.bind(this);
+    this.getProfileContainerClass = this.getProfileContainerClass.bind(this);
+    this.setSearchIsOpened = this.setSearchIsOpened.bind(this);
   }
 
   handleScroll() {
     if(window.scrollY > 0) {
       this.setState({
-        "innerHeaderStyle": styles.innerHeaderScrolled
+        "innerHeaderStyleClass": styles.innerHeaderScrolled
       })
     } else {
       this.setState({
-        "innerHeaderStyle": styles.innerHeader
+        "innerHeaderStyleClass": styles.innerHeader
       })
     }
   }
@@ -32,17 +36,41 @@ class AppHeader extends  React.Component {
     window.addEventListener('scroll', this.handleScroll);
   }
 
+  getUserActionClass() {
+    if(this.state.bigSearchIsActive) {
+      return styles.userActions;
+    } else {
+      return styles.userActions;
+    }
+  }
+
+  getProfileContainerClass() {
+    if(this.state.bigSearchIsActive) {
+      return [styles.displayNone].join(" ");
+    } else {
+      return styles.actionItem
+    }
+  }
+
+  setSearchIsOpened(isOpened) {
+    if(this.props.shouldTriggerBigSearch && isOpened) {
+      this.setState({ bigSearchIsActive: true });
+    } else {
+      this.setState({ bigSearchIsActive: false });
+    }
+  }
+
   render() {
     return(
       <header className={styles.AppHeader}>
-        <div className={this.state.innerHeaderStyle}>
+        <div className={this.state.innerHeaderStyleClass}>
           <AppGithubCorner />
           <Logo />
           <AppNavContainer />
-          <ul className={styles.userActions}>
-            <li className={styles.searchBar}><SearchBarContainer/></li>
-            <li className={styles.notificationsContainer}><NotificationsContainer /></li>
-            <li><ProfileContainer /></li>
+          <ul className={this.getUserActionClass()}>
+            <li className={[styles.actionItem, styles.searchBar].join(" ")}><SearchBarContainer searchOpenedCallback={this.setSearchIsOpened}/></li>
+            <li className={[styles.actionItem, styles.notificationsContainer].join(" ")}><NotificationsContainer /></li>
+            <li className={this.getProfileContainerClass()}><ProfileContainer /></li>
           </ul>
         </div>
       </header>

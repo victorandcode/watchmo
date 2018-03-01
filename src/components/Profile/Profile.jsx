@@ -30,17 +30,10 @@ class Profile extends React.Component {
     }
     this.showAboutModal = this.showAboutModal.bind(this);
     this.closeAboutModal = this.closeAboutModal.bind(this);
-    this.onAboutModalOpen = this.onAboutModalOpen.bind(this);
     this.getMobileContent = this.getMobileContent.bind(this);
     this.getDesktopContent = this.getDesktopContent.bind(this);
     this.getCommonContent = this.getCommonContent.bind(this);
     this.getProfileContent = this.getProfileContent.bind(this);
-  }
-
-  componentDidMount() {
-    if(this.props.showModalOnLoad) {
-      this.showAboutModal();
-    }
   }
 
   showAboutModal() {
@@ -53,10 +46,6 @@ class Profile extends React.Component {
     this.setState({
       showAboutModal: false
     });
-  }
-
-  onAboutModalOpen() {
-    this.props.onModalShown();
   }
 
   getCommonContent() {
@@ -127,7 +116,6 @@ class Profile extends React.Component {
         <Modal
           isOpen={this.state.showAboutModal}
           style={this.state.modalStyles}
-          onAfterOpen={this.onAboutModalOpen}
           onRequestClose={this.closeAboutModal}>
           <div 
             className={styles.modalContentWrapper}
@@ -136,7 +124,10 @@ class Profile extends React.Component {
               "Discover <span className={styles.popular}>Popular</span> and <span className={styles.bizarre}>Bizzare</span> movies, take a look at their trailer, you like what you see?"
               <div className={styles.moviedbAttribution}>
                 <div className={styles.attributionText}>This product uses the TMDb API but is not endorsed or certified by TMDb.</div>
-                <img src={moviedbLogo} className={styles.moviedbLogo} />
+                <img 
+                  src={moviedbLogo} 
+                  className={styles.moviedbLogo} 
+                  alt="moviedb logo"/>
               </div>
             </div>
           </div>

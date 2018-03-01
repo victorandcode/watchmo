@@ -61,3 +61,31 @@
     width: 150px;
   }
 }
+
+@media(max-width: $max-xs-width) {
+  .searchInput {
+    width: 100px;
+  }
+
+  .inputAppearActive {
+    width: 100px;
+  }
+
+  .closeIcon {
+    display: none;
+  }
+}
+
+@media(max-width: $max-xxs-width) {
+  .searchIcon {
+    margin-right: 1px;
+  }
+
+  .searchPreview {
+    font-size: 14px;
+  }
+
+  .searchInput {
+    width: 80px;
+  }
+}

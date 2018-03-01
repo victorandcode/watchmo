@@ -1,4 +1,4 @@
-<a href="https://watchmo.herokuapp.com/" target="_blank">DEMO</a>
+<a href="https://victor-cordova.github.io/watchmo/" target="_blank">DEMO</a>
 
 # Description
 Trailer viewing website using React+Redux architecture and with Netflix's look and feel
@@ -33,6 +33,11 @@ Please consider sometimes the movie db API is slow so queries might take a bit t
 ```bash
 npm install
 npm start
+```
+
+#How to deploy to github pages
+```bash
+npm run deploy
 ```
 
 ## Acknowledgment

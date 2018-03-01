@@ -35,7 +35,7 @@ npm install
 npm start
 ```
 
-#How to deploy to github pages
+## How to deploy to github pages
 ```bash
 npm run deploy
 ```

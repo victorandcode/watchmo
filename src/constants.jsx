@@ -27,3 +27,5 @@ export const RESPONSIVE_COLUMN_CONFIG = {
     "cols": 2,
   }
 };
+
+export const GITHUB_URL = 'https://github.com/victor-cordova/watchmo';

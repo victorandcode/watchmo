@@ -27,6 +27,7 @@
     "file-loader": "1.1.5",
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.29.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "20.0.4",
     "node-sass": "^4.7.2",
     "node-uuid": "^1.4.8",
@@ -87,7 +88,8 @@
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
     ],
     "moduleNameMapper": {
-      "^react-native$": "react-native-web"
+      "^react-native$": "react-native-web",
+      "\\.(scss)$": "identity-obj-proxy"
     },
     "moduleFileExtensions": [
       "web.js",
@@ -97,7 +99,8 @@
       "web.jsx",
       "jsx",
       "node"
-    ]
+    ],
+    "setupTestFrameworkScriptFile": "<rootDir>/config/jest/setup.js"
   },
   "babel": {
     "presets": [
@@ -108,6 +111,8 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "gh-pages": "^1.1.0"
   }
 }

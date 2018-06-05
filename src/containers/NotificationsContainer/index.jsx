@@ -1,12 +1,11 @@
-import { connect } from 'react-redux';
-import Notifications from '../../components/Notifications';
-import { fetchMoviesNowPlaying } from '../../actions';
-
+import { connect } from "react-redux";
+import Notifications from "../../components/Notifications";
+import { fetchMoviesNowPlaying } from "../../actions";
 
 const mapStateToProps = state => {
   return {
     notificationList: state.moviesNowPlaying
-  }
+  };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -14,7 +13,7 @@ const mapDispatchToProps = dispatch => {
     onLoad: () => {
       dispatch(fetchMoviesNowPlaying());
     }
-  }
+  };
 };
 
 const NotificationsContainer = connect(

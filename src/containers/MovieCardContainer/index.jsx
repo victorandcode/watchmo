@@ -1,19 +1,20 @@
-import MovieCard from '../../components/MovieCard';
-import { connect } from 'react-redux';
+import MovieCard from "../../components/MovieCard";
+import { connect } from "react-redux";
 
-import { 
+import {
   clearSelectedMovie,
   fetchMovieDetails,
   selectMovie,
   triggerMovieAction
-} from '../../actions';
-import { getMovieData } from '../../parsing';
+} from "../../actions";
+import { getMovieData } from "../../parsing";
 
 const mapStateToProps = (state, ownProps) => {
   let movie = getMovieData(
-    ownProps.movie, 
+    ownProps.movie,
     state.movieDetails[ownProps.movie.id],
-    { imageIsBig: true });
+    { imageIsBig: true }
+  );
   let detailsExist = movie.detailsFetched !== undefined;
   let selectedElementId = state.selectedMovie.elementId;
   return {
@@ -21,15 +22,15 @@ const mapStateToProps = (state, ownProps) => {
     selectedElementId,
     isClickable: detailsExist,
     isLoadingDetails: !detailsExist
-  }
+  };
 };
 
 const mapDispatchToLinkProps = (dispatch, ownProps) => {
   return {
-    fetchMovieDetails: (movieId) => {
+    fetchMovieDetails: movieId => {
       dispatch(fetchMovieDetails(movieId));
     },
-    triggerMovieAction: (movie) => {
+    triggerMovieAction: movie => {
       dispatch(triggerMovieAction(movie));
     },
     selectMovie: (elementId, movie) => {
@@ -38,18 +39,18 @@ const mapDispatchToLinkProps = (dispatch, ownProps) => {
     clearSelectedMovie: () => {
       dispatch(clearSelectedMovie());
     }
-  }
+  };
 };
 
 const mergeProps = (state, actions) => ({
   ...state,
   ...actions,
-  fetchMovieDetails: (movieId) => {
-    if(state.movie.detailsFetched === undefined) {
+  fetchMovieDetails: movieId => {
+    if (state.movie.detailsFetched === undefined) {
       actions.fetchMovieDetails(movieId);
     }
   },
-  selectMovie: (elementId, ) => {
+  selectMovie: elementId => {
     actions.selectMovie(elementId, state.movie);
   }
 });

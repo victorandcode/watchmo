@@ -1,15 +1,15 @@
-import React from 'react';
-import searchIcon from './search-icon.png';
-import closeIcon from './close-icon.png';
-import styles from './SearchBar.scss';
-import { CSSTransitionGroup } from 'react-transition-group';
+import React from "react";
+import searchIcon from "./search-icon.png";
+import closeIcon from "./close-icon.png";
+import styles from "./SearchBar.scss";
+import { CSSTransitionGroup } from "react-transition-group";
 
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      "showSearchBar": false
-    }
+      showSearchBar: false
+    };
     this.showSearchBar = this.showSearchBar.bind(this);
     this.hideSearchBar = this.hideSearchBar.bind(this);
     this.hideIfNoText = this.hideIfNoText.bind(this);
@@ -27,12 +27,12 @@ class SearchBar extends React.Component {
   }
 
   updateShowSearchBar(show) {
-    this.setState({ "showSearchBar": show});
+    this.setState({ showSearchBar: show });
     this.props.searchOpenedCallback(show);
   }
 
   hideIfNoText() {
-    if(!this.searchInput.value) {
+    if (!this.searchInput.value) {
       this.hideSearchBar();
     }
   }
@@ -49,40 +49,52 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div className={styles.SearchBar}>
-        {this.state.showSearchBar ? 
+        {this.state.showSearchBar ? (
           <div className={styles.SearchBarUserInput}>
-            <img src={searchIcon} alt="SearchIcon" className={styles.searchIcon}/>
+            <img
+              src={searchIcon}
+              alt="SearchIcon"
+              className={styles.searchIcon}
+            />
             <CSSTransitionGroup
               transitionName={{
                 appear: styles.inputAppear,
-                appearActive: styles.inputAppearActive,
+                appearActive: styles.inputAppearActive
               }}
               transitionEnter={false}
               transitionAppearTimeout={300}
               transitionAppear={true}
-              transitionLeave={false}>
-              <input 
-                type="text" 
-                className={styles.searchInput} 
+              transitionLeave={false}
+            >
+              <input
+                type="text"
+                className={styles.searchInput}
                 placeholder="Search by name"
                 autoFocus
                 onChange={this.handleInputChange}
                 onBlur={this.hideIfNoText}
-                ref={(input) => { this.searchInput = input; }}
-                />
+                ref={input => {
+                  this.searchInput = input;
+                }}
+              />
             </CSSTransitionGroup>
-            <img 
-              src={closeIcon} 
-              alt="CloseIcon" 
-              className={styles.closeIcon} 
-              onClick={this.eraseTextAndHide}/>
+            <img
+              src={closeIcon}
+              alt="CloseIcon"
+              className={styles.closeIcon}
+              onClick={this.eraseTextAndHide}
+            />
           </div>
-         : 
+        ) : (
           <span className={styles.searchPreview} onClick={this.showSearchBar}>
-            <img className={styles.searchIcon} src={searchIcon} alt="SearchIcon"/>
+            <img
+              className={styles.searchIcon}
+              src={searchIcon}
+              alt="SearchIcon"
+            />
             Search
           </span>
-        }
+        )}
       </div>
     );
   }

@@ -1,7 +1,7 @@
-import React from 'react';
-import { v4 } from 'node-uuid';
-import styles from './MovieCard.scss';
-import imagePlaceholder from './image-placeholder.png';
+import React from "react";
+import { v4 } from "node-uuid";
+import styles from "./MovieCard.scss";
+import imagePlaceholder from "./image-placeholder.png";
 
 class MovieCard extends React.Component {
   constructor(props) {
@@ -10,8 +10,8 @@ class MovieCard extends React.Component {
       userInteractedWithCard: false,
       imageUrl: imagePlaceholder,
       elementId: v4()
-    }
-    
+    };
+
     this.loadImage = this.loadImage.bind(this);
     this.getMovieDataIfNecessary = this.getMovieDataIfNecessary.bind(this);
     this.getDataAndSelectMovie = this.getDataAndSelectMovie.bind(this);
@@ -31,14 +31,13 @@ class MovieCard extends React.Component {
     movieBackdrop.onload = () => {
       this.setState({
         imageUrl: this.props.movie.backdropUrl
-      })
+      });
     };
   }
 
   getMovieDataIfNecessary() {
-    if(this.state.userInteractedWithCard)
-      return;
-    this.setState({ userInteractedWithCard: true});
+    if (this.state.userInteractedWithCard) return;
+    this.setState({ userInteractedWithCard: true });
     this.props.fetchMovieDetails(this.props.movie.id);
   }
 
@@ -46,9 +45,9 @@ class MovieCard extends React.Component {
     this.getMovieDataIfNecessary();
     this.props.selectMovie(this.state.elementId);
   }
-  
+
   handleOnClickDesktop() {
-    if(this.props.isClickable) {
+    if (this.props.isClickable) {
       this.props.triggerMovieAction(this.props.movie);
     }
   }
@@ -60,7 +59,7 @@ class MovieCard extends React.Component {
 
   getMovieCardClassName() {
     let result = [styles.MovieCard];
-    if(this.props.isClickable) {
+    if (this.props.isClickable) {
       result.push(styles.hoverable);
     }
     return result.join(" ");
@@ -73,64 +72,69 @@ class MovieCard extends React.Component {
   render() {
     return (
       <div className={this.getMovieCardClassName()}>
-        {!this.getIsSelected() ?
+        {!this.getIsSelected() ? (
           <div className={styles.containerOverlay} />
-          :
-            null
-        }
+        ) : null}
         <div
-          className={styles.clickReceiverDesktop} 
-          onClick={this.handleOnClickDesktop} 
+          className={styles.clickReceiverDesktop}
+          onClick={this.handleOnClickDesktop}
           onMouseOver={() => this.getDataAndSelectMovie()}
-          onMouseLeave={() => this.handleOnMouseLeave()}/>
-        <div className={styles.clickReceiverMobile} onClick={this.getDataAndSelectMovie} />
-        {!this.getIsSelected() ? 
+          onMouseLeave={() => this.handleOnMouseLeave()}
+        />
+        <div
+          className={styles.clickReceiverMobile}
+          onClick={this.getDataAndSelectMovie}
+        />
+        {!this.getIsSelected() ? (
           <div className={styles.bigTitleContainer}>
-            <div className={styles.bigTitle}>
-              {this.props.movie.title}
-            </div>
+            <div className={styles.bigTitle}>{this.props.movie.title}</div>
           </div>
-          : 
-            null
-        }
-        
+        ) : null}
+
         <div className={styles.containerGutter}>
-          <div 
+          <div
             className={styles.movieCardInner}
-            style={{"backgroundImage": `url(${this.state.imageUrl})`}}>
-              {this.state.userInteractedWithCard ? <div className={styles.detailsOverlay}/> : null}
-              {this.state.userInteractedWithCard ?
-                <div className={styles.content}>
-                  <div className={styles.infoContainer}>
-                    <div className={styles.title}>{this.props.movie.title}</div>
-                    <div className={styles.detailsContainer}>
-                      <div>
-                        <span className={styles.voteAverage}>{this.props.movie.voteAverage}</span>
-                        <span className={styles.year}>{this.props.movie.year}</span>
-                        {this.props.movie.adultFilm ? 
-                            <span className={styles.adultFilm}>18+</span>
-                          :
-                            null
-                        }
-                        <span className={styles.duration}>{this.props.movie.duration}</span>
-                      </div>
-                      {this.props.isLoadingDetails ?
-                          <span className={styles.loadingMessage}>Loading trailer...</span>
-                        : 
-                          null
-                      }                    
+            style={{ backgroundImage: `url(${this.state.imageUrl})` }}
+          >
+            {this.state.userInteractedWithCard ? (
+              <div className={styles.detailsOverlay} />
+            ) : null}
+            {this.state.userInteractedWithCard ? (
+              <div className={styles.content}>
+                <div className={styles.infoContainer}>
+                  <div className={styles.title}>{this.props.movie.title}</div>
+                  <div className={styles.detailsContainer}>
+                    <div>
+                      <span className={styles.voteAverage}>
+                        {this.props.movie.voteAverage}
+                      </span>
+                      <span className={styles.year}>
+                        {this.props.movie.year}
+                      </span>
+                      {this.props.movie.adultFilm ? (
+                        <span className={styles.adultFilm}>18+</span>
+                      ) : null}
+                      <span className={styles.duration}>
+                        {this.props.movie.duration}
+                      </span>
                     </div>
-                    <div className={styles.overview}>{this.props.movie.overview}</div>
+                    {this.props.isLoadingDetails ? (
+                      <span className={styles.loadingMessage}>
+                        Loading trailer...
+                      </span>
+                    ) : null}
+                  </div>
+                  <div className={styles.overview}>
+                    {this.props.movie.overview}
                   </div>
                 </div>
-                : 
-                  null
-              }
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
     );
   }
-} 
+}
 
 export default MovieCard;

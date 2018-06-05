@@ -1,6 +1,6 @@
-import React from 'react';
-import ContentByCategoryContainer from '../../containers/ContentByCategoryContainer';
-import HeroRecommendationContainer from '../../containers/HeroRecommendationContainer';
+import React from "react";
+import ContentByCategoryContainer from "../../containers/ContentByCategoryContainer";
+import HeroRecommendationContainer from "../../containers/HeroRecommendationContainer";
 
 class LayoutLanding extends React.Component {
   render() {
@@ -9,7 +9,7 @@ class LayoutLanding extends React.Component {
         <HeroRecommendationContainer />
         <ContentByCategoryContainer />
       </div>
-    )
+    );
   }
 }
 

@@ -1,8 +1,8 @@
-import React from 'react';
-import styles from './MovieRow.scss';
-import MovieDetailsBannerContainer from '../../containers/MovieDetailsBannerContainer';
-import MovieCardContainer from '../../containers/MovieCardContainer';
-import { v4 } from 'node-uuid';
+import React from "react";
+import styles from "./MovieRow.scss";
+import MovieDetailsBannerContainer from "../../containers/MovieDetailsBannerContainer";
+import MovieCardContainer from "../../containers/MovieCardContainer";
+import { v4 } from "node-uuid";
 
 class MovieRow extends React.Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class MovieRow extends React.Component {
 
   setHoverClasses(index) {
     let maxIndex = this.props.movies.length - 1;
-    if(index === 0) {
+    if (index === 0) {
       this.setFirstHovered();
     } else if (index % maxIndex === 0) {
       this.setLastHovered();
@@ -30,27 +30,26 @@ class MovieRow extends React.Component {
   }
 
   setFirstHovered() {
-    this.setState({movieWrapperClass: styles.moviesWrapper})
+    this.setState({ movieWrapperClass: styles.moviesWrapper });
   }
 
   setLastHovered() {
     this.setState({
       movieWrapperClass: [
         styles.moviesWrapper,
-        styles.wrapperMoveLeftExtra]
-        .join(" ")
-    })
+        styles.wrapperMoveLeftExtra
+      ].join(" ")
+    });
   }
 
   setNonBorderHovered() {
     this.setState({
-      movieWrapperClass: [
-        styles.moviesWrapper, 
-        styles.wrapperMoveLeft]
-        .join(" ")
-    })
+      movieWrapperClass: [styles.moviesWrapper, styles.wrapperMoveLeft].join(
+        " "
+      )
+    });
   }
-  
+
   resetHoverClass() {
     this.setState({
       movieWrapperClass: styles.moviesWrapper
@@ -66,18 +65,26 @@ class MovieRow extends React.Component {
               <div
                 className={styles.movieCardWrapper}
                 key={movieItem.id}
-                onMouseEnter={(e) => {this.setHoverClasses(movieItemIndex)}}
-                onMouseLeave={(e) => {this.resetHoverClass()}}>
-                <MovieCardContainer movie={movieItem} detailsBannerKey={this.state.detailsBannerKey}/>
+                onMouseEnter={e => {
+                  this.setHoverClasses(movieItemIndex);
+                }}
+                onMouseLeave={e => {
+                  this.resetHoverClass();
+                }}
+              >
+                <MovieCardContainer
+                  movie={movieItem}
+                  detailsBannerKey={this.state.detailsBannerKey}
+                />
               </div>
-            )
+            );
           })}
         </div>
-        {this.props.isMobile ?
-          <MovieDetailsBannerContainer containerKey={this.state.detailsBannerKey}/>
-          :
-            null
-        }
+        {this.props.isMobile ? (
+          <MovieDetailsBannerContainer
+            containerKey={this.state.detailsBannerKey}
+          />
+        ) : null}
       </div>
     );
   }

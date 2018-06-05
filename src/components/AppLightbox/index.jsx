@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import Lightbox from 'react-image-lightbox';
+import React, { Component } from "react";
+import Lightbox from "react-image-lightbox";
 
 class AppLightbox extends Component {
   render() {
@@ -14,7 +14,9 @@ class AppLightbox extends Component {
             prevSrc={images[(photoIndex + images.length - 1) % images.length]}
             onCloseRequest={() => this.props.close()}
             onMovePrevRequest={() =>
-              this.props.setIndex((photoIndex + images.length - 1) % images.length)
+              this.props.setIndex(
+                (photoIndex + images.length - 1) % images.length
+              )
             }
             onMoveNextRequest={() =>
               this.props.setIndex((photoIndex + 1) % images.length)

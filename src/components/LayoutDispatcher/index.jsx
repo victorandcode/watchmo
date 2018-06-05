@@ -1,10 +1,10 @@
-import React from 'react';
-import { CSSTransitionGroup } from 'react-transition-group';
-import AppLightboxContainer from '../../containers/AppLightboxContainer';
-import LayoutLanding from '../LayoutLanding';
-import MovieGridContainer from '../../containers/MovieGridContainer';
-import ModalVideoPlayerContainer from '../../containers/ModalVideoPlayerContainer';
-import styles from './LayoutDispatcher.scss';
+import React from "react";
+import { CSSTransitionGroup } from "react-transition-group";
+import AppLightboxContainer from "../../containers/AppLightboxContainer";
+import LayoutLanding from "../LayoutLanding";
+import MovieGridContainer from "../../containers/MovieGridContainer";
+import ModalVideoPlayerContainer from "../../containers/ModalVideoPlayerContainer";
+import styles from "./LayoutDispatcher.scss";
 
 class LayoutDispatcher extends React.Component {
   render() {
@@ -16,17 +16,18 @@ class LayoutDispatcher extends React.Component {
             enterActive: styles.layoutContainerEnterActive
           }}
           transitionEnterTimeout={500}
-          transitionLeave={false}>
-          {this.props.showSearchedMovies ?
-            <MovieGridContainer key={1}/>
-           :
-            <LayoutLanding key={2}/>
-          }
+          transitionLeave={false}
+        >
+          {this.props.showSearchedMovies ? (
+            <MovieGridContainer key={1} />
+          ) : (
+            <LayoutLanding key={2} />
+          )}
         </CSSTransitionGroup>
         <ModalVideoPlayerContainer />
         <AppLightboxContainer />
       </div>
-    )
+    );
   }
 }
 

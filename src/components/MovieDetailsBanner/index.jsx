@@ -1,20 +1,22 @@
-import React from 'react';
-import styles from './MovieDetailsBanner.scss';
-import closeIcon from './close-icon.png';
-import playIcon from './play-icon.png';
+import React from "react";
+import styles from "./MovieDetailsBanner.scss";
+import closeIcon from "./close-icon.png";
+import playIcon from "./play-icon.png";
 
 class MovieDetailsBanner extends React.Component {
   render() {
     let movie = this.props.movie;
     return (
       <div>
-        {(this.props.containerKey !== undefined) && (this.props.containerKey === this.props.selectedContainerKey) ?
+        {this.props.containerKey !== undefined &&
+        this.props.containerKey === this.props.selectedContainerKey ? (
           <div className={styles.contentWrapper}>
             <div className={styles.movieImgWrapper}>
-              <img 
+              <img
                 className={styles.movieImg}
                 src={movie.backdropUrl}
-                alt="Movie backdrop"/>
+                alt="Movie backdrop"
+              />
             </div>
             <div className={styles.textContent}>
               <div className={styles.title}>{movie.title}</div>
@@ -22,38 +24,39 @@ class MovieDetailsBanner extends React.Component {
                 <span className={styles.voteAverage}>{movie.voteAverage}</span>
                 <span className={styles.year}>{movie.year}</span>
                 <span className={styles.duration}>{movie.duration}</span>
-                {this.props.isLoadingDetails ?
-                  <div>
-                    Loading movie trailer...
-                  </div>
-                  : null
-                }
+                {this.props.isLoadingDetails ? (
+                  <div>Loading movie trailer...</div>
+                ) : null}
               </div>
               <div className={styles.overview}>{movie.overview}</div>
             </div>
-            <div 
+            <div
               className={styles.playActionContainer}
-              onClick={this.props.triggerMovieAction}>
+              onClick={this.props.triggerMovieAction}
+            >
               <button className={styles.playBtnWrapper}>
                 <img
                   className={styles.playBtn}
                   src={playIcon}
-                  alt="Play button"/>
+                  alt="Play button"
+                />
               </button>
             </div>
-            <div className={styles.closeIconWrapper}
-                onClick={this.props.clearSelectedMovie}>
+            <div
+              className={styles.closeIconWrapper}
+              onClick={this.props.clearSelectedMovie}
+            >
               <img
                 className={styles.closeIcon}
                 src={closeIcon}
-                alt="Close Icon"/>
+                alt="Close Icon"
+              />
             </div>
           </div>
-          : null
-        }
+        ) : null}
       </div>
-    )
+    );
   }
-};
+}
 
 export default MovieDetailsBanner;

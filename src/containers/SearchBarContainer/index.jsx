@@ -1,19 +1,17 @@
-import SearchBar from '../../components/SearchBar';
-import { triggerQuerySearch } from '../../actions';
-import { connect } from 'react-redux';
-
+import SearchBar from "../../components/SearchBar";
+import { triggerQuerySearch } from "../../actions";
+import { connect } from "react-redux";
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    searchQueryChange: (searchQuery) => {
+    searchQueryChange: searchQuery => {
       dispatch(triggerQuerySearch(searchQuery));
     },
-    searchOpenedCallback: (isOpened) => {
+    searchOpenedCallback: isOpened => {
       ownProps.searchOpenedCallback(isOpened);
     }
-  }
+  };
 };
-
 
 const SearchBarContainer = connect(
   undefined,

@@ -1,8 +1,8 @@
-import React from 'react';
-import { CSSTransitionGroup } from 'react-transition-group';
-import { MOVIES_PER_ROW } from '../../constants';
-import GenreSearchLinkContainer from '../../containers/GenreSearchLinkContainer';
-import DiscoverPreBuiltLinkContainer from '../../containers/DiscoverPreBuiltLinkContainer';
+import React from "react";
+import { CSSTransitionGroup } from "react-transition-group";
+import { MOVIES_PER_ROW } from "../../constants";
+import GenreSearchLinkContainer from "../../containers/GenreSearchLinkContainer";
+import DiscoverPreBuiltLinkContainer from "../../containers/DiscoverPreBuiltLinkContainer";
 import {
   TYPE_80S,
   TYPE_90S,
@@ -10,16 +10,16 @@ import {
   TYPE_LONG_MOVIES,
   TYPE_POORLY_VOTED,
   TYPE_SHORT_MOVIES
-} from '../../containers/DiscoverPreBuiltLinkContainer';
-import downArrow from './down-arrow.png';
-import styles from './NavLinks.scss';
+} from "../../containers/DiscoverPreBuiltLinkContainer";
+import downArrow from "./down-arrow.png";
+import styles from "./NavLinks.scss";
 
 class NavLinks extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      "showingLinkContainer": false
-    }
+      showingLinkContainer: false
+    };
     this.hideContainer = this.hideContainer.bind(this);
     this.getGenreRow = this.getGenreRow.bind(this);
   }
@@ -29,7 +29,7 @@ class NavLinks extends React.Component {
   }
 
   hideContainer() {
-    this.setState({ showingLinkContainer: false});
+    this.setState({ showingLinkContainer: false });
   }
 
   getUserLinkRow(key, item) {
@@ -43,13 +43,20 @@ class NavLinks extends React.Component {
   getGenreRow(key, item) {
     return (
       <li key={key} className={styles.linksRow}>
-        <GenreSearchLinkContainer genre={item} clickCallback={this.hideContainer}/>
+        <GenreSearchLinkContainer
+          genre={item}
+          clickCallback={this.hideContainer}
+        />
       </li>
     );
   }
 
   getCategoryColumn(key, rows) {
-    return (<ul key={key} className={styles.linksColumn}>{rows}</ul>);
+    return (
+      <ul key={key} className={styles.linksColumn}>
+        {rows}
+      </ul>
+    );
   }
 
   indexRequiresNewColumn(index) {
@@ -78,42 +85,48 @@ class NavLinks extends React.Component {
 
   getPreBuildLinksColumn() {
     return (
-      <ul className={[styles.linksColumn, styles.userLinks].join(' ')}>
+      <ul className={[styles.linksColumn, styles.userLinks].join(" ")}>
         <li className={styles.linksRow}>
-          <DiscoverPreBuiltLinkContainer 
-            title="Highly voted" 
-            type={TYPE_HIGHLY_VOTED} 
-            clickCallback={this.hideContainer}/>
+          <DiscoverPreBuiltLinkContainer
+            title="Highly voted"
+            type={TYPE_HIGHLY_VOTED}
+            clickCallback={this.hideContainer}
+          />
         </li>
         <li className={styles.linksRow}>
-          <DiscoverPreBuiltLinkContainer 
-            title="Poorly voted" 
+          <DiscoverPreBuiltLinkContainer
+            title="Poorly voted"
             type={TYPE_POORLY_VOTED}
-            clickCallback={this.hideContainer}/>
+            clickCallback={this.hideContainer}
+          />
         </li>
         <li className={styles.linksRow}>
-          <DiscoverPreBuiltLinkContainer 
-            title="80's movies" 
+          <DiscoverPreBuiltLinkContainer
+            title="80's movies"
             type={TYPE_80S}
-            clickCallback={this.hideContainer}/>
+            clickCallback={this.hideContainer}
+          />
         </li>
         <li className={styles.linksRow}>
-          <DiscoverPreBuiltLinkContainer 
-            title="90's movies" 
+          <DiscoverPreBuiltLinkContainer
+            title="90's movies"
             type={TYPE_90S}
-            clickCallback={this.hideContainer}/>
+            clickCallback={this.hideContainer}
+          />
         </li>
         <li className={styles.linksRow}>
-          <DiscoverPreBuiltLinkContainer 
-            title="Long movies" 
+          <DiscoverPreBuiltLinkContainer
+            title="Long movies"
             type={TYPE_LONG_MOVIES}
-            clickCallback={this.hideContainer}/>
+            clickCallback={this.hideContainer}
+          />
         </li>
         <li className={styles.linksRow}>
-          <DiscoverPreBuiltLinkContainer 
-            title="Short movies" 
+          <DiscoverPreBuiltLinkContainer
+            title="Short movies"
             type={TYPE_SHORT_MOVIES}
-            clickCallback={this.hideContainer}/>
+            clickCallback={this.hideContainer}
+          />
         </li>
       </ul>
     );
@@ -121,68 +134,79 @@ class NavLinks extends React.Component {
 
   render() {
     return (
-      <div 
-        className={styles.NavLinks} 
-        onMouseLeave={this.hideContainer}>
+      <div className={styles.NavLinks} onMouseLeave={this.hideContainer}>
         <span className={styles.toggleLinksBtnContainer}>
           <button
             className={[styles.toggleLinksBtn, styles.desktopVersion].join(" ")}
-            onMouseEnter={() => this.setState({ showingLinkContainer: true})}>
+            onMouseEnter={() => this.setState({ showingLinkContainer: true })}
+          >
             Browse
-            <img src={downArrow} alt="DownArrow" className={styles.downArrowIcon} />
+            <img
+              src={downArrow}
+              alt="DownArrow"
+              className={styles.downArrowIcon}
+            />
           </button>
 
-          <button 
+          <button
             className={[styles.toggleLinksBtn, styles.mobileVersion].join(" ")}
-            onClick={() => this.setState({ 
-              showingLinkContainer: !this.state.showingLinkContainer
-            })}>
+            onClick={() =>
+              this.setState({
+                showingLinkContainer: !this.state.showingLinkContainer
+              })
+            }
+          >
             Browse
-            <img src={downArrow} alt="DownArrow" className={styles.downArrowIcon} />
+            <img
+              src={downArrow}
+              alt="DownArrow"
+              className={styles.downArrowIcon}
+            />
           </button>
-          
+
           <CSSTransitionGroup
             transitionName={{
               enter: styles.containerElementEnter,
               enterActive: styles.containerElementEnterActive,
               leave: styles.containerElementLeave,
-              leaveActive: styles.containerElementLeaveActive,
+              leaveActive: styles.containerElementLeaveActive
             }}
             transitionEnterTimeout={200}
-            transitionLeaveTimeout={200}>
-            {this.state.showingLinkContainer ?
-              <div className={styles.linksArrow}></div>
-              : null
-            }
+            transitionLeaveTimeout={200}
+          >
+            {this.state.showingLinkContainer ? (
+              <div className={styles.linksArrow} />
+            ) : null}
           </CSSTransitionGroup>
-
         </span>
-        
+
         <CSSTransitionGroup
           transitionName={{
             enter: styles.containerElementEnter,
             enterActive: styles.containerElementEnterActive,
             leave: styles.containerElementLeave,
-            leaveActive: styles.containerElementLeaveActive,
+            leaveActive: styles.containerElementLeaveActive
           }}
           transitionEnterTimeout={200}
-          transitionLeaveTimeout={200}>
-          {this.state.showingLinkContainer ?
-            <div className={styles.linkContainer}> 
-              <div className={styles.topBar}></div>
+          transitionLeaveTimeout={200}
+        >
+          {this.state.showingLinkContainer ? (
+            <div className={styles.linkContainer}>
+              <div className={styles.topBar} />
               <div className={styles.links}>
                 {this.getPreBuildLinksColumn()}
                 {this.getColumns(
-                  this.props.genres, 
+                  this.props.genres,
                   this.getCategoryColumn,
-                  this.getGenreRow)}
+                  this.getGenreRow
+                )}
               </div>
             </div>
-          : null}
+          ) : null}
         </CSSTransitionGroup>
       </div>
     );
   }
-} 
+}
 
 export default NavLinks;

@@ -1,5 +1,5 @@
-import { connect } from 'react-redux';
-import SearchLink from '../../components/SearchLink';
+import { connect } from "react-redux";
+import SearchLink from "../../components/SearchLink";
 import {
   trigger80sMoviesSearch,
   trigger90sMoviesSearch,
@@ -7,8 +7,7 @@ import {
   triggerLongMoviesSearch,
   triggerPoorlyRatedMoviesSearch,
   triggerShortMoviesSearch
-} from '../../actions';
-
+} from "../../actions";
 
 export const TYPE_80S = "TYPE_80S";
 export const TYPE_90S = "TYPE_90S";
@@ -18,7 +17,7 @@ export const TYPE_LONG_MOVIES = "TYPE_LONG_MOVIES";
 export const TYPE_SHORT_MOVIES = "TYPE_SHORT_MOVIES";
 
 function getClickFunction(type) {
-  switch(type) {
+  switch (type) {
     case TYPE_80S:
       return trigger80sMoviesSearch;
     case TYPE_90S:
@@ -43,9 +42,8 @@ const mapDispatchToLinkProps = (dispatch, ownProps) => {
       let fn = getClickFunction(ownProps.type);
       dispatch(fn());
     }
-  }
+  };
 };
-
 
 const DiscoverPreBuiltLinkContainer = connect(
   undefined,

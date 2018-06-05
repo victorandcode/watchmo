@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './HeroRecommendation.scss';
-import recommendationLogo from './recommendation-logo.png';
+import React from "react";
+import styles from "./HeroRecommendation.scss";
+import recommendationLogo from "./recommendation-logo.png";
 
 class HeroRecommendation extends React.Component {
   constructor(props) {
@@ -16,16 +16,25 @@ class HeroRecommendation extends React.Component {
     return (
       <div className={styles.HeroRecommendation}>
         <div className={styles.heroInfo}>
-          <img src={recommendationLogo} alt="Recommendationlogo" className={styles.recommendationLogo}/>
+          <img
+            src={recommendationLogo}
+            alt="Recommendationlogo"
+            className={styles.recommendationLogo}
+          />
           <div className={styles.recommendationBtns}>
-            <a 
+            <a
               href="/"
               className={styles.recommendationBtn}
-              onClick={ (e) => {
+              onClick={e => {
                 e.preventDefault();
                 this.handleClick();
-              }}>
-              <div className={[styles.recommendationBtnLogo, styles.playLogo].join(' ')}/>
+              }}
+            >
+              <div
+                className={[styles.recommendationBtnLogo, styles.playLogo].join(
+                  " "
+                )}
+              />
               Trailer
             </a>
           </div>

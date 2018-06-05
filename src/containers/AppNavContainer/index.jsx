@@ -1,9 +1,9 @@
-import { connect } from 'react-redux';
-import AppNav from '../../components/AppNav';
+import { connect } from "react-redux";
+import AppNav from "../../components/AppNav";
 import {
   triggerBestOf2017Search,
   triggerBestOf2016Search
-} from '../../actions';
+} from "../../actions";
 
 const mapDispatchToLinkProps = dispatch => {
   return {
@@ -13,12 +13,12 @@ const mapDispatchToLinkProps = dispatch => {
     triggerBestOf2016: () => {
       dispatch(triggerBestOf2016Search());
     }
-  }
-}
+  };
+};
 
 const AppNavContainer = connect(
   undefined,
   mapDispatchToLinkProps
-)(AppNav)
+)(AppNav);
 
 export default AppNavContainer;

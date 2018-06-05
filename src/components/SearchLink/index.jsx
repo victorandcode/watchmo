@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 class SearchLink extends React.Component {
   constructor(props) {
@@ -13,12 +13,10 @@ class SearchLink extends React.Component {
 
   render() {
     return (
-      <a
-        href='/'
-        onClick={this.handleClick}>
+      <a href="/" onClick={this.handleClick}>
         {this.props.title}
       </a>
-    )
+    );
   }
 }
 

@@ -1,13 +1,12 @@
-import { connect } from 'react-redux';
-import SearchLink from '../../components/SearchLink';
-import { triggerGenreSearch } from '../../actions';
-
+import { connect } from "react-redux";
+import SearchLink from "../../components/SearchLink";
+import { triggerGenreSearch } from "../../actions";
 
 const mapStateToProps = (state, ownProps) => {
   return {
     title: ownProps.genre.name
-  }
-}
+  };
+};
 
 const mapDispatchToLinkProps = (dispatch, ownProps) => {
   return {
@@ -15,7 +14,7 @@ const mapDispatchToLinkProps = (dispatch, ownProps) => {
       ownProps.clickCallback();
       dispatch(triggerGenreSearch(ownProps.genre.name, ownProps.genre.id));
     }
-  }
+  };
 };
 
 const GenreSearchLinkContainer = connect(

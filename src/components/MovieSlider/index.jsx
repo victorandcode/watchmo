@@ -1,13 +1,12 @@
-import React from 'react';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import Slider from 'react-slick';
-import MovieCardContainer from '../../containers/MovieCardContainer';
-import MovieDetailsBannerContainer from '../../containers/MovieDetailsBannerContainer';
-import styles from './MovieSlider.scss';
-import { v4 } from 'node-uuid';
-import { RESPONSIVE_COLUMN_CONFIG } from '../../constants';
-
+import React from "react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import MovieCardContainer from "../../containers/MovieCardContainer";
+import MovieDetailsBannerContainer from "../../containers/MovieDetailsBannerContainer";
+import styles from "./MovieSlider.scss";
+import { v4 } from "node-uuid";
+import { RESPONSIVE_COLUMN_CONFIG } from "../../constants";
 
 const maxIndex = 5;
 
@@ -47,7 +46,7 @@ class MovieSlider extends React.Component {
         ]
       },
       detailsBannerKey: v4()
-    }
+    };
     this.setHoverClasses = this.setHoverClasses.bind(this);
     this.setFirstHovered = this.setFirstHovered.bind(this);
     this.setLastHovered = this.setLastHovered.bind(this);
@@ -57,7 +56,7 @@ class MovieSlider extends React.Component {
   }
 
   setHoverClasses(index) {
-    if(index === 0) {
+    if (index === 0) {
       this.setFirstHovered();
     } else if (index % maxIndex === 0) {
       this.setLastHovered();
@@ -67,25 +66,21 @@ class MovieSlider extends React.Component {
   }
 
   setFirstHovered() {
-    this.setState({"innerClass": styles.sliderWrapperInner})
+    this.setState({ innerClass: styles.sliderWrapperInner });
   }
 
   setLastHovered() {
     this.setState({
-      "innerClass": [
-        styles.sliderWrapperInner,
-        styles.wrapperMoveLeftExtra]
-        .join(" ")
-    })
+      innerClass: [styles.sliderWrapperInner, styles.wrapperMoveLeftExtra].join(
+        " "
+      )
+    });
   }
 
   setNonBorderHovered() {
     this.setState({
-      "innerClass": [
-        styles.sliderWrapperInner, 
-        styles.wrapperMoveLeft]
-        .join(" ")
-    })
+      innerClass: [styles.sliderWrapperInner, styles.wrapperMoveLeft].join(" ")
+    });
   }
 
   nextSlide() {
@@ -99,53 +94,63 @@ class MovieSlider extends React.Component {
   render() {
     return (
       <div className={styles.sliderWrapper}>
-        <div className={[styles.desktopSlider, this.state.innerClass].join(" ")}>
+        <div
+          className={[styles.desktopSlider, this.state.innerClass].join(" ")}
+        >
           {this.props.movies.map((movieItem, movieItemIndex) => {
-              return (
-                <div 
-                  className={styles.movieCardWrapper} 
-                  key={movieItem.id} 
-                  onMouseEnter={(e) => {this.setHoverClasses(movieItemIndex)}}>
-                  <MovieCardContainer movie={movieItem}/>
-                </div>
-              );
-            })
-          }
+            return (
+              <div
+                className={styles.movieCardWrapper}
+                key={movieItem.id}
+                onMouseEnter={e => {
+                  this.setHoverClasses(movieItemIndex);
+                }}
+              >
+                <MovieCardContainer movie={movieItem} />
+              </div>
+            );
+          })}
         </div>
         <div className={styles.mobileSlider}>
-          {this.props.movies.length ?
+          {this.props.movies.length ? (
             <div>
-              <div 
+              <div
                 className={styles.sliderPrevBtnWrapper}
-                onClick={this.prevSlide}>
+                onClick={this.prevSlide}
+              >
                 <span className={styles.prevBtn} />
               </div>
-              <Slider ref={c => this.slider = c} {...this.state.sliderSettings}>
+              <Slider
+                ref={c => (this.slider = c)}
+                {...this.state.sliderSettings}
+              >
                 {this.props.movies.map((movieItem, movieItemIndex) => {
                   return (
                     <div key={movieItemIndex}>
                       <div className={styles.sliderItem}>
-                        <MovieCardContainer movie={movieItem} detailsBannerKey={this.state.detailsBannerKey}/>
+                        <MovieCardContainer
+                          movie={movieItem}
+                          detailsBannerKey={this.state.detailsBannerKey}
+                        />
                       </div>
                     </div>
                   );
-                })
-              }
+                })}
               </Slider>
-              <div 
+              <div
                 className={styles.sliderNextBtnWrapper}
-                onClick={this.nextSlide}>
+                onClick={this.nextSlide}
+              >
                 <span className={styles.nextBtn} />
               </div>
             </div>
-            : null
-          }
+          ) : null}
         </div>
-        {this.props.isMobile ?
-          <MovieDetailsBannerContainer containerKey={this.state.detailsBannerKey}/>
-          :
-            null
-        }
+        {this.props.isMobile ? (
+          <MovieDetailsBannerContainer
+            containerKey={this.state.detailsBannerKey}
+          />
+        ) : null}
       </div>
     );
   }

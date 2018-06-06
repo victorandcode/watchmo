@@ -23,26 +23,26 @@ class DiscoverMoviesUrlBuilder {
       runtimeGt,
       runtimeLt
     } = props;
-    if(genreId !== undefined) {
-      this.appendGenreSearch(genreId)
+    if (genreId !== undefined) {
+      this.appendGenreSearch(genreId);
     }
-    if(releasedDateLt !== undefined) {
+    if (releasedDateLt !== undefined) {
       this.appendReleasedDateLt(releasedDateLt);
     }
-    if(releasedDateGt !== undefined) {
+    if (releasedDateGt !== undefined) {
       this.appendReleasedDateGt(releasedDateGt);
     }
-    if(voteAverageGt !== undefined) {
+    if (voteAverageGt !== undefined) {
       this.appendVoteAverageGt(voteAverageGt);
     }
-    if(voteAverageLt !== undefined) {
+    if (voteAverageLt !== undefined) {
       this.appendVoteAverageLt(voteAverageLt);
     }
-    if(runtimeGt !== undefined) {
+    if (runtimeGt !== undefined) {
       this.appendRunetimeGt(runtimeGt);
     }
-    if(runtimeLt !== undefined) {
-      this.appendRunetimeLt(runtimeLt); 
+    if (runtimeLt !== undefined) {
+      this.appendRunetimeLt(runtimeLt);
     }
   }
 
@@ -79,7 +79,6 @@ class DiscoverMoviesUrlBuilder {
   }
 }
 
-
 export function getDiscoverMoviesUrl() {
   return discoverMoviesUrl;
 }
@@ -89,7 +88,7 @@ export function getMoviesNowPlayingUrl() {
 }
 
 export function getSearchMoviesUrl(searchQuery, page) {
-  let result = searchMoviesUrl.replace("{searchQuery}", searchQuery)
+  let result = searchMoviesUrl.replace("{searchQuery}", searchQuery);
   result = result.replace("{page}", page);
   return result;
 }
@@ -106,7 +105,7 @@ export function getGenresUrl() {
   return genresUrl;
 }
 
-export function get80sMoviesUrl () {
+export function get80sMoviesUrl() {
   let query = {
     releasedDateGt: "1980-01-01",
     releasedDateLt: "1989-12-31"
@@ -138,7 +137,7 @@ export function getPoorlyRatedMoviesUrl() {
     voteAverageLt: 3
   };
   let builder = new DiscoverMoviesUrlBuilder(query);
-  return builder.getUrl(); 
+  return builder.getUrl();
 }
 
 export function getLongMoviesUrl() {
@@ -146,7 +145,7 @@ export function getLongMoviesUrl() {
     runtimeGt: 150
   };
   let builder = new DiscoverMoviesUrlBuilder(query);
-  return builder.getUrl(); 
+  return builder.getUrl();
 }
 
 export function getShortMoviesUrl() {
@@ -155,7 +154,7 @@ export function getShortMoviesUrl() {
     runtimeLt: 31
   };
   let builder = new DiscoverMoviesUrlBuilder(query);
-  return builder.getUrl(); 
+  return builder.getUrl();
 }
 
 function getAsIsoDate(date) {
@@ -178,7 +177,7 @@ export function getNewMoviesUrl() {
     releasedDateLt: getAsIsoDate(new Date())
   };
   let builder = new DiscoverMoviesUrlBuilder(query);
-  return builder.getUrl();  
+  return builder.getUrl();
 }
 
 export function getUpcomingMoviesUrl() {
@@ -186,7 +185,7 @@ export function getUpcomingMoviesUrl() {
     releasedDateGt: getAsIsoDate(new Date())
   };
   let builder = new DiscoverMoviesUrlBuilder(query);
-  return builder.getUrl();  
+  return builder.getUrl();
 }
 
 export function getBestOf2016Url() {
@@ -196,7 +195,7 @@ export function getBestOf2016Url() {
     voteAverageGt: 7
   };
   let builder = new DiscoverMoviesUrlBuilder(query);
-  return builder.getUrl();   
+  return builder.getUrl();
 }
 
 export function getBestOf2017Url() {
@@ -206,14 +205,18 @@ export function getBestOf2017Url() {
     voteAverageGt: 7
   };
   let builder = new DiscoverMoviesUrlBuilder(query);
-  return builder.getUrl();   
+  return builder.getUrl();
 }
 
 export function getSearchMoviesNextPageUrl(lastQueryUrl, currentPage) {
   let startPos = lastQueryUrl.indexOf("page=");
   let lastPos = lastQueryUrl.indexOf("&", startPos);
-  if(lastPos === -1) {
+  if (lastPos === -1) {
     lastPos = lastQueryUrl.length - 1;
   }
-  return lastQueryUrl.slice(0, startPos) + `page=${currentPage}` + lastQueryUrl.slice(lastPos);
+  return (
+    lastQueryUrl.slice(0, startPos) +
+    `page=${currentPage}` +
+    lastQueryUrl.slice(lastPos)
+  );
 }

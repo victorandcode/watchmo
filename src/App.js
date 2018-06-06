@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import AppHeaderContainer from './containers/AppHeaderContainer/AppHeaderContainer';
-import LayoutDispatcherContainer from './containers/LayoutDispatcherContainer/LayoutDispatcherContainer';
+import AppHeaderContainer from './containers/AppHeaderContainer';
+import LayoutDispatcherContainer from './containers/LayoutDispatcherContainer';
 
 class App extends Component {
   render() {

@@ -1,14 +1,11 @@
-import { 
-  IMAGE_BASE_URL_W300,
-  IMAGE_BASE_URL_W500
-} from './constants';
+import { IMAGE_BASE_URL_W300, IMAGE_BASE_URL_W500 } from "./constants";
 
 function getImageBaseUrl(imageIsBig) {
   return imageIsBig ? IMAGE_BASE_URL_W500 : IMAGE_BASE_URL_W300;
 }
 
 function getBackdropUrl(backdropPath, imageIsBig) {
-  if(backdropPath) {
+  if (backdropPath) {
     return getImageBaseUrl(imageIsBig) + backdropPath;
   } else {
     return "";
@@ -16,7 +13,7 @@ function getBackdropUrl(backdropPath, imageIsBig) {
 }
 
 function getYear(unformattedDate) {
-  if(unformattedDate) {
+  if (unformattedDate) {
     return unformattedDate.slice(0, 4);
   } else {
     return "N/A";
@@ -40,9 +37,9 @@ function getDuration(runtime) {
 }
 
 function parseImages(imagesObjs = []) {
-  return imagesObjs.map((imageObj) => {
+  return imagesObjs.map(imageObj => {
     return IMAGE_BASE_URL_W500 + imageObj.file_path;
-  })
+  });
 }
 
 function parseMovieDetails(movieDetails) {
@@ -63,7 +60,7 @@ function parseBasicMovieData(basicMovieData, imageIsBig) {
     releasedDate: basicMovieData.release_date,
     voteAverage: getVoteAverage(basicMovieData.vote_average),
     year: getYear(basicMovieData.release_date)
-  })
+  });
 }
 
 /*
@@ -74,8 +71,8 @@ export function getMovieData(basicMovieData, movieDetails, options = {}) {
   let movie = {};
   let { imageIsBig = undefined } = options;
   Object.assign(movie, parseBasicMovieData(basicMovieData, imageIsBig));
-  if(movieDetails) {
-    Object.assign(movie, parseMovieDetails(movieDetails, imageIsBig))
+  if (movieDetails) {
+    Object.assign(movie, parseMovieDetails(movieDetails, imageIsBig));
   }
   return movie;
 }

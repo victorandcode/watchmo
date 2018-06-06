@@ -57,7 +57,8 @@ const searchedMoviesInitialState = {
   searchInProgress: false,
   searchHasTriggered: false,
   searchHasNoResults: false,
-  searchTitle: ""
+  searchTitle: "",
+  currentSearchId: undefined
 };
 
 function searchedMovies(state = searchedMoviesInitialState, action) {
@@ -67,9 +68,17 @@ function searchedMovies(state = searchedMoviesInitialState, action) {
         searchHasTriggered: true,
         searchHasNoResults: false,
         searchInProgress: true,
-        lastQueryUrl: action.newQueryUrl
+        lastQueryUrl: action.newQueryUrl,
+        currentSearchId: action.searchId
       });
     case RECEIVE_SEARCHED_MOVIES:
+      debugger;
+      if (
+        state.currentSearchId !== undefined &&
+        action.searchId !== state.currentSearchId
+      ) {
+        return state;
+      }
       let movies = [...state.movies, ...action.movies];
       let noMorePages = action.movies.length === 0;
       let searchHasNoResults = movies.length === 0;
@@ -79,7 +88,8 @@ function searchedMovies(state = searchedMoviesInitialState, action) {
         noMorePages: noMorePages,
         searchHasNoResults: searchHasNoResults,
         searchInProgress: false,
-        page: page
+        page: page,
+        currentSearchId: undefined
       });
     case CLEAR_SEARCHED_MOVIES:
       return searchedMoviesInitialState;

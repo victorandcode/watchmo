@@ -74,11 +74,12 @@ export function receiveUpcomingMovies(json) {
   };
 }
 
-export function receiveSearchedMovies(json) {
+export function receiveSearchedMovies(json, searchId) {
   let results = json ? json.results : [];
   return {
     type: RECEIVE_SEARCHED_MOVIES,
-    movies: filterMoviesOnlyWithBackdrop(results)
+    movies: filterMoviesOnlyWithBackdrop(results),
+    searchId
   };
 }
 
@@ -168,10 +169,11 @@ function updateSearchQuery(searchQuery) {
   };
 }
 
-function startSearchedMoviesRequest(newQueryUrl) {
+function startSearchedMoviesRequest(newQueryUrl, searchId) {
   return {
     type: START_SEARCHED_MOVIES_REQUEST,
-    newQueryUrl
+    newQueryUrl,
+    searchId
   };
 }
 
@@ -257,19 +259,20 @@ export function fetchMovieDetails(movieId) {
 
 function fetchSearchedMoviesInitialRequest(url, title) {
   return dispatch => {
+    const searchId = Math.random();
     dispatch(clearSearchedMovies());
     dispatch(setSearchedMoviesTitle(title));
-    dispatch(startSearchedMoviesRequest(url));
+    dispatch(startSearchedMoviesRequest(url, searchId));
     fetch(url)
       .then(
         response => response.json(),
         error => console.log("An error ocurred.", error)
       )
-      .then(json => dispatch(receiveSearchedMovies(json)));
+      .then(json => dispatch(receiveSearchedMovies(json, searchId)));
   };
 }
 
-function fetchSearchedMoviesNextPage(newQueryUrl) {
+function fetchSearchedMoviesNextPage(newQueryUrl, searchId) {
   return dispatch => {
     fetch(newQueryUrl)
       .then(
@@ -278,7 +281,7 @@ function fetchSearchedMoviesNextPage(newQueryUrl) {
         },
         error => console.log("An error ocurred.", error)
       )
-      .then(json => dispatch(receiveSearchedMovies(json)));
+      .then(json => dispatch(receiveSearchedMovies(json, searchId)));
   };
 }
 
@@ -292,8 +295,9 @@ export function triggerSearchedMoviesNextPage() {
       searchedMovies.lastQueryUrl,
       searchedMovies.page
     );
-    dispatch(startSearchedMoviesRequest(newQueryUrl));
-    dispatch(fetchSearchedMoviesNextPage(newQueryUrl));
+    const searchId = Math.random();
+    dispatch(startSearchedMoviesRequest(newQueryUrl, searchId));
+    dispatch(fetchSearchedMoviesNextPage(newQueryUrl, searchId));
   };
 }
 

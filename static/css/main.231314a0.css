@@ -632,7 +632,7 @@ a, a:link, a:visited, a:hover, a:active {
   width: 100%; }
 
 .MovieCard__detailsOverlay__1yDyr {
-  background-image: linear-gradient(to bottom, transparent 0, transparent 33%, rgba(0, 0, 0, 0.85) 100%);
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 33%, rgba(0, 0, 0, 0.85) 100%);
   height: 100%;
   left: 0;
   position: absolute;
@@ -714,7 +714,7 @@ a, a:link, a:visited, a:hover, a:active {
   width: 100%; }
 
 .MovieDetailsBanner__movieImgWrapper__Fs8SV {
-  background-image: linear-gradient(to bottom, transparent 0, transparent 33%, rgba(0, 0, 0, 0.85) 100%);
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 33%, rgba(0, 0, 0, 0.85) 100%);
   opacity: .5; }
 
 .MovieDetailsBanner__movieImg__vbtgd {
@@ -1050,4 +1050,4 @@ a, a:link, a:visited, a:hover, a:active {
   opacity: 1;
   transition: opacity 500ms ease-in; }
 
-/*# sourceMappingURL=main.26f6f0e9.css.map*/
+/*# sourceMappingURL=main.231314a0.css.map*/

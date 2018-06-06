@@ -40,6 +40,11 @@ npm start
 npm run deploy
 ```
 
+## How to format files (using prettier)
+```bash
+npm run format
+```
+
 ## Acknowledgment
 - Iconfinder for all icons used on this page
 - MovieDB for their data :)

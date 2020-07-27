@@ -1,4 +1,4 @@
-<a href="https://victor-cordova.github.io/watchmo/" target="_blank">DEMO</a>
+<a href="https://victorandcode.github.io/watchmo/" target="_blank">DEMO</a>
 
 # Description
 Trailer viewing website using React+Redux architecture and with Netflix's look and feel
